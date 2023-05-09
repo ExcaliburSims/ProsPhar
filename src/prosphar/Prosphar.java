@@ -4,6 +4,8 @@
  */
 package prosphar;
 
+import prosphar.gui.gui_form.Login;
+
 /**
  *
  * @author user
@@ -15,6 +17,8 @@ public class Prosphar {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Login login=new Login();
+        login.setVisible(true);
     }
     
 }
