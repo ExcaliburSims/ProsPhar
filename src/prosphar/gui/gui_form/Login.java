@@ -263,6 +263,7 @@ public class Login extends javax.swing.JFrame {
             System.out.print("A la bien");
             AdminPanel homeAdminPanel = new AdminPanel();
             homeAdminPanel.show();
+            dispose();
         }
     }//GEN-LAST:event_buttonLoginActionPerformed
 
