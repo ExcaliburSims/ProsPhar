@@ -19,11 +19,18 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         textField();
     }
-    private void textField(){
-    jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        jTextField1.setBackground(new Color(0, 0, 0, 0));
-        jTextField1.setForeground(Color.decode("#7A8C8D"));
-        jTextField1.setSelectionColor(new Color(75, 175, 152));
+
+    private void textField() {
+        userText.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        // jTextField1.setBackground(new Color(0, 0, 0, 0));
+        // jTextField1.setForeground(Color.decode("#7A8C8D"));
+        // jTextField1.setSelectionColor(new Color(75, 175, 152));
+        // JTextField busqueda = new JTextField(20);
+
+        if (userText.getText().length() == 0) {
+            userText.setText("Nom utilisateur");
+            userText.setForeground(Color.decode("#7A8C8D"));
+        }
     }
 
     /**
@@ -41,7 +48,7 @@ public class Login extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        userText = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
         buttonLogin = new javax.swing.JButton();
 
@@ -116,10 +123,23 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/kisspng-pharmacy-symbol-clip-art-aboriginal-clipart-5a770701e689b5.7600983215177500179443.png"))); // NOI18N
         jLabel1.setText("Sign In");
 
-        jTextField1.setBackground(new java.awt.Color(74, 174, 146));
-        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
-        jTextField1.setText("Nom utilisateur");
-        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        userText.setBackground(new java.awt.Color(74, 174, 146));
+        userText.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        userText.setText("Nom utilisateur");
+        userText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        userText.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userTextFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                userTextFocusLost(evt);
+            }
+        });
+        userText.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                userTextKeyTyped(evt);
+            }
+        });
 
         jPasswordField1.setBackground(new java.awt.Color(74, 174, 146));
         jPasswordField1.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -143,7 +163,7 @@ public class Login extends javax.swing.JFrame {
                         .addGap(106, 106, 106)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
                         .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -159,7 +179,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(59, 59, 59)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
@@ -170,6 +190,28 @@ public class Login extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(911, 525));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void userTextFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userTextFocusGained
+        // TODO add your handling code here:
+        userText.setText("");
+        userText.setForeground(new Color(50, 50, 50));
+    }//GEN-LAST:event_userTextFocusGained
+
+    private void userTextFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userTextFocusLost
+        // TODO add your handling code here:
+        if (userText.getText().length() == 0) {
+            userText.setText("Nom utilisateur");
+            userText.setForeground(new Color(150, 150, 150));
+        }
+    }//GEN-LAST:event_userTextFocusLost
+
+    private void userTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userTextKeyTyped
+        // TODO add your handling code here:
+        /*if ("".equals(userText.getText())) {
+           userText.setVisible(true);
+            userText.setEnabled(false);
+        }*/
+    }//GEN-LAST:event_userTextKeyTyped
 
     /**
      * @param args the command line arguments
@@ -215,6 +257,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField userText;
     // End of variables declaration//GEN-END:variables
 }
