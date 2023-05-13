@@ -18,18 +18,32 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         textField();
+        textPass();
     }
 
     private void textField() {
         userText.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         // jTextField1.setBackground(new Color(0, 0, 0, 0));
         // jTextField1.setForeground(Color.decode("#7A8C8D"));
-        // jTextField1.setSelectionColor(new Color(75, 175, 152));
+        userText.setSelectionColor(new Color(75, 175, 152));
         // JTextField busqueda = new JTextField(20);
 
         if (userText.getText().length() == 0) {
             userText.setText("Nom utilisateur");
             userText.setForeground(Color.decode("#7A8C8D"));
+        }
+    }
+
+    private void textPass() {
+        userPass.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        // jTextField1.setBackground(new Color(0, 0, 0, 0));
+        // jTextField1.setForeground(Color.decode("#7A8C8D"));
+        // jTextField1.setSelectionColor(new Color(75, 175, 152));
+        // JTextField busqueda = new JTextField(20);
+
+        if (userPass.getText().length() == 0) {
+            userPass.setText("Mot de passe");
+            userPass.setForeground(Color.decode("#7A8C8D"));
         }
     }
 
@@ -49,7 +63,7 @@ public class Login extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         userText = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        userPass = new javax.swing.JPasswordField();
         buttonLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -123,7 +137,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/kisspng-pharmacy-symbol-clip-art-aboriginal-clipart-5a770701e689b5.7600983215177500179443.png"))); // NOI18N
         jLabel1.setText("Sign In");
 
-        userText.setBackground(new java.awt.Color(74, 174, 146));
+        userText.setBackground(new java.awt.Color(135, 233, 144));
         userText.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
         userText.setText("Nom utilisateur");
         userText.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -141,9 +155,18 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jPasswordField1.setBackground(new java.awt.Color(74, 174, 146));
-        jPasswordField1.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
-        jPasswordField1.setText("Mot de passe");
+        userPass.setBackground(new java.awt.Color(135, 233, 144));
+        userPass.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
+        userPass.setText("Mot de passe");
+        userPass.setFocusTraversalPolicyProvider(true);
+        userPass.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userPassFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                userPassFocusLost(evt);
+            }
+        });
 
         buttonLogin.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         buttonLogin.setForeground(new java.awt.Color(35, 166, 97));
@@ -151,6 +174,11 @@ public class Login extends javax.swing.JFrame {
         buttonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         buttonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         buttonLogin.setBackground(new Color(7, 164, 121));
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -162,7 +190,7 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userPass, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(141, 141, 141)
@@ -181,7 +209,7 @@ public class Login extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(userPass, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
                 .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -212,6 +240,29 @@ public class Login extends javax.swing.JFrame {
             userText.setEnabled(false);
         }*/
     }//GEN-LAST:event_userTextKeyTyped
+
+    private void userPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPassFocusGained
+        // TODO add your handling code here:
+        userPass.setText("");
+        userPass.setForeground(new Color(50, 50, 50));
+    }//GEN-LAST:event_userPassFocusGained
+
+    private void userPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPassFocusLost
+        // TODO add your handling code here:
+        if (userPass.getPassword().length == 0) {
+            userPass.setText("Mot de passe");
+            userPass.setForeground(new Color(150, 150, 150));
+        }
+    }//GEN-LAST:event_userPassFocusLost
+
+    private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
+        // TODO add your handling code here:
+        String userName = userText.getText();
+        String passWord = userPass.getText();
+        if (userName.equals("admin")&&passWord.equals("abc")) {
+            System.out.print("A la bien");
+        }
+    }//GEN-LAST:event_buttonLoginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,7 +307,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JPasswordField userPass;
     private javax.swing.JTextField userText;
     // End of variables declaration//GEN-END:variables
 }
