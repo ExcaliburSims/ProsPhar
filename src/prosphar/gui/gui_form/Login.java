@@ -261,6 +261,8 @@ public class Login extends javax.swing.JFrame {
         String passWord = userPass.getText();
         if (userName.equals("admin")&&passWord.equals("abc")) {
             System.out.print("A la bien");
+            AdminPanel homeAdminPanel = new AdminPanel();
+            homeAdminPanel.show();
         }
     }//GEN-LAST:event_buttonLoginActionPerformed
 
