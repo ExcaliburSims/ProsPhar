@@ -15,6 +15,7 @@ public class AdminPanel extends javax.swing.JFrame {
      */
     public AdminPanel() {
         initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -32,6 +33,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jLabel2.setText("Home Admin");
 
