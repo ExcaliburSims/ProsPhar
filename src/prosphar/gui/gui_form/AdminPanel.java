@@ -66,7 +66,6 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(128, 237, 180));
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Accueil");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
