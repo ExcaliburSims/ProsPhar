@@ -149,11 +149,6 @@ public class Login extends javax.swing.JFrame {
                 userTextFocusLost(evt);
             }
         });
-        userText.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                userTextKeyTyped(evt);
-            }
-        });
 
         userPass.setBackground(new java.awt.Color(135, 233, 144));
         userPass.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -232,14 +227,6 @@ public class Login extends javax.swing.JFrame {
             userText.setForeground(new Color(150, 150, 150));
         }
     }//GEN-LAST:event_userTextFocusLost
-
-    private void userTextKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_userTextKeyTyped
-        // TODO add your handling code here:
-        /*if ("".equals(userText.getText())) {
-           userText.setVisible(true);
-            userText.setEnabled(false);
-        }*/
-    }//GEN-LAST:event_userTextKeyTyped
 
     private void userPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userPassFocusGained
         // TODO add your handling code here:
