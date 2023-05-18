@@ -297,7 +297,6 @@ public class AdminPanel extends javax.swing.JFrame {
     private void logOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutActionPerformed
         // TODO add your handling code here:
         Login logPanel = new Login();
-        AdminPanel homeAdminPanel = new AdminPanel();
         logPanel.show();
         dispose();
     }//GEN-LAST:event_logOutActionPerformed
