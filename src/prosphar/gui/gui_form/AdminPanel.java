@@ -90,6 +90,7 @@ public class AdminPanel extends javax.swing.JFrame {
         tabBord.setBackground(new java.awt.Color(128, 237, 180));
         tabBord.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         tabBord.setText("Tableau de bord");
+        tabBord.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tabBord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tabBordActionPerformed(evt);
@@ -99,6 +100,7 @@ public class AdminPanel extends javax.swing.JFrame {
         gestVente.setBackground(new java.awt.Color(128, 237, 180));
         gestVente.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestVente.setText("Gestion de ventes");
+        gestVente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestVente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestVenteActionPerformed(evt);
@@ -108,6 +110,7 @@ public class AdminPanel extends javax.swing.JFrame {
         gestStock.setBackground(new java.awt.Color(128, 237, 180));
         gestStock.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestStock.setText("Gestion de stocks");
+        gestStock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestStockActionPerformed(evt);
@@ -117,6 +120,7 @@ public class AdminPanel extends javax.swing.JFrame {
         gestFourn.setBackground(new java.awt.Color(128, 237, 180));
         gestFourn.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestFourn.setText("Gestion de fournisseurs");
+        gestFourn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestFourn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestFournActionPerformed(evt);
@@ -126,6 +130,7 @@ public class AdminPanel extends javax.swing.JFrame {
         gestSecu.setBackground(new java.awt.Color(128, 237, 180));
         gestSecu.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestSecu.setText("Securite");
+        gestSecu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestSecu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestSecuActionPerformed(evt);
@@ -135,6 +140,7 @@ public class AdminPanel extends javax.swing.JFrame {
         gestRap.setBackground(new java.awt.Color(128, 237, 180));
         gestRap.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestRap.setText("Rapports");
+        gestRap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         gestRap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestRapActionPerformed(evt);
@@ -144,6 +150,7 @@ public class AdminPanel extends javax.swing.JFrame {
         logOut1.setBackground(new java.awt.Color(128, 237, 180));
         logOut1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         logOut1.setText("Log out");
+        logOut1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         logOut1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOut1ActionPerformed(evt);
