@@ -44,7 +44,11 @@ public class AdminPanel extends javax.swing.JFrame {
         tabBordPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         ventePanel = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         stockPanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         fournPanel = new javax.swing.JPanel();
@@ -230,23 +234,48 @@ public class AdminPanel extends javax.swing.JFrame {
 
         ventePanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel12.setText("tab 2");
+        jLabel2.setText("code produit");
+
+        jLabel3.setText("Nom produit");
+
+        jLabel5.setText("Quantite produit");
+
+        jLabel6.setText("Categorie produit");
+
+        jLabel7.setText("Prix unitaire");
 
         javax.swing.GroupLayout ventePanelLayout = new javax.swing.GroupLayout(ventePanel);
         ventePanel.setLayout(ventePanelLayout);
         ventePanelLayout.setHorizontalGroup(
             ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventePanelLayout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(jLabel12)
-                .addContainerGap(971, Short.MAX_VALUE))
+                .addGap(64, 64, 64)
+                .addGroup(ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel3)
+                        .addComponent(jLabel2))
+                    .addGroup(ventePanelLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addGroup(ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7))))
+                .addContainerGap(1054, Short.MAX_VALUE))
         );
         ventePanelLayout.setVerticalGroup(
             ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventePanelLayout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(jLabel12)
-                .addContainerGap(460, Short.MAX_VALUE))
+                .addGap(66, 66, 66)
+                .addComponent(jLabel2)
+                .addGap(33, 33, 33)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addContainerGap(381, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab 2", ventePanel);
@@ -434,12 +463,16 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton gestVente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
