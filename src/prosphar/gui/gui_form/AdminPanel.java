@@ -41,17 +41,17 @@ public class AdminPanel extends javax.swing.JFrame {
         gestRap = new javax.swing.JButton();
         logOut1 = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel3 = new javax.swing.JPanel();
+        tabBordPanel = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
+        ventePanel = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        stockPanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        fournPanel = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
+        secuPanel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
+        rapPanel = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
@@ -198,135 +198,135 @@ public class AdminPanel extends javax.swing.JFrame {
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setTabLayoutPolicy(javax.swing.JTabbedPane.SCROLL_TAB_LAYOUT);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        tabBordPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel11.setText("tab1");
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout tabBordPanelLayout = new javax.swing.GroupLayout(tabBordPanel);
+        tabBordPanel.setLayout(tabBordPanelLayout);
+        tabBordPanelLayout.setHorizontalGroup(
+            tabBordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabBordPanelLayout.createSequentialGroup()
                 .addContainerGap(1089, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(105, 105, 105))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        tabBordPanelLayout.setVerticalGroup(
+            tabBordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(tabBordPanelLayout.createSequentialGroup()
                 .addGap(172, 172, 172)
                 .addComponent(jLabel11)
                 .addContainerGap(430, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab 1", jPanel3);
+        jTabbedPane1.addTab("tab 1", tabBordPanel);
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        ventePanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel12.setText("tab 2");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout ventePanelLayout = new javax.swing.GroupLayout(ventePanel);
+        ventePanel.setLayout(ventePanelLayout);
+        ventePanelLayout.setHorizontalGroup(
+            ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventePanelLayout.createSequentialGroup()
                 .addGap(219, 219, 219)
                 .addComponent(jLabel12)
                 .addContainerGap(971, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        ventePanelLayout.setVerticalGroup(
+            ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ventePanelLayout.createSequentialGroup()
                 .addGap(142, 142, 142)
                 .addComponent(jLabel12)
                 .addContainerGap(460, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab 2", jPanel4);
+        jTabbedPane1.addTab("tab 2", ventePanel);
 
         jLabel13.setText("tab 3");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        javax.swing.GroupLayout stockPanelLayout = new javax.swing.GroupLayout(stockPanel);
+        stockPanel.setLayout(stockPanelLayout);
+        stockPanelLayout.setHorizontalGroup(
+            stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(stockPanelLayout.createSequentialGroup()
                 .addGap(219, 219, 219)
                 .addComponent(jLabel13)
                 .addContainerGap(971, Short.MAX_VALUE))
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
+        stockPanelLayout.setVerticalGroup(
+            stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(stockPanelLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabel13)
                 .addContainerGap(513, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab 3", jPanel5);
+        jTabbedPane1.addTab("tab 3", stockPanel);
 
         jLabel14.setText("tab 4");
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout fournPanelLayout = new javax.swing.GroupLayout(fournPanel);
+        fournPanel.setLayout(fournPanelLayout);
+        fournPanelLayout.setHorizontalGroup(
+            fournPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fournPanelLayout.createSequentialGroup()
                 .addGap(219, 219, 219)
                 .addComponent(jLabel14)
                 .addContainerGap(971, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        fournPanelLayout.setVerticalGroup(
+            fournPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fournPanelLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabel14)
                 .addContainerGap(513, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab 4", jPanel6);
+        jTabbedPane1.addTab("tab 4", fournPanel);
 
         jLabel15.setText("tab 5");
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        javax.swing.GroupLayout secuPanelLayout = new javax.swing.GroupLayout(secuPanel);
+        secuPanel.setLayout(secuPanelLayout);
+        secuPanelLayout.setHorizontalGroup(
+            secuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(secuPanelLayout.createSequentialGroup()
                 .addGap(219, 219, 219)
                 .addComponent(jLabel15)
                 .addContainerGap(971, Short.MAX_VALUE))
         );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+        secuPanelLayout.setVerticalGroup(
+            secuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(secuPanelLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabel15)
                 .addContainerGap(513, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab 5", jPanel7);
+        jTabbedPane1.addTab("tab 5", secuPanel);
 
         jLabel16.setText("tab 6");
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout rapPanelLayout = new javax.swing.GroupLayout(rapPanel);
+        rapPanel.setLayout(rapPanelLayout);
+        rapPanelLayout.setHorizontalGroup(
+            rapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rapPanelLayout.createSequentialGroup()
                 .addGap(219, 219, 219)
                 .addComponent(jLabel16)
                 .addContainerGap(971, Short.MAX_VALUE))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        rapPanelLayout.setVerticalGroup(
+            rapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rapPanelLayout.createSequentialGroup()
                 .addGap(89, 89, 89)
                 .addComponent(jLabel16)
                 .addContainerGap(513, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("tab 6", jPanel8);
+        jTabbedPane1.addTab("tab 6", rapPanel);
 
         jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 135, 1220, 650));
 
@@ -419,6 +419,7 @@ public class AdminPanel extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel fournPanel;
     private javax.swing.JButton gestFourn;
     private javax.swing.JButton gestRap;
     private javax.swing.JButton gestSecu;
@@ -434,16 +435,15 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton logOut1;
+    private javax.swing.JPanel rapPanel;
+    private javax.swing.JPanel secuPanel;
     private javax.swing.JPanel sidePane;
+    private javax.swing.JPanel stockPanel;
     private javax.swing.JButton tabBord;
+    private javax.swing.JPanel tabBordPanel;
+    private javax.swing.JPanel ventePanel;
     // End of variables declaration//GEN-END:variables
 }
