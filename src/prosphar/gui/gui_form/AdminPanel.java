@@ -64,6 +64,8 @@ public class AdminPanel extends javax.swing.JFrame {
         btnUpdate = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
+        prixTotal = new javax.swing.JButton();
+        screenPrix = new javax.swing.JLabel();
         stockPanel = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         fournPanel = new javax.swing.JPanel();
@@ -87,7 +89,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1220, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -267,25 +269,16 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel7.setText("Prix unitaire");
 
-        codeProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codeProdActionPerformed(evt);
-            }
-        });
+        codeProd.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
+        cbCateg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         cbCateg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Injecta", "Sirop", "Compri" }));
 
-        nameProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameProdActionPerformed(evt);
-            }
-        });
+        prixProd.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
-        qteProd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                qteProdActionPerformed(evt);
-            }
-        });
+        nameProd.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        qteProd.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -311,43 +304,40 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(codeProd, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(54, 54, 54)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(codeProd, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nameProd, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nameProd, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(qteProd, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(qteProd, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbCateg, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(cbCateg, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(prixProd, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prixProd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liste Medicament", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18))); // NOI18N
 
-        tabFacture.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tabFacture.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tabFacture.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         tabFacture.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Code produit", "Nom produit", "Quantite", "Categorie", "Prix unitaire", "Prix total"
+                "Code produit", "Nom produit", "Quantite", "Categorie", "Prix de vente", "Prix total"
             }
         ) {
             Class[] types = new Class [] {
@@ -374,7 +364,7 @@ public class AdminPanel extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         btnAdd.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -401,17 +391,39 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
 
-        jPanel5.setBackground(new java.awt.Color(153, 255, 204));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        prixTotal.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        prixTotal.setText("PRIX TOTAL");
+        prixTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prixTotalActionPerformed(evt);
+            }
+        });
+
+        screenPrix.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        screenPrix.setForeground(new java.awt.Color(255, 51, 51));
+        screenPrix.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        screenPrix.setText("Montant a payer");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(prixTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(screenPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(prixTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(screenPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 54, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout ventePanelLayout = new javax.swing.GroupLayout(ventePanel);
@@ -449,7 +461,7 @@ public class AdminPanel extends javax.swing.JFrame {
                             .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab 2", ventePanel);
@@ -593,10 +605,6 @@ public class AdminPanel extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(5);
     }//GEN-LAST:event_gestRapActionPerformed
 
-    private void codeProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeProdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_codeProdActionPerformed
-
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         int prixTot;
@@ -614,26 +622,7 @@ public class AdminPanel extends javax.swing.JFrame {
         qteProd.setText("");
         cbCateg.setSelectedItem("");
         prixProd.setText("");
-        int somme = 0;
-        int nLigne = tabFacture.getRowCount();
-        System.out.println("NLigne :"+nLigne);
-        for (int i = 0; i < nLigne; i++) {
-           int montant = Integer.parseInt(tabFacture.getValueAt(i, 5).toString());
-           // somme = somme + montant;
-           System.out.println("Index :"+montant);
-           System.out.println("FACTURE :"+tabFacture.getValueAt(i, 5));
-        }
-        // System.out.println("FACTURE :"+med);
-        System.out.println("Somme :"+somme);
     }//GEN-LAST:event_btnAddActionPerformed
-
-    private void nameProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameProdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nameProdActionPerformed
-
-    private void qteProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_qteProdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_qteProdActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
@@ -682,6 +671,17 @@ public class AdminPanel extends javax.swing.JFrame {
             model.removeRow(tabFacture.getSelectedRow());
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void prixTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotalActionPerformed
+        // TODO add your handling code here:
+        double somme = 0;
+        int nLigne = tabFacture.getRowCount();
+        for (int i = 0; i < nLigne; i++) {
+           double montant = Integer.parseInt(tabFacture.getValueAt(i, 5).toString());
+           somme = somme + montant;
+        }
+        screenPrix.setText(somme+" FC");
+    }//GEN-LAST:event_prixTotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -753,8 +753,10 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton logOut1;
     private javax.swing.JTextField nameProd;
     private javax.swing.JTextField prixProd;
+    private javax.swing.JButton prixTotal;
     private javax.swing.JTextField qteProd;
     private javax.swing.JPanel rapPanel;
+    private javax.swing.JLabel screenPrix;
     private javax.swing.JPanel secuPanel;
     private javax.swing.JPanel sidePane;
     private javax.swing.JPanel stockPanel;
