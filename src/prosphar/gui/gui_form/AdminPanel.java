@@ -6,6 +6,7 @@ package prosphar.gui.gui_form;
 
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
+import java.util.Random;
 
 /**
  *
@@ -86,6 +87,7 @@ public class AdminPanel extends javax.swing.JFrame {
         prixVente = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         dateExpi = new com.toedter.calendar.JDateChooser();
+        codeGen = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabInsert = new javax.swing.JTable();
@@ -563,6 +565,13 @@ public class AdminPanel extends javax.swing.JFrame {
 
         dateExpi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
+        codeGen.setText("CODE");
+        codeGen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                codeGenActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -580,12 +589,16 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbCateg1, 0, 193, Short.MAX_VALUE)
-                    .addComponent(codeProd1)
                     .addComponent(nameProd1)
                     .addComponent(qteProd1)
                     .addComponent(prixAchat)
                     .addComponent(prixVente)
-                    .addComponent(dateExpi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(dateExpi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(codeProd1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(codeGen)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(15, 15, 15))
         );
         jPanel6Layout.setVerticalGroup(
@@ -617,8 +630,9 @@ public class AdminPanel extends javax.swing.JFrame {
                     .addComponent(prixVente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addComponent(codeProd1)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(codeGen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(59, Short.MAX_VALUE))
         );
 
@@ -979,11 +993,11 @@ public class AdminPanel extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tabInsert.getModel();
         if (!nameProd1.getText().trim().equals("")) {
             model.addRow(new Object[]{
-                nameProd1.getText(),cbCateg1.getSelectedItem().toString(), theDate,qteProd1.getText(),prixAchat.getText(),prixVente.getText(), codeProd1.getText()});
+                nameProd1.getText(), cbCateg1.getSelectedItem().toString(), theDate, qteProd1.getText(), prixAchat.getText(), prixVente.getText(), codeProd1.getText()});
         } else {
             System.out.print("NOT VOID");
         }
-        
+
         nameProd1.setText("");
         // dateExpi.set
         qteProd1.setText("");
@@ -1039,6 +1053,21 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnUpdateInsertMouseClicked
 
+    private void codeGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeGenActionPerformed
+        // TODO add your handling code here:
+        String code = "";
+
+        if (cbCateg1.getSelectedItem().toString().length() >= 2 && nameProd1.getText().length() >= 3) {
+            String premierePartie = cbCateg1.getSelectedItem().toString().substring(0, 2);
+            String deuxiemePartie = nameProd1.getText().substring(0, 3);
+            int nombreAleatoire = new Random().nextInt(200);
+
+            code = premierePartie.toUpperCase() + deuxiemePartie.toUpperCase() + nombreAleatoire;
+        }
+        System.out.println("CODE : "+code);
+        codeProd1.setText(code);
+    }//GEN-LAST:event_codeGenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1085,6 +1114,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdateInsert;
     private javax.swing.JComboBox<String> cbCateg;
     private javax.swing.JComboBox<String> cbCateg1;
+    private javax.swing.JButton codeGen;
     private javax.swing.JTextField codeProd;
     private javax.swing.JTextField codeProd1;
     private com.toedter.calendar.JDateChooser dateExpi;
