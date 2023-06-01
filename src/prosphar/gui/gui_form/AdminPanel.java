@@ -4,6 +4,7 @@
  */
 package prosphar.gui.gui_form;
 
+import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -78,15 +79,19 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         codeProd1 = new javax.swing.JTextField();
         cbCateg1 = new javax.swing.JComboBox<>();
-        prixProd1 = new javax.swing.JTextField();
         nameProd1 = new javax.swing.JTextField();
         qteProd1 = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        prixAchat = new javax.swing.JTextField();
+        prixVente = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        dateExpi = new com.toedter.calendar.JDateChooser();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabFacture1 = new javax.swing.JTable();
-        btnAdd1 = new javax.swing.JButton();
-        btnUpdate1 = new javax.swing.JButton();
-        btnDelete1 = new javax.swing.JButton();
+        tabInsert = new javax.swing.JTable();
+        btnInsert = new javax.swing.JButton();
+        btnUpdateInsert = new javax.swing.JButton();
+        btnDeleteInsert = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         prixTotal2 = new javax.swing.JButton();
         screenPrix1 = new javax.swing.JLabel();
@@ -520,7 +525,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jTabbedPane1.addTab("tab 3", stockPanel);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FACTURE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18), new java.awt.Color(18, 18, 18))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "INSERTION", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18), new java.awt.Color(18, 18, 18))); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel8.setText("code produit");
@@ -535,127 +540,154 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel12.setText("Categorie produit");
 
         jLabel17.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel17.setText("Prix unitaire");
+        jLabel17.setText("Date d'expiration");
 
         codeProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         cbCateg1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         cbCateg1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Injecta", "Sirop", "Compri" }));
 
-        prixProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-
         nameProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         qteProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        jLabel18.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel18.setText("Prix d'achat");
+
+        prixAchat.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        prixVente.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+
+        jLabel19.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel19.setText("Prix de vente");
+
+        dateExpi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(17, 17, 17)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbCateg1, 0, 193, Short.MAX_VALUE)
-                    .addComponent(prixProd1)
                     .addComponent(codeProd1)
                     .addComponent(nameProd1)
-                    .addComponent(qteProd1))
-                .addGap(18, 18, 18))
+                    .addComponent(qteProd1)
+                    .addComponent(prixAchat)
+                    .addComponent(prixVente)
+                    .addComponent(dateExpi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(36, 36, 36)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(codeProd1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(nameProd1)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(nameProd1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbCateg1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateExpi, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(qteProd1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbCateg1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prixProd1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prixAchat, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(prixVente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(codeProd1)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liste Medicament", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18))); // NOI18N
 
-        tabFacture1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tabFacture1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        tabFacture1.setModel(new javax.swing.table.DefaultTableModel(
+        tabInsert.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabInsert.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        tabInsert.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Code produit", "Nom produit", "Quantite", "Categorie", "Prix de vente", "Prix total"
+                "Nom produit", "Categorie", "Date d'exp", "Quantite", "Prix d'achat", "Prix de vente", "Code produit"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        tabFacture1.setRowHeight(30);
-        tabFacture1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabInsert.setRowHeight(30);
+        tabInsert.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabFacture1MouseClicked(evt);
+                tabInsertMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tabFacture1);
+        jScrollPane2.setViewportView(tabInsert);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
         );
 
-        btnAdd1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        btnAdd1.setText("AJOUTER");
-        btnAdd1.addActionListener(new java.awt.event.ActionListener() {
+        btnInsert.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnInsert.setText("AJOUTER");
+        btnInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdd1ActionPerformed(evt);
+                btnInsertActionPerformed(evt);
             }
         });
 
-        btnUpdate1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        btnUpdate1.setText("MODIFIER");
-        btnUpdate1.addActionListener(new java.awt.event.ActionListener() {
+        btnUpdateInsert.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnUpdateInsert.setText("MODIFIER");
+        btnUpdateInsert.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUpdateInsertMouseClicked(evt);
+            }
+        });
+        btnUpdateInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdate1ActionPerformed(evt);
+                btnUpdateInsertActionPerformed(evt);
             }
         });
 
-        btnDelete1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        btnDelete1.setText("SUPPRIMER");
-        btnDelete1.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteInsert.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnDeleteInsert.setText("SUPPRIMER");
+        btnDeleteInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDelete1ActionPerformed(evt);
+                btnDeleteInsertActionPerformed(evt);
             }
         });
 
@@ -710,36 +742,39 @@ public class AdminPanel extends javax.swing.JFrame {
         AjoutPanelLayout.setHorizontalGroup(
             AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AjoutPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AjoutPanelLayout.createSequentialGroup()
-                        .addComponent(btnAdd1)
                         .addGap(18, 18, 18)
-                        .addComponent(btnUpdate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInsert)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete1))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(97, Short.MAX_VALUE))
+                        .addComponent(btnUpdateInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnDeleteInsert)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AjoutPanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         AjoutPanelLayout.setVerticalGroup(
             AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AjoutPanelLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdateInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeleteInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(AjoutPanelLayout.createSequentialGroup()
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAdd1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnUpdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -914,31 +949,83 @@ public class AdminPanel extends javax.swing.JFrame {
         double somme = 0;
         int nLigne = tabFacture.getRowCount();
         for (int i = 0; i < nLigne; i++) {
-           double montant = Integer.parseInt(tabFacture.getValueAt(i, 5).toString());
-           somme = somme + montant;
+            double montant = Integer.parseInt(tabFacture.getValueAt(i, 5).toString());
+            somme = somme + montant;
         }
-        screenPrix.setText(somme+" FC");
+        screenPrix.setText(somme + " FC");
     }//GEN-LAST:event_prixTotalActionPerformed
 
     private void prixTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prixTotal1ActionPerformed
 
-    private void tabFacture1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabFacture1MouseClicked
+    private void tabInsertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabInsertMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tabFacture1MouseClicked
+        DefaultTableModel model = (DefaultTableModel) tabInsert.getModel();
+        codeProd1.setText(model.getValueAt(tabInsert.getSelectedRow(), 6).toString());
+        nameProd1.setText(model.getValueAt(tabInsert.getSelectedRow(), 0).toString());
+        qteProd1.setText(model.getValueAt(tabInsert.getSelectedRow(), 3).toString());
+        cbCateg1.setSelectedItem(model.getValueAt(tabInsert.getSelectedRow(), 1).toString());
+        prixAchat.setText(model.getValueAt(tabInsert.getSelectedRow(), 4).toString());
+        prixVente.setText(model.getValueAt(tabInsert.getSelectedRow(), 5).toString());
+        // dateExpi.setDate(model.getValueAt(tabInsert.getSelectedRow(), 2));
+    }//GEN-LAST:event_tabInsertMouseClicked
 
-    private void btnAdd1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdd1ActionPerformed
+    private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdd1ActionPerformed
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String theDate = dateFormat.format(dateExpi.getDate());
+        // model.addRow(new Object[]{theDate});
+        DefaultTableModel model = (DefaultTableModel) tabInsert.getModel();
+        if (!nameProd1.getText().trim().equals("")) {
+            model.addRow(new Object[]{
+                nameProd1.getText(),cbCateg1.getSelectedItem().toString(), theDate,qteProd1.getText(),prixAchat.getText(),prixVente.getText(), codeProd1.getText()});
+        } else {
+            System.out.print("NOT VOID");
+        }
+        
+        nameProd1.setText("");
+        // dateExpi.set
+        qteProd1.setText("");
+        cbCateg1.setSelectedItem("");
+        prixAchat.setText("");
+        prixVente.setText("");
+        codeProd1.setText("");
+    }//GEN-LAST:event_btnInsertActionPerformed
 
-    private void btnUpdate1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdate1ActionPerformed
+    private void btnUpdateInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateInsertActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdate1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tabInsert.getModel();
+        if (tabInsert.getSelectedRow() == -1) {
+            if (tabInsert.getRowCount() == 0) {
+                System.out.print("TAB VOID");
+            } else {
+                System.out.print("TAB NOT VOID");
+            }
+        } else {
+            model.setValueAt(codeProd1.getText(), tabInsert.getSelectedRow(), 6);
+            model.setValueAt(nameProd1.getText(), tabInsert.getSelectedRow(), 0);
+            model.setValueAt(qteProd1.getText(), tabInsert.getSelectedRow(), 3);
+            model.setValueAt(cbCateg1.getSelectedItem().toString(), tabInsert.getSelectedRow(), 1);
+            model.setValueAt(prixAchat.getText(), tabInsert.getSelectedRow(), 4);
+            model.setValueAt(prixVente.getText(), tabInsert.getSelectedRow(), 5);
+            model.setValueAt(dateExpi.getDate().toString(), tabInsert.getSelectedRow(), 2);
+        }
+    }//GEN-LAST:event_btnUpdateInsertActionPerformed
 
-    private void btnDelete1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDelete1ActionPerformed
+    private void btnDeleteInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteInsertActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnDelete1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tabInsert.getModel();
+        if (tabInsert.getSelectedRow() == -1) {
+            if (tabInsert.getRowCount() == 0) {
+                System.out.print("TAB VOID");
+            } else {
+                System.out.print("TAB NOT VOID");
+            }
+        } else {
+            model.removeRow(tabInsert.getSelectedRow());
+        }
+    }//GEN-LAST:event_btnDeleteInsertActionPerformed
 
     private void prixTotal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal2ActionPerformed
         // TODO add your handling code here:
@@ -947,6 +1034,10 @@ public class AdminPanel extends javax.swing.JFrame {
     private void prixTotal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prixTotal3ActionPerformed
+
+    private void btnUpdateInsertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateInsertMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUpdateInsertMouseClicked
 
     /**
      * @param args the command line arguments
@@ -987,15 +1078,16 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton AjoutMed;
     private javax.swing.JPanel AjoutPanel;
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnAdd1;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDelete1;
+    private javax.swing.JButton btnDeleteInsert;
+    private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JButton btnUpdate1;
+    private javax.swing.JButton btnUpdateInsert;
     private javax.swing.JComboBox<String> cbCateg;
     private javax.swing.JComboBox<String> cbCateg1;
     private javax.swing.JTextField codeProd;
     private javax.swing.JTextField codeProd1;
+    private com.toedter.calendar.JDateChooser dateExpi;
     private javax.swing.JButton gestRap;
     private javax.swing.JButton gestSecu;
     private javax.swing.JButton gestStock;
@@ -1008,6 +1100,8 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1031,12 +1125,13 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton logOut1;
     private javax.swing.JTextField nameProd;
     private javax.swing.JTextField nameProd1;
+    private javax.swing.JTextField prixAchat;
     private javax.swing.JTextField prixProd;
-    private javax.swing.JTextField prixProd1;
     private javax.swing.JButton prixTotal;
     private javax.swing.JButton prixTotal1;
     private javax.swing.JButton prixTotal2;
     private javax.swing.JButton prixTotal3;
+    private javax.swing.JTextField prixVente;
     private javax.swing.JTextField qteProd;
     private javax.swing.JTextField qteProd1;
     private javax.swing.JPanel rapPanel;
@@ -1048,7 +1143,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton tabBord;
     private javax.swing.JPanel tabBordPanel;
     private javax.swing.JTable tabFacture;
-    private javax.swing.JTable tabFacture1;
+    private javax.swing.JTable tabInsert;
     private javax.swing.JPanel ventePanel;
     // End of variables declaration//GEN-END:variables
 }
