@@ -95,6 +95,7 @@ public class AdminPanel extends javax.swing.JFrame {
         btnUpdateInsert = new javax.swing.JButton();
         btnDeleteInsert = new javax.swing.JButton();
         prixTotal3 = new javax.swing.JButton();
+        prixTotal2 = new javax.swing.JButton();
         secuPanel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         rapPanel = new javax.swing.JPanel();
@@ -705,10 +706,18 @@ public class AdminPanel extends javax.swing.JFrame {
         });
 
         prixTotal3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        prixTotal3.setText("SAUVEGARDER");
+        prixTotal3.setText("IMPRIMER");
         prixTotal3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prixTotal3ActionPerformed(evt);
+            }
+        });
+
+        prixTotal2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        prixTotal2.setText("PRIX TOTAL");
+        prixTotal2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                prixTotal2ActionPerformed(evt);
             }
         });
 
@@ -728,12 +737,14 @@ public class AdminPanel extends javax.swing.JFrame {
                         .addComponent(btnDeleteInsert)))
                 .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AjoutPanelLayout.createSequentialGroup()
-                        .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(131, Short.MAX_VALUE))
                     .addGroup(AjoutPanelLayout.createSequentialGroup()
+                        .addGap(85, 85, 85)
+                        .addComponent(prixTotal2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(prixTotal3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prixTotal3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(151, 151, 151))))
         );
         AjoutPanelLayout.setVerticalGroup(
@@ -742,13 +753,15 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(prixTotal3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdateInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDeleteInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdateInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDeleteInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(prixTotal2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(prixTotal3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
@@ -1024,6 +1037,10 @@ public class AdminPanel extends javax.swing.JFrame {
         codeProd1.setText(code);
     }//GEN-LAST:event_codeGenActionPerformed
 
+    private void prixTotal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_prixTotal2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1114,6 +1131,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JTextField prixProd;
     private javax.swing.JButton prixTotal;
     private javax.swing.JButton prixTotal1;
+    private javax.swing.JButton prixTotal2;
     private javax.swing.JButton prixTotal3;
     private javax.swing.JTextField prixVente;
     private javax.swing.JTextField qteProd;

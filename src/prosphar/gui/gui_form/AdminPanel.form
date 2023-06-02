@@ -795,13 +795,15 @@
                           </Group>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="-2147483648" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace pref="131" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+                                  <Component id="prixTotal2" min="-2" pref="160" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="prixTotal3" min="-2" pref="193" max="-2" attributes="0"/>
+                                  <Component id="prixTotal3" min="-2" pref="160" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -814,14 +816,17 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jPanel6" max="32767" attributes="0"/>
-                              <Component id="jPanel7" pref="0" max="32767" attributes="0"/>
+                              <Component id="jPanel7" pref="478" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="prixTotal3" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
-                              <Component id="btnInsert" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="btnUpdateInsert" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                              <Component id="btnDeleteInsert" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                                  <Component id="btnInsert" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="btnUpdateInsert" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="btnDeleteInsert" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
+                                  <Component id="prixTotal2" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="prixTotal3" min="-2" pref="48" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="69" max="32767" attributes="0"/>
                       </Group>
@@ -1151,10 +1156,21 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="SansSerif" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="SAUVEGARDER"/>
+                    <Property name="text" type="java.lang.String" value="IMPRIMER"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prixTotal3ActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="prixTotal2">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="SansSerif" size="18" style="1"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="PRIX TOTAL"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prixTotal2ActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>
