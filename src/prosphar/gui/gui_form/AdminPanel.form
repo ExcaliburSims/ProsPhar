@@ -800,10 +800,8 @@
                                   <EmptySpace pref="131" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
-                                  <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-                                  <Component id="prixTotal2" min="-2" pref="160" max="-2" attributes="0"/>
-                                  <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="prixTotal3" min="-2" pref="160" max="-2" attributes="0"/>
+                                  <EmptySpace min="85" pref="511" max="32767" attributes="0"/>
+                                  <Component id="savebtn" min="-2" pref="160" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -824,9 +822,8 @@
                                   <Component id="btnInsert" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                                   <Component id="btnUpdateInsert" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
                                   <Component id="btnDeleteInsert" alignment="3" min="-2" pref="44" max="-2" attributes="0"/>
-                                  <Component id="prixTotal2" alignment="3" min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="prixTotal3" min="-2" pref="48" max="-2" attributes="0"/>
+                              <Component id="savebtn" min="-2" pref="48" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="69" max="32767" attributes="0"/>
                       </Group>
@@ -981,9 +978,9 @@
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="3">
-                            <StringItem index="0" value="Injecta"/>
-                            <StringItem index="1" value="Sirop"/>
-                            <StringItem index="2" value="Compri"/>
+                            <StringItem index="0" value="1"/>
+                            <StringItem index="1" value="2"/>
+                            <StringItem index="2" value="3"/>
                           </StringArray>
                         </Property>
                       </Properties>
@@ -1086,7 +1083,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="tabInsert">
+                        <Component class="javax.swing.JTable" name="tabAjout">
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -1110,7 +1107,7 @@
                             <Property name="rowHeight" type="int" value="30"/>
                           </Properties>
                           <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabInsertMouseClicked"/>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tabAjoutMouseClicked"/>
                           </Events>
                         </Component>
                       </SubComponents>
@@ -1151,26 +1148,15 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteInsertActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="prixTotal3">
+                <Component class="javax.swing.JButton" name="savebtn">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="SansSerif" size="18" style="1"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="IMPRIMER"/>
+                    <Property name="text" type="java.lang.String" value="SAUVER"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prixTotal3ActionPerformed"/>
-                  </Events>
-                </Component>
-                <Component class="javax.swing.JButton" name="prixTotal2">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="SansSerif" size="18" style="1"/>
-                    </Property>
-                    <Property name="text" type="java.lang.String" value="PRIX TOTAL"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="prixTotal2ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="savebtnActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

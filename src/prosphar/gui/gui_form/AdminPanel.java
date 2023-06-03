@@ -4,9 +4,11 @@
  */
 package prosphar.gui.gui_form;
 
+import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -90,12 +92,11 @@ public class AdminPanel extends javax.swing.JFrame {
         codeGen = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabInsert = new javax.swing.JTable();
+        tabAjout = new javax.swing.JTable();
         btnInsert = new javax.swing.JButton();
         btnUpdateInsert = new javax.swing.JButton();
         btnDeleteInsert = new javax.swing.JButton();
-        prixTotal3 = new javax.swing.JButton();
-        prixTotal2 = new javax.swing.JButton();
+        savebtn = new javax.swing.JButton();
         secuPanel = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         rapPanel = new javax.swing.JPanel();
@@ -545,7 +546,7 @@ public class AdminPanel extends javax.swing.JFrame {
         codeProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
         cbCateg1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        cbCateg1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Injecta", "Sirop", "Compri" }));
+        cbCateg1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
 
         nameProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
@@ -637,9 +638,9 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liste Medicament", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18))); // NOI18N
 
-        tabInsert.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tabInsert.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        tabInsert.setModel(new javax.swing.table.DefaultTableModel(
+        tabAjout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabAjout.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        tabAjout.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -655,13 +656,13 @@ public class AdminPanel extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        tabInsert.setRowHeight(30);
-        tabInsert.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabAjout.setRowHeight(30);
+        tabAjout.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabInsertMouseClicked(evt);
+                tabAjoutMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tabInsert);
+        jScrollPane2.setViewportView(tabAjout);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -705,19 +706,11 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
 
-        prixTotal3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        prixTotal3.setText("IMPRIMER");
-        prixTotal3.addActionListener(new java.awt.event.ActionListener() {
+        savebtn.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        savebtn.setText("SAUVER");
+        savebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prixTotal3ActionPerformed(evt);
-            }
-        });
-
-        prixTotal2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        prixTotal2.setText("PRIX TOTAL");
-        prixTotal2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prixTotal2ActionPerformed(evt);
+                savebtnActionPerformed(evt);
             }
         });
 
@@ -741,10 +734,8 @@ public class AdminPanel extends javax.swing.JFrame {
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(131, Short.MAX_VALUE))
                     .addGroup(AjoutPanelLayout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(prixTotal2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(prixTotal3, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 511, Short.MAX_VALUE)
+                        .addComponent(savebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(151, 151, 151))))
         );
         AjoutPanelLayout.setVerticalGroup(
@@ -759,9 +750,8 @@ public class AdminPanel extends javax.swing.JFrame {
                     .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnUpdateInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDeleteInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(prixTotal2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(prixTotal3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDeleteInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(savebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
 
@@ -945,25 +935,25 @@ public class AdminPanel extends javax.swing.JFrame {
     private void prixTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_prixTotal1ActionPerformed
-
-    private void tabInsertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabInsertMouseClicked
+/////////////////////////////////////AJOUT MEDICAMENT////////////////////////////////////////////////////
+    private void tabAjoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAjoutMouseClicked
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tabInsert.getModel();
-        codeProd1.setText(model.getValueAt(tabInsert.getSelectedRow(), 6).toString());
-        nameProd1.setText(model.getValueAt(tabInsert.getSelectedRow(), 0).toString());
-        qteProd1.setText(model.getValueAt(tabInsert.getSelectedRow(), 3).toString());
-        cbCateg1.setSelectedItem(model.getValueAt(tabInsert.getSelectedRow(), 1).toString());
-        prixAchat.setText(model.getValueAt(tabInsert.getSelectedRow(), 4).toString());
-        prixVente.setText(model.getValueAt(tabInsert.getSelectedRow(), 5).toString());
+        DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
+        codeProd1.setText(model.getValueAt(tabAjout.getSelectedRow(), 6).toString());
+        nameProd1.setText(model.getValueAt(tabAjout.getSelectedRow(), 0).toString());
+        qteProd1.setText(model.getValueAt(tabAjout.getSelectedRow(), 3).toString());
+        cbCateg1.setSelectedItem(model.getValueAt(tabAjout.getSelectedRow(), 1).toString());
+        prixAchat.setText(model.getValueAt(tabAjout.getSelectedRow(), 4).toString());
+        prixVente.setText(model.getValueAt(tabAjout.getSelectedRow(), 5).toString());
         // dateExpi.setDate(model.getValueAt(tabInsert.getSelectedRow(), 2));
-    }//GEN-LAST:event_tabInsertMouseClicked
+    }//GEN-LAST:event_tabAjoutMouseClicked
 
     private void btnInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertActionPerformed
         // TODO add your handling code here:
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String theDate = dateFormat.format(dateExpi.getDate());
         // model.addRow(new Object[]{theDate});
-        DefaultTableModel model = (DefaultTableModel) tabInsert.getModel();
+        DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
         if (!nameProd1.getText().trim().equals("")) {
             model.addRow(new Object[]{
                 nameProd1.getText(), cbCateg1.getSelectedItem().toString(), theDate, qteProd1.getText(), prixAchat.getText(), prixVente.getText(), codeProd1.getText()});
@@ -972,7 +962,7 @@ public class AdminPanel extends javax.swing.JFrame {
         }
 
         nameProd1.setText("");
-        // dateExpi.set
+        dateExpi.setCalendar(null);
         qteProd1.setText("");
         cbCateg1.setSelectedItem("");
         prixAchat.setText("");
@@ -982,41 +972,91 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void btnUpdateInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateInsertActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tabInsert.getModel();
-        if (tabInsert.getSelectedRow() == -1) {
-            if (tabInsert.getRowCount() == 0) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String theDate = dateFormat.format(dateExpi.getDate());
+        DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
+        if (tabAjout.getSelectedRow() == -1) {
+            if (tabAjout.getRowCount() == 0) {
                 System.out.print("TAB VOID");
             } else {
                 System.out.print("TAB NOT VOID");
             }
         } else {
-            model.setValueAt(codeProd1.getText(), tabInsert.getSelectedRow(), 6);
-            model.setValueAt(nameProd1.getText(), tabInsert.getSelectedRow(), 0);
-            model.setValueAt(qteProd1.getText(), tabInsert.getSelectedRow(), 3);
-            model.setValueAt(cbCateg1.getSelectedItem().toString(), tabInsert.getSelectedRow(), 1);
-            model.setValueAt(prixAchat.getText(), tabInsert.getSelectedRow(), 4);
-            model.setValueAt(prixVente.getText(), tabInsert.getSelectedRow(), 5);
-            model.setValueAt(dateExpi.getDate().toString(), tabInsert.getSelectedRow(), 2);
+            model.setValueAt(codeProd1.getText(), tabAjout.getSelectedRow(), 6);
+            model.setValueAt(nameProd1.getText(), tabAjout.getSelectedRow(), 0);
+            model.setValueAt(qteProd1.getText(), tabAjout.getSelectedRow(), 3);
+            model.setValueAt(cbCateg1.getSelectedItem().toString(), tabAjout.getSelectedRow(), 1);
+            model.setValueAt(prixAchat.getText(), tabAjout.getSelectedRow(), 4);
+            model.setValueAt(prixVente.getText(), tabAjout.getSelectedRow(), 5);
+            model.setValueAt(theDate, tabAjout.getSelectedRow(), 2);
         }
     }//GEN-LAST:event_btnUpdateInsertActionPerformed
 
     private void btnDeleteInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteInsertActionPerformed
         // TODO add your handling code here:
-        DefaultTableModel model = (DefaultTableModel) tabInsert.getModel();
-        if (tabInsert.getSelectedRow() == -1) {
-            if (tabInsert.getRowCount() == 0) {
+        DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
+        if (tabAjout.getSelectedRow() == -1) {
+            if (tabAjout.getRowCount() == 0) {
                 System.out.print("TAB VOID");
             } else {
                 System.out.print("TAB NOT VOID");
             }
         } else {
-            model.removeRow(tabInsert.getSelectedRow());
+            model.removeRow(tabAjout.getSelectedRow());
         }
     }//GEN-LAST:event_btnDeleteInsertActionPerformed
 
-    private void prixTotal3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal3ActionPerformed
+    private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_prixTotal3ActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
+        if (model.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Tableau vide");
+        } else {
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String password = "root";
+
+            try (Connection conn = DriverManager.getConnection(url, user, password)) {
+                System.out.println("Connexion effective !");
+                Statement statement = conn.createStatement();
+
+                for (int row = 0; row < model.getRowCount(); row++) {
+                    String name = model.getValueAt(row, 0).toString();
+                    int categorie = Integer.parseInt(model.getValueAt(row, 1).toString());
+                    String datee = model.getValueAt(row, 2).toString();
+                    int qte = Integer.parseInt(model.getValueAt(row, 3).toString());
+                    double prixAchat = Double.parseDouble(model.getValueAt(row, 4).toString());
+                    double prixVente = Double.parseDouble(model.getValueAt(row, 5).toString());
+                    String code = model.getValueAt(row, 6).toString();
+
+                    String insertQuery = "INSERT INTO produits (nom, categorie_id, date_exp, qte_produit, prix_achat, prix_vente, code_produit) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                    preparedStatement.setString(1, name);
+                    preparedStatement.setInt(2, categorie);
+                    preparedStatement.setString(3, datee);
+                    preparedStatement.setInt(4, qte);
+                    preparedStatement.setDouble(5, prixAchat);
+                    preparedStatement.setDouble(6, prixVente);
+                    preparedStatement.setString(7, code);
+
+                    int rowsAffected = preparedStatement.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        System.out.println("Enregistrement effectué pour la ligne " + (row + 1));
+                        // Autres actions à effectuer en cas de succès de l'insertion
+                    } else {
+                        System.out.println("Erreur lors de l'enregistrement pour la ligne " + (row + 1));
+                        // Autres actions à effectuer en cas d'échec de l'insertion
+                    }
+                }
+
+                JOptionPane.showMessageDialog(this, "SUCCES");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erreur lors de la connexion à la base de données");
+            }
+        }
+    }//GEN-LAST:event_savebtnActionPerformed
 
     private void btnUpdateInsertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateInsertMouseClicked
         // TODO add your handling code here:
@@ -1036,10 +1076,6 @@ public class AdminPanel extends javax.swing.JFrame {
         // System.out.println("CODE : "+code);
         codeProd1.setText(code);
     }//GEN-LAST:event_codeGenActionPerformed
-
-    private void prixTotal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_prixTotal2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1131,20 +1167,19 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JTextField prixProd;
     private javax.swing.JButton prixTotal;
     private javax.swing.JButton prixTotal1;
-    private javax.swing.JButton prixTotal2;
-    private javax.swing.JButton prixTotal3;
     private javax.swing.JTextField prixVente;
     private javax.swing.JTextField qteProd;
     private javax.swing.JTextField qteProd1;
     private javax.swing.JPanel rapPanel;
+    private javax.swing.JButton savebtn;
     private javax.swing.JLabel screenPrix;
     private javax.swing.JPanel secuPanel;
     private javax.swing.JPanel sidePane;
     private javax.swing.JPanel stockPanel;
+    private javax.swing.JTable tabAjout;
     private javax.swing.JButton tabBord;
     private javax.swing.JPanel tabBordPanel;
     private javax.swing.JTable tabFacture;
-    private javax.swing.JTable tabInsert;
     private javax.swing.JPanel ventePanel;
     // End of variables declaration//GEN-END:variables
 }
