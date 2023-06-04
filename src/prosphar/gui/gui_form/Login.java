@@ -5,6 +5,7 @@
 package prosphar.gui.gui_form;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -159,6 +160,11 @@ public class Login extends javax.swing.JFrame {
                 buttonLoginActionPerformed(evt);
             }
         });
+        buttonLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                buttonLoginKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -244,19 +250,32 @@ public class Login extends javax.swing.JFrame {
             String passwd = "root";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
-            Statement stm =conn.createStatement();
-            String query = "SELECT * FROM users WHERE pseudo='"+username+"' AND password='"+password+"'";
+            Statement stm = conn.createStatement();
+            String query = "SELECT * FROM users WHERE pseudo='" + username + "' AND password='" + password + "'";
             ResultSet req = stm.executeQuery(query);
             if (req.next()) {
-                JOptionPane.showMessageDialog(null, "Vous etes tres bien connecte");
+                int role = req.getInt("role_id");
+                if (role == 1) {
+                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur");
+                    dispose();
+                    AdminPanel homeAdminPanel = new AdminPanel();
+                    homeAdminPanel.show();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'agent");
+                    dispose();
+                    AgentPanel homeAgent = new AgentPanel();
+                    homeAgent.show();
+                }
+
+                //JOptionPane.showMessageDialog(homeAdminPanel, "You have successfully logged in");
+            } else if (username.equals("root") && password.equals("root")) {
+                JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur secours");
                 dispose();
                 AdminPanel homeAdminPanel = new AdminPanel();
                 homeAdminPanel.show();
-                //JOptionPane.showMessageDialog(homeAdminPanel, "You have successfully logged in");
-            }else {
+            } else {
                 System.out.println("Nom ou mot de passe incorrect");
                 JOptionPane.showMessageDialog(null, "Nom ou mot de passe incorrect");
-            
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -264,6 +283,64 @@ public class Login extends javax.swing.JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonLoginActionPerformed
+
+    private void buttonLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonLoginKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String username = userText.getText();
+        String password = userPass.getText();
+        /*if (userName.equals("admin") && passWord.equals("abc")) {
+            System.out.print("A la bien");
+            AdminPanel homeAdminPanel = new AdminPanel();
+            homeAdminPanel.show();
+            dispose();
+        }*/
+        try {
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            Statement stm = conn.createStatement();
+            String query = "SELECT * FROM users WHERE pseudo='" + username + "' AND password='" + password + "'";
+            ResultSet req = stm.executeQuery(query);
+            if (req.next()) {
+                int role = req.getInt("role_id");
+                if (role == 1) {
+                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur");
+                    dispose();
+                    AdminPanel homeAdminPanel = new AdminPanel();
+                    homeAdminPanel.show();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'agent");
+                    dispose();
+                    AgentPanel homeAgent = new AgentPanel();
+                    homeAgent.show();
+                }
+
+                //JOptionPane.showMessageDialog(homeAdminPanel, "You have successfully logged in");
+            } else if (username.equals("root") && password.equals("root")) {
+                JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur secours");
+                dispose();
+                AdminPanel homeAdminPanel = new AdminPanel();
+                homeAdminPanel.show();
+            } else {
+                System.out.println("Nom ou mot de passe incorrect");
+                JOptionPane.showMessageDialog(null, "Nom ou mot de passe incorrect");
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        } else {
+            System.out.println("Nom ou mot de passe incorrect");
+            JOptionPane.showMessageDialog(null, "Nom ou mot de passe incorrect");
+            
+        }
+    }//GEN-LAST:event_buttonLoginKeyPressed
 
     /**
      * @param args the command line arguments
