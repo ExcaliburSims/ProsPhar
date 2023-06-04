@@ -4,11 +4,14 @@
  */
 package prosphar.gui.gui_form;
 
+import java.awt.Color;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import java.util.Random;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -139,6 +142,11 @@ public class AdminPanel extends javax.swing.JFrame {
         tabBord.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         tabBord.setText("Tableau de bord");
         tabBord.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabBord.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabBordMouseClicked(evt);
+            }
+        });
         tabBord.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tabBordActionPerformed(evt);
@@ -149,6 +157,11 @@ public class AdminPanel extends javax.swing.JFrame {
         gestVente.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestVente.setText("Gestion de ventes");
         gestVente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gestVente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gestVenteMouseClicked(evt);
+            }
+        });
         gestVente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestVenteActionPerformed(evt);
@@ -159,6 +172,11 @@ public class AdminPanel extends javax.swing.JFrame {
         gestStock.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestStock.setText("Gestion de stocks");
         gestStock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gestStock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gestStockMouseClicked(evt);
+            }
+        });
         gestStock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestStockActionPerformed(evt);
@@ -169,6 +187,11 @@ public class AdminPanel extends javax.swing.JFrame {
         AjoutMed.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         AjoutMed.setText("Ajout medicament");
         AjoutMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AjoutMed.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                AjoutMedMouseClicked(evt);
+            }
+        });
         AjoutMed.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AjoutMedActionPerformed(evt);
@@ -179,6 +202,11 @@ public class AdminPanel extends javax.swing.JFrame {
         gestSecu.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestSecu.setText("Securite");
         gestSecu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gestSecu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gestSecuMouseClicked(evt);
+            }
+        });
         gestSecu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestSecuActionPerformed(evt);
@@ -189,6 +217,11 @@ public class AdminPanel extends javax.swing.JFrame {
         gestRap.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestRap.setText("Rapports");
         gestRap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gestRap.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gestRapMouseClicked(evt);
+            }
+        });
         gestRap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gestRapActionPerformed(evt);
@@ -1076,6 +1109,74 @@ public class AdminPanel extends javax.swing.JFrame {
         // System.out.println("CODE : "+code);
         codeProd1.setText(code);
     }//GEN-LAST:event_codeGenActionPerformed
+
+    private void tabBordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabBordMouseClicked
+        // TODO add your handling code here:
+        onClick(tabBord);
+        onLeaveClick(gestVente);
+        onLeaveClick(gestStock);
+        onLeaveClick(AjoutMed);
+        onLeaveClick(gestSecu);
+        onLeaveClick(gestRap);
+    }//GEN-LAST:event_tabBordMouseClicked
+
+    private void gestVenteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestVenteMouseClicked
+        // TODO add your handling code here:
+        onLeaveClick(tabBord);
+        onClick(gestVente);
+        onLeaveClick(gestStock);
+        onLeaveClick(AjoutMed);
+        onLeaveClick(gestSecu);
+        onLeaveClick(gestRap);
+    }//GEN-LAST:event_gestVenteMouseClicked
+
+    private void gestStockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestStockMouseClicked
+        // TODO add your handling code here:
+        onLeaveClick(tabBord);
+        onLeaveClick(gestVente);
+        onClick(gestStock);
+        onLeaveClick(AjoutMed);
+        onLeaveClick(gestSecu);
+        onLeaveClick(gestRap);
+    }//GEN-LAST:event_gestStockMouseClicked
+
+    private void AjoutMedMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_AjoutMedMouseClicked
+        // TODO add your handling code here:
+        onLeaveClick(tabBord);
+        onLeaveClick(gestVente);
+        onLeaveClick(gestStock);
+        onClick(AjoutMed);
+        onLeaveClick(gestSecu);
+        onLeaveClick(gestRap);
+    }//GEN-LAST:event_AjoutMedMouseClicked
+
+    private void gestSecuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestSecuMouseClicked
+        // TODO add your handling code here:
+        onLeaveClick(tabBord);
+        onLeaveClick(gestVente);
+        onLeaveClick(gestStock);
+        onLeaveClick(AjoutMed);
+        onClick(gestSecu);
+        onLeaveClick(gestRap);
+    }//GEN-LAST:event_gestSecuMouseClicked
+
+    private void gestRapMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestRapMouseClicked
+        // TODO add your handling code here:
+        onLeaveClick(tabBord);
+        onLeaveClick(gestVente);
+        onLeaveClick(gestStock);
+        onLeaveClick(AjoutMed);
+        onLeaveClick(gestSecu);
+        onClick(gestRap);
+    }//GEN-LAST:event_gestRapMouseClicked
+
+    private void onClick(JButton btn) {
+        btn.setBackground(new Color(75, 175, 152));
+    }
+
+    private void onLeaveClick(JButton btn) {
+        btn.setBackground(new Color(255, 255, 255));
+    }
 
     /**
      * @param args the command line arguments
