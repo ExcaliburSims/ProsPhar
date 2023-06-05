@@ -9,6 +9,8 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -102,24 +104,22 @@ public class AdminPanel extends javax.swing.JFrame {
         savebtn = new javax.swing.JButton();
         secuPanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
         jLabel15 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
-        nom = new javax.swing.JTextField();
-        sexe = new javax.swing.JComboBox<>();
-        email = new javax.swing.JTextField();
-        prenom = new javax.swing.JTextField();
-        pseudo = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        tel = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        sexe = new javax.swing.JComboBox<>();
+        nom = new javax.swing.JTextField();
+        prenom = new javax.swing.JTextField();
+        pseudo = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        telep = new javax.swing.JTextField();
+        passWord = new javax.swing.JTextField();
+        role = new javax.swing.JCheckBox();
+        signup = new javax.swing.JButton();
         rapPanel = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
 
@@ -330,7 +330,7 @@ public class AdminPanel extends javax.swing.JFrame {
         ventePanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "FACTURE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18), new java.awt.Color(18, 18, 18))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "FACTURE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18), new java.awt.Color(18, 18, 18))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setText("code produit");
@@ -454,7 +454,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnAdd.setText("AJOUTER");
-        btnAdd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnAdd.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -463,7 +463,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         btnUpdate.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnUpdate.setText("MODIFIER");
-        btnUpdate.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -472,7 +472,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         btnDelete.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnDelete.setText("SUPPRIMER");
-        btnDelete.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        btnDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -483,7 +483,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         prixTotal.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         prixTotal.setText("PRIX TOTAL");
-        prixTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        prixTotal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         prixTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prixTotalActionPerformed(evt);
@@ -497,7 +497,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         prixTotal1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         prixTotal1.setText("IMPRIMER");
-        prixTotal1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        prixTotal1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         prixTotal1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prixTotal1ActionPerformed(evt);
@@ -611,27 +611,37 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel17.setText("Date d'expiration");
 
         codeProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        codeProd1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         cbCateg1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         cbCateg1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        cbCateg1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         nameProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        nameProd1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         qteProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        qteProd1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel18.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel18.setText("Prix d'achat");
 
         prixAchat.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        prixAchat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         prixVente.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        prixVente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel19.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel19.setText("Prix de vente");
 
+        dateExpi.setBackground(new java.awt.Color(255, 255, 255));
+        dateExpi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         dateExpi.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
 
+        codeGen.setFont(new java.awt.Font("SansSerif", 1, 13)); // NOI18N
         codeGen.setText("CODE");
+        codeGen.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         codeGen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codeGenActionPerformed(evt);
@@ -795,15 +805,11 @@ public class AdminPanel extends javax.swing.JFrame {
                         .addComponent(btnUpdateInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDeleteInsert)))
-                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AjoutPanelLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(131, Short.MAX_VALUE))
-                    .addGroup(AjoutPanelLayout.createSequentialGroup()
-                        .addGap(85, 511, Short.MAX_VALUE)
-                        .addComponent(savebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(savebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(139, Short.MAX_VALUE))
         );
         AjoutPanelLayout.setVerticalGroup(
             AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -812,14 +818,13 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUpdateInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnDeleteInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdateInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeleteInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(savebtn, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab 4", AjoutPanel);
@@ -828,10 +833,6 @@ public class AdminPanel extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ENREGISTREMENT", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 14))); // NOI18N
-
-        jRadioButton1.setText("Non");
-
-        jRadioButton2.setText("Oui");
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel15.setText("Nom");
@@ -848,15 +849,18 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel26.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel26.setText("Telephone");
 
-        nom.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        nom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel27.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel27.setText("Sexe");
+
+        jLabel28.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel28.setText("Mot de passe");
 
         sexe.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         sexe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masculin", "Feminin" }));
         sexe.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        email.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        nom.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        nom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         prenom.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         prenom.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -864,20 +868,17 @@ public class AdminPanel extends javax.swing.JFrame {
         pseudo.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         pseudo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel27.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel27.setText("Sexe");
+        email.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel28.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel28.setText("Mot de passe");
+        telep.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        telep.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel29.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel29.setText("Role");
+        passWord.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        passWord.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        tel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        tel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        password.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        password.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        role.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        role.setText("Role");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -897,7 +898,7 @@ public class AdminPanel extends javax.swing.JFrame {
                         .addGap(86, 86, 86)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(email)
-                            .addComponent(tel)))
+                            .addComponent(telep)))
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(86, 86, 86)
@@ -909,19 +910,12 @@ public class AdminPanel extends javax.swing.JFrame {
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(86, 86, 86)
-                        .addComponent(sexe, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(sexe, 0, 237, Short.MAX_VALUE))
                     .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(86, 86, 86)
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(password)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addGap(45, 45, 45)
-                                .addComponent(jRadioButton2)
-                                .addGap(0, 107, Short.MAX_VALUE)))))
+                        .addComponent(passWord))
+                    .addComponent(role, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
@@ -946,7 +940,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(telep, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -954,21 +948,18 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
-                    .addComponent(password))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(passWord))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(role, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jButton1.setText("ENREGISTRER");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        signup.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        signup.setText("ENREGISTRER");
+        signup.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        signup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                signupActionPerformed(evt);
             }
         });
 
@@ -978,18 +969,18 @@ public class AdminPanel extends javax.swing.JFrame {
             secuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(secuPanelLayout.createSequentialGroup()
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 701, Short.MAX_VALUE))
+                .addGap(0, 705, Short.MAX_VALUE))
             .addGroup(secuPanelLayout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140)
+                .addComponent(signup, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         secuPanelLayout.setVerticalGroup(
             secuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(secuPanelLayout.createSequentialGroup()
-                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(signup, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 137, Short.MAX_VALUE))
         );
 
@@ -1356,9 +1347,24 @@ public class AdminPanel extends javax.swing.JFrame {
         onClick(gestRap);
     }//GEN-LAST:event_gestRapMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            String insertUser = "INSERT INTO produits (role_id, nom, prenom, pseudo, email, telephone, sexe, password) VALUES ('" + 1 + "','" + nom.getText() + "', '" + prenom.getText() + "', '" + pseudo.getText() + "', '" + email.getText() + "', '" + telep.getText() + "', '" + sexe.getSelectedItem().toString() + "', '" + passWord.getText() + "')";
+            Statement stm = conn.createStatement();
+            boolean req = stm.execute(insertUser);
+            System.out.println("Role :"+role.isSelected());
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_signupActionPerformed
 
     private void onClick(JButton btn) {
         btn.setBackground(new Color(75, 175, 152));
@@ -1423,7 +1429,6 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton gestSecu;
     private javax.swing.JButton gestStock;
     private javax.swing.JButton gestVente;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1441,7 +1446,6 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1457,8 +1461,6 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -1467,7 +1469,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JTextField nameProd;
     private javax.swing.JTextField nameProd1;
     private javax.swing.JTextField nom;
-    private javax.swing.JTextField password;
+    private javax.swing.JTextField passWord;
     private javax.swing.JTextField prenom;
     private javax.swing.JTextField prixAchat;
     private javax.swing.JTextField prixProd;
@@ -1478,17 +1480,19 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JTextField qteProd;
     private javax.swing.JTextField qteProd1;
     private javax.swing.JPanel rapPanel;
+    private javax.swing.JCheckBox role;
     private javax.swing.JButton savebtn;
     private javax.swing.JLabel screenPrix;
     private javax.swing.JPanel secuPanel;
     private javax.swing.JComboBox<String> sexe;
     private javax.swing.JPanel sidePane;
+    private javax.swing.JButton signup;
     private javax.swing.JPanel stockPanel;
     private javax.swing.JTable tabAjout;
     private javax.swing.JButton tabBord;
     private javax.swing.JPanel tabBordPanel;
     private javax.swing.JTable tabFacture;
-    private javax.swing.JTextField tel;
+    private javax.swing.JTextField telep;
     private javax.swing.JPanel ventePanel;
     // End of variables declaration//GEN-END:variables
 }
