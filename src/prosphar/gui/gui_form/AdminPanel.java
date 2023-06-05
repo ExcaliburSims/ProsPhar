@@ -1355,10 +1355,21 @@ public class AdminPanel extends javax.swing.JFrame {
             String passwd = "root";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
-            String insertUser = "INSERT INTO produits (role_id, nom, prenom, pseudo, email, telephone, sexe, password) VALUES ('" + 1 + "','" + nom.getText() + "', '" + prenom.getText() + "', '" + pseudo.getText() + "', '" + email.getText() + "', '" + telep.getText() + "', '" + sexe.getSelectedItem().toString() + "', '" + passWord.getText() + "')";
-            Statement stm = conn.createStatement();
-            boolean req = stm.execute(insertUser);
-            System.out.println("Role :"+role.isSelected());
+            // String insertUser = "INSERT INTO produits (role_id, nom, prenom, pseudo, email, telephone, sexe, password) VALUES ('" + 1 + "','" + nom.getText() + "', '" + prenom.getText() + "', '" + pseudo.getText() + "', '" + email.getText() + "', '" + telep.getText() + "', '" + sexe.getSelectedItem().toString() + "', '" + passWord.getText() + "')";
+            // Statement stm = conn.createStatement();
+            // boolean req = stm.execute(insertUser);
+            int roleValue = role.isSelected() ? 1 : 2;
+            String insertUser = "INSERT INTO users (role_id, nom, prenom, pseudo, email, telephone, sexe, password) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = conn.prepareStatement(insertUser);
+            pstmt.setInt(1, roleValue);
+            pstmt.setString(2, nom.getText());
+            pstmt.setString(3, prenom.getText());
+            pstmt.setString(4, pseudo.getText());
+            pstmt.setString(5, email.getText());
+            pstmt.setString(6, telep.getText());
+            pstmt.setString(7, sexe.getSelectedItem().toString());
+            pstmt.setString(8, passWord.getText());
+            boolean req = pstmt.execute();
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         } catch (ClassNotFoundException ex) {
