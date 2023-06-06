@@ -419,9 +419,13 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder justification="2" title="FACTURE">
-                          <Border PropertyName="innerBorder" info="null"/>
+                          <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                            <LineBorder>
+                              <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
+                            </LineBorder>
+                          </Border>
                           <Font PropertyName="font" name="SansSerif" size="18" style="1"/>
-                          <Color PropertyName="color" blue="12" green="12" red="12" type="rgb"/>
+                          <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -605,6 +609,11 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder justification="2" title="Liste Medicament">
+                          <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                            <LineBorder>
+                              <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
+                            </LineBorder>
+                          </Border>
                           <Font PropertyName="font" name="SansSerif" size="18" style="1"/>
                         </TitledBorder>
                       </Border>
@@ -629,6 +638,13 @@
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="ff" green="ff" red="ff" type="rgb"/>
                         </Property>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                            <LineBorder>
+                              <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
+                            </LineBorder>
+                          </Border>
+                        </Property>
                       </Properties>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
@@ -637,7 +653,9 @@
                           <Properties>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-                                <LineBorder/>
+                                <LineBorder>
+                                  <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
+                                </LineBorder>
                               </Border>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -973,8 +991,13 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder justification="2" title="INSERTION">
+                          <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                            <LineBorder>
+                              <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
+                            </LineBorder>
+                          </Border>
                           <Font PropertyName="font" name="SansSerif" size="18" style="1"/>
-                          <Color PropertyName="color" blue="12" green="12" red="12" type="rgb"/>
+                          <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
                         </TitledBorder>
                       </Border>
                     </Property>
@@ -1239,6 +1262,11 @@
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder justification="2" title="Liste Medicament">
+                          <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                            <LineBorder>
+                              <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
+                            </LineBorder>
+                          </Border>
                           <Font PropertyName="font" name="SansSerif" size="18" style="1"/>
                         </TitledBorder>
                       </Border>
@@ -1419,7 +1447,12 @@
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder justification="2" title="ENREGISTREMENT">
+                        <TitledBorder justification="2" title="ENREGISTREMENT AGENT">
+                          <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                            <LineBorder>
+                              <Color PropertyName="color" blue="33" green="33" red="33" type="rgb"/>
+                            </LineBorder>
+                          </Border>
                           <Font PropertyName="font" name="SansSerif" size="14" style="1"/>
                         </TitledBorder>
                       </Border>

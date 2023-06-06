@@ -10,6 +10,8 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import com.jtattoo.plaf.smart.*;
 
 /**
  *
@@ -64,10 +66,10 @@ public class Login extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        buttonLogin = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         userPass = new javax.swing.JPasswordField();
         userText = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        buttonLogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -89,35 +91,23 @@ public class Login extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(32, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(80, 80, 80)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(126, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(35, 166, 97));
 
-        buttonLogin.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        buttonLogin.setForeground(new java.awt.Color(35, 166, 97));
-        buttonLogin.setText("Connexion");
-        buttonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        buttonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        buttonLogin.setBackground(new Color(7, 164, 121));
-        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonLoginActionPerformed(evt);
-            }
-        });
-        buttonLogin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                buttonLoginKeyPressed(evt);
-            }
-        });
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 30)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Prosperite pharma");
 
         userPass.setBackground(new java.awt.Color(135, 233, 144));
         userPass.setFont(new java.awt.Font("SansSerif", 0, 13)); // NOI18N
@@ -145,42 +135,53 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 30)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Prosperite pharma");
+        buttonLogin.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        buttonLogin.setForeground(new java.awt.Color(18, 18, 18));
+        buttonLogin.setText("Connexion");
+        buttonLogin.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        buttonLogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buttonLogin.setBackground(new Color(7, 164, 121));
+        buttonLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonLoginActionPerformed(evt);
+            }
+        });
+        buttonLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                buttonLoginKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 77, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(userPass, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(52, 52, 52))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(16, 16, 16))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(100, 100, 100)
                 .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(57, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(userPass, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
+                .addGap(71, 71, 71)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addGap(74, 74, 74)
                 .addComponent(userText, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(userPass, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(39, 39, 39)
                 .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -288,57 +289,57 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             String username = userText.getText();
-        String password = userPass.getText();
-        /*if (userName.equals("admin") && passWord.equals("abc")) {
+            String password = userPass.getText();
+            /*if (userName.equals("admin") && passWord.equals("abc")) {
             System.out.print("A la bien");
             AdminPanel homeAdminPanel = new AdminPanel();
             homeAdminPanel.show();
             dispose();
         }*/
-        try {
+            try {
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
-            String user = "root";
-            String passwd = "root";
-            Connection conn = DriverManager.getConnection(url, user, passwd);
-            System.out.println("Connexion effective !");
-            Statement stm = conn.createStatement();
-            String query = "SELECT * FROM users WHERE pseudo='" + username + "' AND password='" + password + "'";
-            ResultSet req = stm.executeQuery(query);
-            if (req.next()) {
-                int role = req.getInt("role_id");
-                if (role == 1) {
-                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur");
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+                String user = "root";
+                String passwd = "root";
+                Connection conn = DriverManager.getConnection(url, user, passwd);
+                System.out.println("Connexion effective !");
+                Statement stm = conn.createStatement();
+                String query = "SELECT * FROM users WHERE pseudo='" + username + "' AND password='" + password + "'";
+                ResultSet req = stm.executeQuery(query);
+                if (req.next()) {
+                    int role = req.getInt("role_id");
+                    if (role == 1) {
+                        JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur");
+                        dispose();
+                        AdminPanel homeAdminPanel = new AdminPanel();
+                        homeAdminPanel.show();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'agent");
+                        dispose();
+                        AgentPanel homeAgent = new AgentPanel();
+                        homeAgent.show();
+                    }
+
+                    //JOptionPane.showMessageDialog(homeAdminPanel, "You have successfully logged in");
+                } else if (username.equals("root") && password.equals("root")) {
+                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur secours");
                     dispose();
                     AdminPanel homeAdminPanel = new AdminPanel();
                     homeAdminPanel.show();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'agent");
-                    dispose();
-                    AgentPanel homeAgent = new AgentPanel();
-                    homeAgent.show();
+                    System.out.println("Nom ou mot de passe incorrect");
+                    JOptionPane.showMessageDialog(null, "Nom ou mot de passe incorrect");
                 }
-
-                //JOptionPane.showMessageDialog(homeAdminPanel, "You have successfully logged in");
-            } else if (username.equals("root") && password.equals("root")) {
-                JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur secours");
-                dispose();
-                AdminPanel homeAdminPanel = new AdminPanel();
-                homeAdminPanel.show();
-            } else {
-                System.out.println("Nom ou mot de passe incorrect");
-                JOptionPane.showMessageDialog(null, "Nom ou mot de passe incorrect");
+            } catch (SQLException sqlException) {
+                sqlException.printStackTrace();
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
         } else {
             System.out.println("Nom ou mot de passe incorrect");
             JOptionPane.showMessageDialog(null, "Nom ou mot de passe incorrect");
-            
+
         }
     }//GEN-LAST:event_buttonLoginKeyPressed
 
@@ -352,21 +353,42 @@ public class Login extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+            com.jtattoo.plaf.acryl.AcrylLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   1
+//            com.jtattoo.plaf.aero.AeroLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   2
+//            com.jtattoo.plaf.aluminium.AluminiumLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   3
+//            com.jtattoo.plaf.bernstein.BernsteinLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   4
+//            com.jtattoo.plaf.fast.FastLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   5
+//            com.jtattoo.plaf.graphite.GraphiteLookAndFeel.setTheme("Red", "INSERT YOUR LICENSE KEY HERE", "my company");      //   6
+//            com.jtattoo.plaf.hifi.HiFiLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   7
+//            com.jtattoo.plaf.luna.LunaLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   8
+//            com.jtattoo.plaf.mcwin.McWinLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   9
+//            com.jtattoo.plaf.noire.NoireLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   10
+//            com.jtattoo.plaf.smart.SmartLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   11
+//            com.jtattoo.plaf.texture.TextureLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   12
+
+            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");   //   1
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");          //   2
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");//   3
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");//   4 
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");          //   5
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");  //   6
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");          //   7
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");          //   8
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");        //   9
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");        //   10
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");        //   11
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");     //  12
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+
         //</editor-fold>
 
         /* Create and display the form */
