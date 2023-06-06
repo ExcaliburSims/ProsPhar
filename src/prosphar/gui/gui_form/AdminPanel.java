@@ -102,6 +102,8 @@ public class AdminPanel extends javax.swing.JFrame {
         btnUpdateInsert = new javax.swing.JButton();
         btnDeleteInsert = new javax.swing.JButton();
         savebtn = new javax.swing.JButton();
+        rapPanel = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
         secuPanel = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -120,8 +122,6 @@ public class AdminPanel extends javax.swing.JFrame {
         passWord = new javax.swing.JTextField();
         role = new javax.swing.JCheckBox();
         signup = new javax.swing.JButton();
-        rapPanel = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -306,14 +306,14 @@ public class AdminPanel extends javax.swing.JFrame {
 
         tabBordPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setText("tab1");
+        jLabel11.setText("No dispo");
 
         javax.swing.GroupLayout tabBordPanelLayout = new javax.swing.GroupLayout(tabBordPanel);
         tabBordPanel.setLayout(tabBordPanelLayout);
         tabBordPanelLayout.setHorizontalGroup(
             tabBordPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tabBordPanelLayout.createSequentialGroup()
-                .addContainerGap(1089, Short.MAX_VALUE)
+                .addContainerGap(1062, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addGap(105, 105, 105))
         );
@@ -454,7 +454,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         btnAdd.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnAdd.setText("AJOUTER");
-        btnAdd.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        btnAdd.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 13))); // NOI18N
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -463,7 +463,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         btnUpdate.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnUpdate.setText("MODIFIER");
-        btnUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUpdate.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 51, 51), null));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -472,7 +472,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         btnDelete.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnDelete.setText("SUPPRIMER");
-        btnDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnDelete.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 51, 51), null));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
@@ -483,7 +483,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         prixTotal.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         prixTotal.setText("PRIX TOTAL");
-        prixTotal.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        prixTotal.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 51, 51), null));
         prixTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prixTotalActionPerformed(evt);
@@ -497,7 +497,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
         prixTotal1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         prixTotal1.setText("IMPRIMER");
-        prixTotal1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        prixTotal1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 51, 51), null));
         prixTotal1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 prixTotal1ActionPerformed(evt);
@@ -524,7 +524,7 @@ public class AdminPanel extends javax.swing.JFrame {
                     .addComponent(prixTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(screenPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(prixTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 108, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout ventePanelLayout = new javax.swing.GroupLayout(ventePanel);
@@ -533,19 +533,19 @@ public class AdminPanel extends javax.swing.JFrame {
             ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ventePanelLayout.createSequentialGroup()
                 .addGap(18, 18, 18)
-                .addGroup(ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ventePanelLayout.createSequentialGroup()
-                        .addComponent(btnAdd)
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnDelete))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         ventePanelLayout.setVerticalGroup(
             ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -829,6 +829,29 @@ public class AdminPanel extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("tab 4", AjoutPanel);
 
+        rapPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel16.setText("No dispo");
+
+        javax.swing.GroupLayout rapPanelLayout = new javax.swing.GroupLayout(rapPanel);
+        rapPanel.setLayout(rapPanelLayout);
+        rapPanelLayout.setHorizontalGroup(
+            rapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rapPanelLayout.createSequentialGroup()
+                .addGap(219, 219, 219)
+                .addComponent(jLabel16)
+                .addContainerGap(948, Short.MAX_VALUE))
+        );
+        rapPanelLayout.setVerticalGroup(
+            rapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(rapPanelLayout.createSequentialGroup()
+                .addGap(89, 89, 89)
+                .addComponent(jLabel16)
+                .addContainerGap(513, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("tab 6", rapPanel);
+
         secuPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -978,36 +1001,14 @@ public class AdminPanel extends javax.swing.JFrame {
         secuPanelLayout.setVerticalGroup(
             secuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(secuPanelLayout.createSequentialGroup()
+                .addGap(21, 21, 21)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addComponent(signup, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 137, Short.MAX_VALUE))
+                .addGap(0, 96, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab 5", secuPanel);
-
-        rapPanel.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel16.setText("tab 6");
-
-        javax.swing.GroupLayout rapPanelLayout = new javax.swing.GroupLayout(rapPanel);
-        rapPanel.setLayout(rapPanelLayout);
-        rapPanelLayout.setHorizontalGroup(
-            rapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rapPanelLayout.createSequentialGroup()
-                .addGap(219, 219, 219)
-                .addComponent(jLabel16)
-                .addContainerGap(971, Short.MAX_VALUE))
-        );
-        rapPanelLayout.setVerticalGroup(
-            rapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(rapPanelLayout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(jLabel16)
-                .addContainerGap(513, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("tab 6", rapPanel);
 
         jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 135, 1220, 650));
 
@@ -1370,6 +1371,11 @@ public class AdminPanel extends javax.swing.JFrame {
             pstmt.setString(7, sexe.getSelectedItem().toString());
             pstmt.setString(8, passWord.getText());
             boolean req = pstmt.execute();
+            if (!req) {
+                JOptionPane.showConfirmDialog(this, "Utilisateur inserer");
+            } else {
+                JOptionPane.showConfirmDialog(this, "Erreur veuillez ressayer");
+            }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         } catch (ClassNotFoundException ex) {
