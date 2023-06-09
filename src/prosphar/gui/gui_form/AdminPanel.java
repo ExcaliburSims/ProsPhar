@@ -1234,6 +1234,7 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void prixTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal1ActionPerformed
         // TODO add your handling code here:
+        System.out.println("*************************INSTALLED IMPRIMANTE ON MAC***************************");
     }//GEN-LAST:event_prixTotal1ActionPerformed
 /////////////////////////////////////AJOUT MEDICAMENT////////////////////////////////////////////////////
     private void tabAjoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAjoutMouseClicked
