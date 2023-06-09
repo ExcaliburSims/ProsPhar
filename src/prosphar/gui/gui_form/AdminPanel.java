@@ -658,7 +658,6 @@ public class AdminPanel extends javax.swing.JFrame {
         codeProd1.setBackground(new java.awt.Color(35, 166, 97));
         codeProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         codeProd1.setForeground(new java.awt.Color(204, 204, 0));
-        codeProd1.setText("ALT");
         codeProd1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         cbCateg1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -761,7 +760,7 @@ public class AdminPanel extends javax.swing.JFrame {
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Liste Medicament", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18))); // NOI18N
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "LISTE A AJOUTER", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18))); // NOI18N
 
         tabAjout.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         tabAjout.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
