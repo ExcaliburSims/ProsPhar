@@ -655,11 +655,14 @@ public class AdminPanel extends javax.swing.JFrame {
         jLabel17.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel17.setText("Date d'expiration");
 
+        codeProd1.setBackground(new java.awt.Color(35, 166, 97));
         codeProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        codeProd1.setForeground(new java.awt.Color(204, 204, 0));
+        codeProd1.setText("ALT");
         codeProd1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         cbCateg1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        cbCateg1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        cbCateg1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COMPRIME", "SIROP", "INJECTABLE", "SUPPO", "GOUTTE", "CREME", "POUDRE", "SAVON", "POMMADE", "SPRITE", "SOLUTION", "GEL", "MATERIEL", "SERUM", "AUTRES" }));
         cbCateg1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         nameProd1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -1323,17 +1326,52 @@ public class AdminPanel extends javax.swing.JFrame {
 
                 for (int row = 0; row < model.getRowCount(); row++) {
                     String name = model.getValueAt(row, 0).toString();
-                    int categorie = Integer.parseInt(model.getValueAt(row, 1).toString());
+                    String categorie = model.getValueAt(row, 1).toString();
                     String datee = model.getValueAt(row, 2).toString();
                     int qte = Integer.parseInt(model.getValueAt(row, 3).toString());
                     double prixAchat = Double.parseDouble(model.getValueAt(row, 4).toString());
                     double prixVente = Double.parseDouble(model.getValueAt(row, 5).toString());
                     String code = model.getValueAt(row, 6).toString();
+                    int categorieId;
+
+                    if (categorie.equalsIgnoreCase("comprime")) {
+                        categorieId = 1;
+                    } else if (categorie.equalsIgnoreCase("sirop")) {
+                        categorieId = 2;
+                    } else if (categorie.equalsIgnoreCase("injectable")) {
+                        categorieId = 3;
+                    } else if (categorie.equalsIgnoreCase("suppo")) {
+                        categorieId = 4;
+                    } else if (categorie.equalsIgnoreCase("goutte")) {
+                        categorieId = 5;
+                    } else if (categorie.equalsIgnoreCase("creme")) {
+                        categorieId = 6;
+                    } else if (categorie.equalsIgnoreCase("poudre")) {
+                        categorieId = 7;
+                    } else if (categorie.equalsIgnoreCase("savon")) {
+                        categorieId = 8;
+                    } else if (categorie.equalsIgnoreCase("pommade")) {
+                        categorieId = 9;
+                    } else if (categorie.equalsIgnoreCase("sprite")) {
+                        categorieId = 10;
+                    } else if (categorie.equalsIgnoreCase("solution")) {
+                        categorieId = 11;
+                    } else if (categorie.equalsIgnoreCase("gel")) {
+                        categorieId = 12;
+                    } else if (categorie.equalsIgnoreCase("materiel")) {
+                        categorieId = 13;
+                    } else if (categorie.equalsIgnoreCase("serum")) {
+                        categorieId = 15;
+                    } else if (categorie.equalsIgnoreCase("autres")) {
+                        categorieId = 15;
+                    } else {
+                        categorieId = 0; // Valeur par défaut si la catégorie ne correspond à aucun des cas
+                    }
 
                     String insertQuery = "INSERT INTO produits (nom, categorie_id, date_exp, qte_produit, prix_achat, prix_vente, code_produit) VALUES (?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
                     preparedStatement.setString(1, name);
-                    preparedStatement.setInt(2, categorie);
+                    preparedStatement.setInt(2, categorieId);
                     preparedStatement.setString(3, datee);
                     preparedStatement.setInt(4, qte);
                     preparedStatement.setDouble(5, prixAchat);

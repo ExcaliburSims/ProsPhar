@@ -1123,9 +1123,16 @@
                     </Component>
                     <Component class="javax.swing.JTextField" name="codeProd1">
                       <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="61" green="a6" red="23" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="SansSerif" size="14" style="0"/>
                         </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="0" green="cc" red="cc" type="rgb"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="ALT"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                             <LineBorder/>
@@ -1139,10 +1146,22 @@
                           <Font name="SansSerif" size="14" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="3">
-                            <StringItem index="0" value="1"/>
-                            <StringItem index="1" value="2"/>
-                            <StringItem index="2" value="3"/>
+                          <StringArray count="15">
+                            <StringItem index="0" value="COMPRIME"/>
+                            <StringItem index="1" value="SIROP"/>
+                            <StringItem index="2" value="INJECTABLE"/>
+                            <StringItem index="3" value="SUPPO"/>
+                            <StringItem index="4" value="GOUTTE"/>
+                            <StringItem index="5" value="CREME"/>
+                            <StringItem index="6" value="POUDRE"/>
+                            <StringItem index="7" value="SAVON"/>
+                            <StringItem index="8" value="POMMADE"/>
+                            <StringItem index="9" value="SPRITE"/>
+                            <StringItem index="10" value="SOLUTION"/>
+                            <StringItem index="11" value="GEL"/>
+                            <StringItem index="12" value="MATERIEL"/>
+                            <StringItem index="13" value="SERUM"/>
+                            <StringItem index="14" value="AUTRES"/>
                           </StringArray>
                         </Property>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
