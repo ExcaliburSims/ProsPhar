@@ -1385,7 +1385,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 nomProduit, cbCateg1.getSelectedItem().toString(), theDate, qteProd1.getText(), prixAchat.getText(), prixVente.getText(), codeProd1.getText()});
         } else {
             System.out.println("Le nom du médicament ne peut pas être vide.");
-            JOptionPane.showMessageDialog(this, "Le nom du médicament ne peut pas être vide.");
+            JOptionPane.showMessageDialog(this, "LE NOM DU MEDICAMENT NE PEUT PAS ETRE VIDE");
 
         }
 
@@ -1464,7 +1464,7 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
         if (model.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(this, "Tableau vide");
+            JOptionPane.showMessageDialog(this, "LISTE VIDE");
         } else {
             String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
             String user = "root";
