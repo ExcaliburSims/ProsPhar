@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import javax.swing.table.DefaultTableModel;
 import java.util.Random;
 import java.util.logging.Level;
+import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -19,13 +20,17 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.WindowConstants;
 import com.jtattoo.plaf.smart.*;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author user
  */
 public class AdminPanel extends javax.swing.JFrame {
+    
+    ArrayList produit = new ArrayList();
 
     /**
      * Creates new form AdminPanel
@@ -33,6 +38,7 @@ public class AdminPanel extends javax.swing.JFrame {
     public AdminPanel() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        databaseProduit();
     }
 
     /**
@@ -369,6 +375,11 @@ public class AdminPanel extends javax.swing.JFrame {
 
         nameProd.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         nameProd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        nameProd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                nameProdKeyPressed(evt);
+            }
+        });
 
         qteProd.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         qteProd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -635,7 +646,7 @@ public class AdminPanel extends javax.swing.JFrame {
             stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(stockPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addGap(135, 135, 135))
         );
 
@@ -874,7 +885,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
                 .addGap(16, 16, 16)
                 .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1101,7 +1112,7 @@ public class AdminPanel extends javax.swing.JFrame {
             rapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rapPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
                 .addGap(126, 126, 126))
         );
 
@@ -1269,7 +1280,7 @@ public class AdminPanel extends javax.swing.JFrame {
         } else {
             System.out.print("NOT VOID");
         }
-
+        
         nameProd1.setText("");
         dateExpi.setCalendar(null);
         qteProd1.setText("");
@@ -1324,11 +1335,11 @@ public class AdminPanel extends javax.swing.JFrame {
             String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
             String user = "root";
             String password = "root";
-
+            
             try (Connection conn = DriverManager.getConnection(url, user, password)) {
                 System.out.println("Connexion effective !");
                 Statement statement = conn.createStatement();
-
+                
                 for (int row = 0; row < model.getRowCount(); row++) {
                     String name = model.getValueAt(row, 0).toString();
                     String categorie = model.getValueAt(row, 1).toString();
@@ -1338,7 +1349,7 @@ public class AdminPanel extends javax.swing.JFrame {
                     double prixVente = Double.parseDouble(model.getValueAt(row, 5).toString());
                     String code = model.getValueAt(row, 6).toString();
                     int categorieId;
-
+                    
                     if (categorie.equalsIgnoreCase("comprime")) {
                         categorieId = 1;
                     } else if (categorie.equalsIgnoreCase("sirop")) {
@@ -1372,7 +1383,7 @@ public class AdminPanel extends javax.swing.JFrame {
                     } else {
                         categorieId = 0; // Valeur par défaut si la catégorie ne correspond à aucun des cas
                     }
-
+                    
                     String insertQuery = "INSERT INTO produits (nom, categorie_id, date_exp, qte_produit, prix_achat, prix_vente, code_produit) VALUES (?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
                     preparedStatement.setString(1, name);
@@ -1382,9 +1393,9 @@ public class AdminPanel extends javax.swing.JFrame {
                     preparedStatement.setDouble(5, prixAchat);
                     preparedStatement.setDouble(6, prixVente);
                     preparedStatement.setString(7, code);
-
+                    
                     int rowsAffected = preparedStatement.executeUpdate();
-
+                    
                     if (rowsAffected > 0) {
                         System.out.println("Enregistrement effectué pour la ligne " + (row + 1));
                         // Autres actions à effectuer en cas de succès de l'insertion
@@ -1393,7 +1404,7 @@ public class AdminPanel extends javax.swing.JFrame {
                         // Autres actions à effectuer en cas d'échec de l'insertion
                     }
                 }
-
+                
                 JOptionPane.showMessageDialog(this, "SUCCES");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -1409,13 +1420,13 @@ public class AdminPanel extends javax.swing.JFrame {
     private void codeGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeGenActionPerformed
         // TODO add your handling code here:
         String code = "";
-
+        
         if (cbCateg1.getSelectedItem().toString().length() >= 2 && nameProd1.getText().length() >= 3) {
             String premierePartie = cbCateg1.getSelectedItem().toString().substring(0, 2);
             String deuxiemePartie = nameProd1.getText().substring(0, 3);
             int nombreAleatoire = new Random().nextInt(200);
-
-            code = premierePartie.toUpperCase() + deuxiemePartie.toUpperCase() + "-"+nombreAleatoire;
+            
+            code = premierePartie.toUpperCase() + deuxiemePartie.toUpperCase() + "-" + nombreAleatoire;
         }
         // System.out.println("CODE : "+code);
         codeProd1.setText(code);
@@ -1524,12 +1535,73 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabAjout2MouseClicked
 
+    private void nameProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameProdKeyPressed
+        // TODO add your handling code here:
+        switch (evt.getKeyCode()) {
+            case KeyEvent.VK_BACK_SPACE:
+                break;
+            case KeyEvent.VK_ENTER:
+                nameProd.setText(nameProd.getText());
+                break;
+            default:
+                EventQueue.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        String txt = nameProd.getText();
+                        autoComplete(txt);
+                    }
+                });
+        }
+    }//GEN-LAST:event_nameProdKeyPressed
+    
     private void onClick(JButton btn) {
         btn.setBackground(new Color(75, 175, 152));
     }
-
+    
     private void onLeaveClick(JButton btn) {
         btn.setBackground(new Color(255, 255, 255));
+    }
+    
+    private void databaseProduit() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            Statement stm = conn.createStatement();
+            String query = "SELECT * FROM produits";
+            ResultSet req = stm.executeQuery(query);
+            while (req.next()) {
+                String names = req.getString("nom");
+                produit.add(names);
+            }
+            req.close();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void autoComplete(String txt) {
+        String complete = "";
+        int start = txt.length();
+        int last = txt.length();
+        int a;
+        for (a = 0; a < produit.size(); a++) {
+            if (produit.get(a).toString().startsWith(txt)) {
+                complete = produit.get(a).toString();
+                last = complete.length();
+                break;
+            }
+        }
+        if (last > start) {
+            nameProd.setText(complete);
+            nameProd.setCaretPosition(last);
+            nameProd.moveCaretPosition(start);
+        }
     }
 
     /**
@@ -1548,7 +1620,7 @@ public class AdminPanel extends javax.swing.JFrame {
 //                    break;
 //                }
 //            }
-            com.jtattoo.plaf.acryl.AcrylLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   1
+            com.jtattoo.plaf.acryl.AcrylLookAndFeel.setTheme("rgb(35,166,97)", "INSERT YOUR LICENSE KEY HERE", "my company");      //   1
 //            com.jtattoo.plaf.aero.AeroLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   2
 //            com.jtattoo.plaf.aluminium.AluminiumLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   3
 //            com.jtattoo.plaf.bernstein.BernsteinLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   4
@@ -1577,7 +1649,7 @@ public class AdminPanel extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AdminPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
