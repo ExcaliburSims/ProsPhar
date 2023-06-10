@@ -23,6 +23,8 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  *
@@ -1212,7 +1214,6 @@ public class AdminPanel extends javax.swing.JFrame {
             model.setValueAt(prixProd.getText(), tabFacture.getSelectedRow(), 4);
             model.setValueAt(prixTot, tabFacture.getSelectedRow(), 5);
         }
-
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tabFactureMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabFactureMouseClicked
@@ -1249,7 +1250,11 @@ public class AdminPanel extends javax.swing.JFrame {
             double montant = Double.parseDouble(tabFacture.getValueAt(i, 5).toString());
             somme = somme + montant;
         }
-        screenPrix.setText(somme + " FC");
+        NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+        String formattedNumber = numberFormat.format(somme);
+        screenPrix.setText(formattedNumber + " FC");
+
+        System.out.println(formattedNumber);
     }//GEN-LAST:event_prixTotalActionPerformed
 
     private void prixTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal1ActionPerformed
