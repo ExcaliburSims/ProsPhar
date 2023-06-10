@@ -294,13 +294,13 @@ public class Login extends javax.swing.JFrame {
                 int role = req.getInt("role_id");
                 if (role == 1) {
                     thread.start();
-                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur");
+                    JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QUE ADMINISTRATEUR");
                     dispose();
                     AdminPanel homeAdminPanel = new AdminPanel();
                     homeAdminPanel.show();
                 } else {
                     thread.start();
-                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'agent");
+                    JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QU'AGENT");
                     dispose();
                     AgentPanel homeAgent = new AgentPanel();
                     homeAgent.show();
@@ -308,14 +308,14 @@ public class Login extends javax.swing.JFrame {
 
                 //JOptionPane.showMessageDialog(homeAdminPanel, "You have successfully logged in");
             } else if (username.equals("root") && password.equals("root")) {
-                JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur secours");
+                JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QUE ADM DE SECOURS");
                 thread.start();
                 dispose();
                 AdminPanel homeAdminPanel = new AdminPanel();
                 homeAdminPanel.show();
             } else {
                 System.out.println("Nom ou mot de passe incorrect");
-                JOptionPane.showMessageDialog(null, "Nom ou mot de passe incorrect");
+                JOptionPane.showMessageDialog(null, "NOM OU MOT DE PASSE INCORRECT");
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -349,12 +349,12 @@ public class Login extends javax.swing.JFrame {
                 if (req.next()) {
                     int role = req.getInt("role_id");
                     if (role == 1) {
-                        JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur");
+                        JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QUE ADMINISTRATEUR");
                         dispose();
                         AdminPanel homeAdminPanel = new AdminPanel();
                         homeAdminPanel.show();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'agent");
+                        JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QU'AGENT");
                         dispose();
                         AgentPanel homeAgent = new AgentPanel();
                         homeAgent.show();
@@ -362,13 +362,13 @@ public class Login extends javax.swing.JFrame {
 
                     //JOptionPane.showMessageDialog(homeAdminPanel, "You have successfully logged in");
                 } else if (username.equals("root") && password.equals("root")) {
-                    JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur secours");
+                    JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QUE ADM DE SECOURS");
                     dispose();
                     AdminPanel homeAdminPanel = new AdminPanel();
                     homeAdminPanel.show();
                 } else {
                     System.out.println("Nom ou mot de passe incorrect");
-                    JOptionPane.showMessageDialog(null, "Nom ou mot de passe incorrect");
+                    JOptionPane.showMessageDialog(null, "NOM OU MOT DE PASSE INCORRECT");
                 }
             } catch (SQLException sqlException) {
                 sqlException.printStackTrace();
@@ -377,7 +377,7 @@ public class Login extends javax.swing.JFrame {
             }
         } else {
             System.out.println("Nom ou mot de passe incorrect");
-            JOptionPane.showMessageDialog(null, "Nom ou mot de passe incorrect");
+            JOptionPane.showMessageDialog(null, "NOM OU MOT DE PASSE INCORRECT");
 
         }
     }//GEN-LAST:event_buttonLoginKeyPressed
