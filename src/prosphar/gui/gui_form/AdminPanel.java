@@ -1261,7 +1261,7 @@ public class AdminPanel extends javax.swing.JFrame {
         System.out.println("*************************INSTALLED IMPRIMANTE ON MAC***************************");
         DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
         if (model.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(this, "Tableau vide");
+            JOptionPane.showMessageDialog(this, "LISTE VIDE");
         } else {
             String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
             String user = "root";
@@ -1269,7 +1269,6 @@ public class AdminPanel extends javax.swing.JFrame {
 
             try (Connection conn = DriverManager.getConnection(url, user, password)) {
                 System.out.println("Connexion effective !");
-                Statement statement = conn.createStatement();
 
                 for (int row = 0; row < model.getRowCount(); row++) {
                     String name = model.getValueAt(row, 1).toString();
@@ -1278,17 +1277,13 @@ public class AdminPanel extends javax.swing.JFrame {
                     int qte = Integer.parseInt(model.getValueAt(row, 2).toString());
                     double prixTot = Double.parseDouble(model.getValueAt(row, 5).toString());
                     double prixVente = Double.parseDouble(model.getValueAt(row, 4).toString());
-                    // String code = model.getValueAt(row, 6).toString();
-                    // Obtenir la date actuelle
+
                     LocalDate currentDate = LocalDate.now();
 
                     // Formater la date selon le format souhaité
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     String datee = currentDate.format(formatter);
 
-                    // Afficher la date actuelle
-                    System.out.println("Date actuelle : " + datee);
-                    
                     int categorieId;
 
                     if (categorie.equalsIgnoreCase("comprime")) {
@@ -1326,13 +1321,25 @@ public class AdminPanel extends javax.swing.JFrame {
                     }
                     String insertQuery = "INSERT INTO commandes (quantite ,date_vente, produit_id,nom_produit,categorie_id,  prix, prix_total) VALUES (?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
-                    preparedStatement.setInt(1, qte);
-                    preparedStatement.setString(2, datee);
-                    preparedStatement.setInt(3, qte);
-                    preparedStatement.setString(4, name);
-                    preparedStatement.setInt(5, categorieId);
-                    preparedStatement.setDouble(6, prixVente);
-                    preparedStatement.setDouble(7, prixTot);
+                    Statement stm = conn.createStatement();
+                    String query = "SELECT * FROM produits WHERE nom='" + name + "'";
+                    ResultSet req = stm.executeQuery(query);
+                    if (req.next()) {
+                        String id = req.getString("id");
+                        // String sql = "UPDATE produits SET qte_produit = qte_produit - ${qte} WHERE id = ?";
+                        String sql = String.format("UPDATE produits SET qte_produit = qte_produit - %d WHERE id = ?", qte);
+                        PreparedStatement stmt = conn.prepareStatement(sql);
+                        stmt.setInt(1,Integer.parseInt(id));
+                        stmt.executeUpdate();
+                        System.out.println("La quantité du produit a été mise à jour avec succès !");
+                        preparedStatement.setInt(1, qte);
+                        preparedStatement.setString(2, datee);
+                        preparedStatement.setInt(3, Integer.parseInt(id));
+                        preparedStatement.setString(4, name);
+                        preparedStatement.setInt(5, categorieId);
+                        preparedStatement.setDouble(6, prixVente);
+                        preparedStatement.setDouble(7, prixTot);
+                    }
 
                     int rowsAffected = preparedStatement.executeUpdate();
 
@@ -1342,16 +1349,17 @@ public class AdminPanel extends javax.swing.JFrame {
                         for (int i = model.getRowCount(); i > 0; --i) {
                             model.removeRow(i - 1);
                         }
+
                     } else {
                         System.out.println("Erreur lors de l'enregistrement pour la ligne " + (row + 1));
                         // Autres actions à effectuer en cas d'échec de l'insertion
                     }
                 }
 
-                JOptionPane.showMessageDialog(this, "SUCCES");
+                JOptionPane.showMessageDialog(this, "INSERER AVEC SUCCES");
             } catch (SQLException e) {
                 e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Erreur lors de la connexion à la base de données");
+                JOptionPane.showMessageDialog(this, "ERREUR DE CONNEXION");
             }
         }
     }//GEN-LAST:event_prixTotal1ActionPerformed
@@ -1375,7 +1383,7 @@ public class AdminPanel extends javax.swing.JFrame {
         // model.addRow(new Object[]{theDate});
         String nomProduit = nameProd1.getText().toUpperCase();
         if (isNomProduitExist(nomProduit)) {
-            JOptionPane.showMessageDialog(this, nomProduit.toUpperCase()+" existe déjà dans la base de données");
+            JOptionPane.showMessageDialog(this, nomProduit.toUpperCase() + " EXISTE DEJA DANS LA BASE DE DONNEE");
             // System.out.println("Le médicament existe déjà dans la base de données.");
             return;
         }
@@ -1539,10 +1547,10 @@ public class AdminPanel extends javax.swing.JFrame {
                     }
                 }
 
-                JOptionPane.showMessageDialog(this, "SUCCES");
+                JOptionPane.showMessageDialog(this, "INSERER AVEC SUCCES");
             } catch (SQLException e) {
                 e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "Erreur lors de la connexion à la base de données");
+                JOptionPane.showMessageDialog(this, "ERREUR DE CONNEXION");
             }
         }
     }//GEN-LAST:event_savebtnActionPerformed
@@ -1646,9 +1654,9 @@ public class AdminPanel extends javax.swing.JFrame {
             pstmt.setString(8, passWord.getText());
             boolean req = pstmt.execute();
             if (!req) {
-                JOptionPane.showConfirmDialog(this, "Utilisateur inserer");
+                JOptionPane.showMessageDialog(this, "INSERTION UTILISATEUR AVEC SUCCES");
             } else {
-                JOptionPane.showConfirmDialog(this, "Erreur veuillez ressayer");
+                JOptionPane.showMessageDialog(this, "ERREUR VEUILLEZ RESSAYER");
             }
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
@@ -1751,6 +1759,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 String prix = req.getString("prix_achat");
                 String code = req.getString("code_produit");
                 String categ = req.getString("categorie_id");
+                String quant = req.getString("qte_produit");
                 switch (categ) {
                     case "1":
                         categorieName = "COMPRIME";
@@ -1800,9 +1809,18 @@ public class AdminPanel extends javax.swing.JFrame {
                     default:
                         categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
                 }
-                prixProd.setText(prix);
-                codeProd.setText(code);
-                cbCateg.addItem(categorieName);
+                if (!(Integer.parseInt(quant)==0)) {
+                    nameProd.setBackground(Color.decode("#FFFFFF"));
+                    nameProd.setForeground(Color.decode("#121212"));
+                    prixProd.setText(prix);
+                    codeProd.setText(code);
+                    cbCateg.addItem(categorieName);
+                } else {
+                    JOptionPane.showMessageDialog(this, complete+" EST VIDE EN STOCK");
+                    nameProd.setForeground(Color.decode("#FFFFFF"));
+                    nameProd.setBackground(Color.decode("#121212"));
+                }
+                
             }
             req.close();
         } catch (SQLException sqlException) {
