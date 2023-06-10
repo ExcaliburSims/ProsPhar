@@ -1285,13 +1285,6 @@ public class AdminPanel extends javax.swing.JFrame {
             // System.out.println("Le médicament existe déjà dans la base de données.");
             return;
         }
-//        DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
-//        if (!nameProd1.getText().trim().equals("")) {
-//            model.addRow(new Object[]{
-//                nameProd1.getText().toUpperCase(), cbCateg1.getSelectedItem().toString(), theDate, qteProd1.getText(), prixAchat.getText(), prixVente.getText(), codeProd1.getText()});
-//        } else {
-//            System.out.print("NOT VOID");
-//        }
         DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
         if (!nomProduit.trim().equals("")) {
             model.addRow(new Object[]{
