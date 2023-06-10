@@ -1184,7 +1184,7 @@ public class AdminPanel extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
         if (!codeProd.getText().trim().equals("")) {
             model.addRow(new Object[]{
-                codeProd.getText(), nameProd.getText(), qteProd.getText(), cbCateg.getSelectedItem().toString(), prixAchat, prixTot});
+                codeProd.getText(), nameProd.getText().toUpperCase(), qteProd.getText(), cbCateg.getSelectedItem().toString(), prixAchat, prixTot});
         } else {
             System.out.print("NOT VOID");
         }
@@ -1279,12 +1279,27 @@ public class AdminPanel extends javax.swing.JFrame {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String theDate = dateFormat.format(dateExpi.getDate());
         // model.addRow(new Object[]{theDate});
+        String nomProduit = nameProd1.getText().toUpperCase();
+        if (isNomProduitExist(nomProduit)) {
+            JOptionPane.showMessageDialog(this, "Le médicament existe déjà dans la base de données");
+            // System.out.println("Le médicament existe déjà dans la base de données.");
+            return;
+        }
+//        DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
+//        if (!nameProd1.getText().trim().equals("")) {
+//            model.addRow(new Object[]{
+//                nameProd1.getText().toUpperCase(), cbCateg1.getSelectedItem().toString(), theDate, qteProd1.getText(), prixAchat.getText(), prixVente.getText(), codeProd1.getText()});
+//        } else {
+//            System.out.print("NOT VOID");
+//        }
         DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
-        if (!nameProd1.getText().trim().equals("")) {
+        if (!nomProduit.trim().equals("")) {
             model.addRow(new Object[]{
-                nameProd1.getText(), cbCateg1.getSelectedItem().toString(), theDate, qteProd1.getText(), prixAchat.getText(), prixVente.getText(), codeProd1.getText()});
+                nomProduit, cbCateg1.getSelectedItem().toString(), theDate, qteProd1.getText(), prixAchat.getText(), prixVente.getText(), codeProd1.getText()});
         } else {
-            System.out.print("NOT VOID");
+            System.out.println("Le nom du médicament ne peut pas être vide.");
+            JOptionPane.showMessageDialog(this, "Le nom du médicament ne peut pas être vide.");
+            
         }
 
         nameProd1.setText("");
@@ -1295,7 +1310,33 @@ public class AdminPanel extends javax.swing.JFrame {
         prixVente.setText("");
         codeProd1.setText("");
     }//GEN-LAST:event_btnInsertActionPerformed
+    private boolean isNomProduitExist(String nomProduit) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            Statement stm = conn.createStatement();
+            String query = "SELECT COUNT(*) FROM produits WHERE nom = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(query)) {
+                stmt.setString(1, nomProduit);
 
+                try (ResultSet rs = stmt.executeQuery()) {
+                    if (rs.next()) {
+                        int count = rs.getInt(1);
+                        return count > 0;
+                    }
+                }
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
     private void btnUpdateInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateInsertActionPerformed
         // TODO add your handling code here:
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
