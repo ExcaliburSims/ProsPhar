@@ -281,8 +281,10 @@ public class AdminPanel extends javax.swing.JFrame {
             .addGroup(sidePaneLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addGroup(sidePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePaneLayout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(19, 19, 19)))
                 .addContainerGap(15, Short.MAX_VALUE))
             .addComponent(logOut1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(tabBord, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -295,9 +297,9 @@ public class AdminPanel extends javax.swing.JFrame {
         sidePaneLayout.setVerticalGroup(
             sidePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(sidePaneLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel4)
-                .addGap(34, 34, 34)
+                .addGap(35, 35, 35)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
                 .addComponent(tabBord, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,7 +371,7 @@ public class AdminPanel extends javax.swing.JFrame {
         codeProd.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         cbCateg.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        cbCateg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Injecta", "Sirop", "Compri" }));
+        cbCateg.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "COMPRIME", "SIROP", "INJECTABLE", "SUPPO", "GOUTTE", "CREME", "POUDRE", "SAVON", "POMMADE", "SPRITE", "SOLUTION", "GEL", "MATERIEL", "SERUM", "AUTRES" }));
         cbCateg.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         prixProd.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
@@ -434,7 +436,7 @@ public class AdminPanel extends javax.swing.JFrame {
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "Liste Medicament", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)), "LISTE MEDICAMENT", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18))); // NOI18N
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 51, 51)));
@@ -648,7 +650,7 @@ public class AdminPanel extends javax.swing.JFrame {
             stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(stockPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE)
                 .addGap(135, 135, 135))
         );
 
@@ -887,7 +889,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE))
                 .addGap(16, 16, 16)
                 .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1114,7 +1116,7 @@ public class AdminPanel extends javax.swing.JFrame {
             rapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rapPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE)
                 .addGap(126, 126, 126))
         );
 
@@ -1182,7 +1184,7 @@ public class AdminPanel extends javax.swing.JFrame {
         Double prixAchat = Double.parseDouble(prixProd.getText());
         // System.out.println("PRIX TOTAL"+ PrixT);
         DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
-        if (!codeProd.getText().trim().equals("")) {
+        if ((!codeProd.getText().trim().equals(""))) {
             model.addRow(new Object[]{
                 codeProd.getText(), nameProd.getText().toUpperCase(), qteProd.getText(), cbCateg.getSelectedItem().toString(), prixAchat, prixTot});
         } else {
@@ -1292,7 +1294,7 @@ public class AdminPanel extends javax.swing.JFrame {
         } else {
             System.out.println("Le nom du médicament ne peut pas être vide.");
             JOptionPane.showMessageDialog(this, "Le nom du médicament ne peut pas être vide.");
-            
+
         }
 
         nameProd1.setText("");
