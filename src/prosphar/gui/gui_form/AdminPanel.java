@@ -1375,7 +1375,7 @@ public class AdminPanel extends javax.swing.JFrame {
         // model.addRow(new Object[]{theDate});
         String nomProduit = nameProd1.getText().toUpperCase();
         if (isNomProduitExist(nomProduit)) {
-            JOptionPane.showMessageDialog(this, "Le médicament existe déjà dans la base de données");
+            JOptionPane.showMessageDialog(this, nomProduit.toUpperCase()+" existe déjà dans la base de données");
             // System.out.println("Le médicament existe déjà dans la base de données.");
             return;
         }
