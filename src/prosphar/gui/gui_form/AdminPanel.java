@@ -1175,13 +1175,14 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        int prixTot;
-        prixTot = Integer.parseInt(prixProd.getText()) * Integer.parseInt(qteProd.getText());
+        Double prixTot;
+        prixTot = Double.parseDouble(prixProd.getText()) * Double.parseDouble(qteProd.getText());
+        Double prixAchat = Double.parseDouble(prixProd.getText());
         // System.out.println("PRIX TOTAL"+ PrixT);
         DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
         if (!codeProd.getText().trim().equals("")) {
             model.addRow(new Object[]{
-                codeProd.getText(), nameProd.getText(), qteProd.getText(), cbCateg.getSelectedItem().toString(), prixProd.getText(), prixTot});
+                codeProd.getText(), nameProd.getText(), qteProd.getText(), cbCateg.getSelectedItem().toString(), prixAchat, prixTot});
         } else {
             System.out.print("NOT VOID");
         }
@@ -1226,8 +1227,8 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
-        int prixTot;
-        prixTot = Integer.parseInt(prixProd.getText()) * Integer.parseInt(qteProd.getText());
+        Double prixTot;
+        prixTot = Double.parseDouble(prixProd.getText()) * Double.parseDouble(qteProd.getText());
         DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
         if (tabFacture.getSelectedRow() == -1) {
             if (tabFacture.getRowCount() == 0) {
@@ -1245,7 +1246,7 @@ public class AdminPanel extends javax.swing.JFrame {
         double somme = 0;
         int nLigne = tabFacture.getRowCount();
         for (int i = 0; i < nLigne; i++) {
-            double montant = Integer.parseInt(tabFacture.getValueAt(i, 5).toString());
+            double montant = Double.parseDouble(tabFacture.getValueAt(i, 5).toString());
             somme = somme + montant;
         }
         screenPrix.setText(somme + " FC");
@@ -1602,6 +1603,33 @@ public class AdminPanel extends javax.swing.JFrame {
             nameProd.setText(complete);
             nameProd.setCaretPosition(last);
             nameProd.moveCaretPosition(start);
+        }
+        System.out.println("NOM :" + complete);
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            Statement stm = conn.createStatement();
+            String query = "SELECT * FROM produits WHERE nom='" + complete + "'";
+            ResultSet req = stm.executeQuery(query);
+            if (req.next()) {
+                String prix =req.getString("prix_achat");
+                String code =req.getString("code_produit");
+                
+                
+                System.out.println("PRIX :"+prix);
+                System.out.println("PRIX :"+code);
+                prixProd.setText(prix);
+                codeProd.setText(code);
+            }
+            req.close();
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
