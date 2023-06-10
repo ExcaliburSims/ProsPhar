@@ -1617,18 +1617,68 @@ public class AdminPanel extends javax.swing.JFrame {
             String passwd = "root";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
+            cbCateg.removeAllItems();
             Statement stm = conn.createStatement();
             String query = "SELECT * FROM produits WHERE nom='" + complete + "'";
             ResultSet req = stm.executeQuery(query);
+            String categorieName;
             if (req.next()) {
-                String prix =req.getString("prix_achat");
-                String code =req.getString("code_produit");
-                
-                
-                System.out.println("PRIX :"+prix);
-                System.out.println("PRIX :"+code);
+                cbCateg.removeAllItems();
+                String prix = req.getString("prix_achat");
+                String code = req.getString("code_produit");
+                String categ = req.getString("categorie_id");
+                switch (categ) {
+                    case "1":
+                        categorieName = "COMPRIME";
+                        break;
+                    case "2":
+                        categorieName = "SIROP";
+                        break;
+                    case "3":
+                        categorieName = "INJECTABLE";
+                        break;
+                    case "4":
+                        categorieName = "SUPPO";
+                        break;
+                    case "5":
+                        categorieName = "GOUTTE";
+                        break;
+                    case "6":
+                        categorieName = "CREME";
+                        break;
+                    case "7":
+                        categorieName = "POUDRE";
+                        break;
+                    case "8":
+                        categorieName = "SAVON";
+                        break;
+                    case "9":
+                        categorieName = "POMMADE";
+                        break;
+                    case "10":
+                        categorieName = "SPRITE";
+                        break;
+                    case "11":
+                        categorieName = "SOLUTION";
+                        break;
+                    case "12":
+                        categorieName = "GEL";
+                        break;
+                    case "13":
+                        categorieName = "MATERIEL";
+                        break;
+                    case "14":
+                        categorieName = "SERUM";
+                        break;
+                    case "15":
+                        categorieName = "AUTRES";
+                        break;
+                    default:
+                        categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
+                }
                 prixProd.setText(prix);
                 codeProd.setText(code);
+                cbCateg.addItem(categorieName);
             }
             req.close();
         } catch (SQLException sqlException) {
