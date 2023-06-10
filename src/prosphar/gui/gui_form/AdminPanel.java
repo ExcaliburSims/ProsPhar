@@ -25,6 +25,8 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 import java.util.Locale;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
@@ -581,14 +583,14 @@ public class AdminPanel extends javax.swing.JFrame {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(ventePanelLayout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(ventePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab 2", ventePanel);
@@ -834,11 +836,6 @@ public class AdminPanel extends javax.swing.JFrame {
         btnUpdateInsert.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         btnUpdateInsert.setText("MODIFIER");
         btnUpdateInsert.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 51, 51), null));
-        btnUpdateInsert.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnUpdateInsertMouseClicked(evt);
-            }
-        });
         btnUpdateInsert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateInsertActionPerformed(evt);
@@ -1262,6 +1259,101 @@ public class AdminPanel extends javax.swing.JFrame {
     private void prixTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal1ActionPerformed
         // TODO add your handling code here:
         System.out.println("*************************INSTALLED IMPRIMANTE ON MAC***************************");
+        DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
+        if (model.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Tableau vide");
+        } else {
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String password = "root";
+
+            try (Connection conn = DriverManager.getConnection(url, user, password)) {
+                System.out.println("Connexion effective !");
+                Statement statement = conn.createStatement();
+
+                for (int row = 0; row < model.getRowCount(); row++) {
+                    String name = model.getValueAt(row, 1).toString();
+                    String categorie = model.getValueAt(row, 3).toString();
+                    //String datee = model.getValueAt(row, 2).toString();
+                    int qte = Integer.parseInt(model.getValueAt(row, 2).toString());
+                    double prixTot = Double.parseDouble(model.getValueAt(row, 5).toString());
+                    double prixVente = Double.parseDouble(model.getValueAt(row, 4).toString());
+                    // String code = model.getValueAt(row, 6).toString();
+                    // Obtenir la date actuelle
+                    LocalDate currentDate = LocalDate.now();
+
+                    // Formater la date selon le format souhaité
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String datee = currentDate.format(formatter);
+
+                    // Afficher la date actuelle
+                    System.out.println("Date actuelle : " + datee);
+                    
+                    int categorieId;
+
+                    if (categorie.equalsIgnoreCase("comprime")) {
+                        categorieId = 1;
+                    } else if (categorie.equalsIgnoreCase("sirop")) {
+                        categorieId = 2;
+                    } else if (categorie.equalsIgnoreCase("injectable")) {
+                        categorieId = 3;
+                    } else if (categorie.equalsIgnoreCase("suppo")) {
+                        categorieId = 4;
+                    } else if (categorie.equalsIgnoreCase("goutte")) {
+                        categorieId = 5;
+                    } else if (categorie.equalsIgnoreCase("creme")) {
+                        categorieId = 6;
+                    } else if (categorie.equalsIgnoreCase("poudre")) {
+                        categorieId = 7;
+                    } else if (categorie.equalsIgnoreCase("savon")) {
+                        categorieId = 8;
+                    } else if (categorie.equalsIgnoreCase("pommade")) {
+                        categorieId = 9;
+                    } else if (categorie.equalsIgnoreCase("sprite")) {
+                        categorieId = 10;
+                    } else if (categorie.equalsIgnoreCase("solution")) {
+                        categorieId = 11;
+                    } else if (categorie.equalsIgnoreCase("gel")) {
+                        categorieId = 12;
+                    } else if (categorie.equalsIgnoreCase("materiel")) {
+                        categorieId = 13;
+                    } else if (categorie.equalsIgnoreCase("serum")) {
+                        categorieId = 15;
+                    } else if (categorie.equalsIgnoreCase("autres")) {
+                        categorieId = 15;
+                    } else {
+                        categorieId = 0; // Valeur par défaut si la catégorie ne correspond à aucun des cas
+                    }
+                    String insertQuery = "INSERT INTO commandes (quantite ,date_vente, produit_id,nom_produit,categorie_id,  prix, prix_total) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
+                    preparedStatement.setInt(1, qte);
+                    preparedStatement.setString(2, datee);
+                    preparedStatement.setInt(3, qte);
+                    preparedStatement.setString(4, name);
+                    preparedStatement.setInt(5, categorieId);
+                    preparedStatement.setDouble(6, prixVente);
+                    preparedStatement.setDouble(7, prixTot);
+
+                    int rowsAffected = preparedStatement.executeUpdate();
+
+                    if (rowsAffected > 0) {
+                        System.out.println("Enregistrement effectué pour la ligne " + (row + 1));
+                        // Autres actions à effectuer en cas de succès de l'insertion
+                        for (int i = model.getRowCount(); i > 0; --i) {
+                            model.removeRow(i - 1);
+                        }
+                    } else {
+                        System.out.println("Erreur lors de l'enregistrement pour la ligne " + (row + 1));
+                        // Autres actions à effectuer en cas d'échec de l'insertion
+                    }
+                }
+
+                JOptionPane.showMessageDialog(this, "SUCCES");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Erreur lors de la connexion à la base de données");
+            }
+        }
     }//GEN-LAST:event_prixTotal1ActionPerformed
 /////////////////////////////////////AJOUT MEDICAMENT////////////////////////////////////////////////////
     private void tabAjoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAjoutMouseClicked
@@ -1454,10 +1546,6 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_savebtnActionPerformed
-
-    private void btnUpdateInsertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUpdateInsertMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateInsertMouseClicked
 
     private void codeGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeGenActionPerformed
         // TODO add your handling code here:
