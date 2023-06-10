@@ -14,6 +14,12 @@ import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
+import com.jtattoo.plaf.smart.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
@@ -1409,7 +1415,7 @@ public class AdminPanel extends javax.swing.JFrame {
             String deuxiemePartie = nameProd1.getText().substring(0, 3);
             int nombreAleatoire = new Random().nextInt(200);
 
-            code = premierePartie.toUpperCase() + deuxiemePartie.toUpperCase() + nombreAleatoire;
+            code = premierePartie.toUpperCase() + deuxiemePartie.toUpperCase() + "-"+nombreAleatoire;
         }
         // System.out.println("CODE : "+code);
         codeProd1.setText(code);
@@ -1536,21 +1542,42 @@ public class AdminPanel extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+            com.jtattoo.plaf.acryl.AcrylLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   1
+//            com.jtattoo.plaf.aero.AeroLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   2
+//            com.jtattoo.plaf.aluminium.AluminiumLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   3
+//            com.jtattoo.plaf.bernstein.BernsteinLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   4
+//            com.jtattoo.plaf.fast.FastLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   5
+//            com.jtattoo.plaf.graphite.GraphiteLookAndFeel.setTheme("Red", "INSERT YOUR LICENSE KEY HERE", "my company");      //   6
+//            com.jtattoo.plaf.hifi.HiFiLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   7
+//            com.jtattoo.plaf.luna.LunaLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   8
+//            com.jtattoo.plaf.mcwin.McWinLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   9
+//            com.jtattoo.plaf.noire.NoireLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   10
+//            com.jtattoo.plaf.smart.SmartLookAndFeel.setTheme("Blue", "INSERT YOUR LICENSE KEY HERE", "my company");      //   11
+//            com.jtattoo.plaf.texture.TextureLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");      //   12
+
+            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");   //   1
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.aero.AeroLookAndFeel");          //   2
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.aluminium.AluminiumLookAndFeel");//   3
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.bernstein.BernsteinLookAndFeel");//   4 
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.fast.FastLookAndFeel");          //   5
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.graphite.GraphiteLookAndFeel");  //   6
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.hifi.HiFiLookAndFeel");          //   7
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");          //   8
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");        //   9
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.noire.NoireLookAndFeel");        //   10
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.smart.SmartLookAndFeel");        //   11
+//            UIManager.setLookAndFeel("com.jtattoo.plaf.texture.TextureLookAndFeel");     //  12
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AdminPanel.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        
         //</editor-fold>
 
         /* Create and display the form */

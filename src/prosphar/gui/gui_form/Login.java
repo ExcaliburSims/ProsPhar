@@ -11,13 +11,42 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.WindowConstants;
 import com.jtattoo.plaf.smart.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  *
  * @author user
  */
 public class Login extends javax.swing.JFrame {
+
+    Thread thread;
+
+    public class Progression implements Runnable {
+
+        public void run() {
+            jProgressBar1.setVisible(true);
+            for (int j = 1; j < 100; j++) {
+                jProgressBar1.setStringPainted(true);
+                jProgressBar1.setValue(j);
+                jProgressBar1.setString(j + "%");
+                if (j == 99) {
+                    dispose();
+                    //new AdminPanel;
+                    //AdminPanel homeAdminPanel = new AdminPanel();
+                    //homeAdminPanel.show();
+                    //new mdi().setVisible(true);
+                }
+                try {
+                    Thread.sleep(100);
+                } catch (Exception e) {
+                }
+            }
+        }
+    }
 
     /**
      * Creates new form Login
@@ -70,6 +99,7 @@ public class Login extends javax.swing.JFrame {
         userPass = new javax.swing.JPasswordField();
         userText = new javax.swing.JTextField();
         buttonLogin = new javax.swing.JButton();
+        jProgressBar1 = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -152,14 +182,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jProgressBar1.setBackground(new java.awt.Color(35, 166, 97));
+        jProgressBar1.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(100, 100, 100)
-                .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(57, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,6 +200,11 @@ public class Login extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52))))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,7 +217,8 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(userPass, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(buttonLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -235,6 +270,7 @@ public class Login extends javax.swing.JFrame {
 
     private void buttonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonLoginActionPerformed
         // TODO add your handling code here:
+        thread = new Thread(new Progression());
         String username = userText.getText();
         String password = userPass.getText();
         /*if (userName.equals("admin") && passWord.equals("abc")) {
@@ -257,11 +293,13 @@ public class Login extends javax.swing.JFrame {
             if (req.next()) {
                 int role = req.getInt("role_id");
                 if (role == 1) {
+                    thread.start();
                     JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur");
                     dispose();
                     AdminPanel homeAdminPanel = new AdminPanel();
                     homeAdminPanel.show();
                 } else {
+                    thread.start();
                     JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'agent");
                     dispose();
                     AgentPanel homeAgent = new AgentPanel();
@@ -271,6 +309,7 @@ public class Login extends javax.swing.JFrame {
                 //JOptionPane.showMessageDialog(homeAdminPanel, "You have successfully logged in");
             } else if (username.equals("root") && password.equals("root")) {
                 JOptionPane.showMessageDialog(null, "Vous êtes connecté en tant qu'administrateur secours");
+                thread.start();
                 dispose();
                 AdminPanel homeAdminPanel = new AdminPanel();
                 homeAdminPanel.show();
@@ -405,6 +444,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JPasswordField userPass;
     private javax.swing.JTextField userText;
     // End of variables declaration//GEN-END:variables
