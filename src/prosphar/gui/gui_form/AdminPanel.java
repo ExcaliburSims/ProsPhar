@@ -29,7 +29,7 @@ import java.awt.event.KeyEvent;
  * @author user
  */
 public class AdminPanel extends javax.swing.JFrame {
-    
+
     ArrayList produit = new ArrayList();
 
     /**
@@ -1280,7 +1280,7 @@ public class AdminPanel extends javax.swing.JFrame {
         } else {
             System.out.print("NOT VOID");
         }
-        
+
         nameProd1.setText("");
         dateExpi.setCalendar(null);
         qteProd1.setText("");
@@ -1335,11 +1335,11 @@ public class AdminPanel extends javax.swing.JFrame {
             String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
             String user = "root";
             String password = "root";
-            
+
             try (Connection conn = DriverManager.getConnection(url, user, password)) {
                 System.out.println("Connexion effective !");
                 Statement statement = conn.createStatement();
-                
+
                 for (int row = 0; row < model.getRowCount(); row++) {
                     String name = model.getValueAt(row, 0).toString();
                     String categorie = model.getValueAt(row, 1).toString();
@@ -1349,7 +1349,7 @@ public class AdminPanel extends javax.swing.JFrame {
                     double prixVente = Double.parseDouble(model.getValueAt(row, 5).toString());
                     String code = model.getValueAt(row, 6).toString();
                     int categorieId;
-                    
+
                     if (categorie.equalsIgnoreCase("comprime")) {
                         categorieId = 1;
                     } else if (categorie.equalsIgnoreCase("sirop")) {
@@ -1383,7 +1383,7 @@ public class AdminPanel extends javax.swing.JFrame {
                     } else {
                         categorieId = 0; // Valeur par défaut si la catégorie ne correspond à aucun des cas
                     }
-                    
+
                     String insertQuery = "INSERT INTO produits (nom, categorie_id, date_exp, qte_produit, prix_achat, prix_vente, code_produit) VALUES (?, ?, ?, ?, ?, ?, ?)";
                     PreparedStatement preparedStatement = conn.prepareStatement(insertQuery);
                     preparedStatement.setString(1, name);
@@ -1393,9 +1393,9 @@ public class AdminPanel extends javax.swing.JFrame {
                     preparedStatement.setDouble(5, prixAchat);
                     preparedStatement.setDouble(6, prixVente);
                     preparedStatement.setString(7, code);
-                    
+
                     int rowsAffected = preparedStatement.executeUpdate();
-                    
+
                     if (rowsAffected > 0) {
                         System.out.println("Enregistrement effectué pour la ligne " + (row + 1));
                         // Autres actions à effectuer en cas de succès de l'insertion
@@ -1404,7 +1404,7 @@ public class AdminPanel extends javax.swing.JFrame {
                         // Autres actions à effectuer en cas d'échec de l'insertion
                     }
                 }
-                
+
                 JOptionPane.showMessageDialog(this, "SUCCES");
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -1420,12 +1420,12 @@ public class AdminPanel extends javax.swing.JFrame {
     private void codeGenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeGenActionPerformed
         // TODO add your handling code here:
         String code = "";
-        
+
         if (cbCateg1.getSelectedItem().toString().length() >= 2 && nameProd1.getText().length() >= 3) {
             String premierePartie = cbCateg1.getSelectedItem().toString().substring(0, 2);
             String deuxiemePartie = nameProd1.getText().substring(0, 3);
             int nombreAleatoire = new Random().nextInt(200);
-            
+
             code = premierePartie.toUpperCase() + deuxiemePartie.toUpperCase() + "-" + nombreAleatoire;
         }
         // System.out.println("CODE : "+code);
@@ -1553,15 +1553,15 @@ public class AdminPanel extends javax.swing.JFrame {
                 });
         }
     }//GEN-LAST:event_nameProdKeyPressed
-    
+
     private void onClick(JButton btn) {
         btn.setBackground(new Color(75, 175, 152));
     }
-    
+
     private void onLeaveClick(JButton btn) {
         btn.setBackground(new Color(255, 255, 255));
     }
-    
+
     private void databaseProduit() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -1584,15 +1584,16 @@ public class AdminPanel extends javax.swing.JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     public void autoComplete(String txt) {
         String complete = "";
         int start = txt.length();
         int last = txt.length();
         int a;
         for (a = 0; a < produit.size(); a++) {
-            if (produit.get(a).toString().startsWith(txt)) {
-                complete = produit.get(a).toString();
+            String productName = produit.get(a).toString();
+            if (productName.toLowerCase().startsWith(txt.toLowerCase())) {
+                complete = productName;
                 last = complete.length();
                 break;
             }
