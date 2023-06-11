@@ -1541,6 +1541,9 @@ public class AdminPanel extends javax.swing.JFrame {
                     if (rowsAffected > 0) {
                         System.out.println("Enregistrement effectué pour la ligne " + (row + 1));
                         // Autres actions à effectuer en cas de succès de l'insertion
+                        for (int i = model.getRowCount(); i > 0; --i) {
+                            model.removeRow(i - 1);
+                        }
                     } else {
                         System.out.println("Erreur lors de l'enregistrement pour la ligne " + (row + 1));
                         // Autres actions à effectuer en cas d'échec de l'insertion
