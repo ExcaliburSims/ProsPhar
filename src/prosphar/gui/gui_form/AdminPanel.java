@@ -1329,7 +1329,7 @@ public class AdminPanel extends javax.swing.JFrame {
                         // String sql = "UPDATE produits SET qte_produit = qte_produit - ${qte} WHERE id = ?";
                         String sql = String.format("UPDATE produits SET qte_produit = qte_produit - %d WHERE id = ?", qte);
                         PreparedStatement stmt = conn.prepareStatement(sql);
-                        stmt.setInt(1,Integer.parseInt(id));
+                        stmt.setInt(1, Integer.parseInt(id));
                         stmt.executeUpdate();
                         System.out.println("La quantité du produit a été mise à jour avec succès !");
                         preparedStatement.setInt(1, qte);
@@ -1383,8 +1383,20 @@ public class AdminPanel extends javax.swing.JFrame {
         // model.addRow(new Object[]{theDate});
         String nomProduit = nameProd1.getText().toUpperCase();
         if (isNomProduitExist(nomProduit)) {
-            JOptionPane.showMessageDialog(this, nomProduit.toUpperCase() + " EXISTE DEJA DANS LA BASE DE DONNEE");
-            // System.out.println("Le médicament existe déjà dans la base de données.");
+            int choice = JOptionPane.showConfirmDialog(null, nomProduit.toUpperCase() + " EXISTE DEJA DANS LA BASE DE DONNEE VOULEZ-VOUS MODIFIER ?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
+            if (choice == JOptionPane.OK_OPTION) {
+                Update updatePanel = new Update();
+                updatePanel.show();
+                nameProd1.setText("");
+                dateExpi.setCalendar(null);
+                qteProd1.setText("");
+                cbCateg1.setSelectedItem("");
+                prixAchat.setText("");
+                prixVente.setText("");
+                codeProd1.setText("");
+            } else if (choice == JOptionPane.CANCEL_OPTION) {
+                System.out.println("Vous avez cliqué sur Annuler !");
+            }
             return;
         }
         DefaultTableModel model = (DefaultTableModel) tabAjout.getModel();
@@ -1812,18 +1824,18 @@ public class AdminPanel extends javax.swing.JFrame {
                     default:
                         categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
                 }
-                if (!(Integer.parseInt(quant)==0)) {
+                if (!(Integer.parseInt(quant) == 0)) {
                     nameProd.setBackground(Color.decode("#FFFFFF"));
                     nameProd.setForeground(Color.decode("#121212"));
                     prixProd.setText(prix);
                     codeProd.setText(code);
                     cbCateg.addItem(categorieName);
                 } else {
-                    JOptionPane.showMessageDialog(this, complete+" EST VIDE EN STOCK");
+                    JOptionPane.showMessageDialog(this, complete + " EST VIDE EN STOCK");
                     nameProd.setForeground(Color.decode("#FFFFFF"));
                     nameProd.setBackground(Color.decode("#121212"));
                 }
-                
+
             }
             req.close();
         } catch (SQLException sqlException) {
