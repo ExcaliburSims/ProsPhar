@@ -1385,7 +1385,7 @@ public class AdminPanel extends javax.swing.JFrame {
         if (isNomProduitExist(nomProduit)) {
             int choice = JOptionPane.showConfirmDialog(null, nomProduit.toUpperCase() + " EXISTE DEJA DANS LA BASE DE DONNEE VOULEZ-VOUS MODIFIER ?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
             if (choice == JOptionPane.OK_OPTION) {
-                Update updatePanel = new Update();
+                Update updatePanel = new Update(nomProduit);
                 updatePanel.show();
                 nameProd1.setText("");
                 dateExpi.setCalendar(null);
