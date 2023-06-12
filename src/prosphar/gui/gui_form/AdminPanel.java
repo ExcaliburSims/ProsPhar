@@ -91,7 +91,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         prixTotal = new javax.swing.JButton();
         screenPrix = new javax.swing.JLabel();
-        prixTotal1 = new javax.swing.JButton();
+        btnprint = new javax.swing.JButton();
         stockPanel = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -523,12 +523,12 @@ public class AdminPanel extends javax.swing.JFrame {
         screenPrix.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         screenPrix.setText("Montant a payer");
 
-        prixTotal1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        prixTotal1.setText("IMPRIMER");
-        prixTotal1.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 51, 51), null));
-        prixTotal1.addActionListener(new java.awt.event.ActionListener() {
+        btnprint.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        btnprint.setText("IMPRIMER");
+        btnprint.setBorder(javax.swing.BorderFactory.createEtchedBorder(new java.awt.Color(51, 51, 51), null));
+        btnprint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                prixTotal1ActionPerformed(evt);
+                btnprintActionPerformed(evt);
             }
         });
 
@@ -538,7 +538,7 @@ public class AdminPanel extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(prixTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnprint, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(prixTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -551,7 +551,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(prixTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(screenPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(prixTotal1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnprint, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 30, Short.MAX_VALUE))
         );
 
@@ -1256,7 +1256,7 @@ public class AdminPanel extends javax.swing.JFrame {
         System.out.println(formattedNumber);
     }//GEN-LAST:event_prixTotalActionPerformed
 
-    private void prixTotal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_prixTotal1ActionPerformed
+    private void btnprintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprintActionPerformed
         // TODO add your handling code here:
         System.out.println("*************************INSTALLED IMPRIMANTE ON MAC***************************");
         DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
@@ -1326,7 +1326,6 @@ public class AdminPanel extends javax.swing.JFrame {
                     ResultSet req = stm.executeQuery(query);
                     if (req.next()) {
                         String id = req.getString("id");
-                        // String sql = "UPDATE produits SET qte_produit = qte_produit - ${qte} WHERE id = ?";
                         String sql = String.format("UPDATE produits SET qte_produit = qte_produit - %d WHERE id = ?", qte);
                         PreparedStatement stmt = conn.prepareStatement(sql);
                         stmt.setInt(1, Integer.parseInt(id));
@@ -1345,24 +1344,22 @@ public class AdminPanel extends javax.swing.JFrame {
 
                     if (rowsAffected > 0) {
                         System.out.println("Enregistrement effectué pour la ligne " + (row + 1));
-                        // Autres actions à effectuer en cas de succès de l'insertion
-                        for (int i = model.getRowCount(); i > 0; --i) {
-                            model.removeRow(i - 1);
-                        }
-
                     } else {
                         System.out.println("Erreur lors de l'enregistrement pour la ligne " + (row + 1));
                         // Autres actions à effectuer en cas d'échec de l'insertion
                     }
                 }
+                for (int i = model.getRowCount(); i > 0; --i) {
+                    model.removeRow(i - 1);
+                }
 
-                JOptionPane.showMessageDialog(this, "INSERER AVEC SUCCES");
+                JOptionPane.showMessageDialog(this, "VENTE EFFECTUEE AVEC SUCCES");
             } catch (SQLException e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "ERREUR DE CONNEXION");
             }
         }
-    }//GEN-LAST:event_prixTotal1ActionPerformed
+    }//GEN-LAST:event_btnprintActionPerformed
 /////////////////////////////////////AJOUT MEDICAMENT////////////////////////////////////////////////////
     private void tabAjoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAjoutMouseClicked
         // TODO add your handling code here:
@@ -1553,13 +1550,14 @@ public class AdminPanel extends javax.swing.JFrame {
                     if (rowsAffected > 0) {
                         System.out.println("Enregistrement effectué pour la ligne " + (row + 1));
                         // Autres actions à effectuer en cas de succès de l'insertion
-                        for (int i = model.getRowCount(); i > 0; --i) {
-                            model.removeRow(i - 1);
-                        }
+
                     } else {
                         System.out.println("Erreur lors de l'enregistrement pour la ligne " + (row + 1));
                         // Autres actions à effectuer en cas d'échec de l'insertion
                     }
+                }
+                for (int i = model.getRowCount(); i > 0; --i) {
+                    model.removeRow(i - 1);
                 }
 
                 JOptionPane.showMessageDialog(this, "INSERER AVEC SUCCES");
@@ -1910,6 +1908,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton btnInsert;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdateInsert;
+    private javax.swing.JButton btnprint;
     private javax.swing.JComboBox<String> cbCateg;
     private javax.swing.JComboBox<String> cbCateg1;
     private javax.swing.JButton codeGen;
@@ -1968,7 +1967,6 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JTextField prixAchat;
     private javax.swing.JTextField prixProd;
     private javax.swing.JButton prixTotal;
-    private javax.swing.JButton prixTotal1;
     private javax.swing.JTextField prixVente;
     private javax.swing.JTextField pseudo;
     private javax.swing.JTextField qteProd;
