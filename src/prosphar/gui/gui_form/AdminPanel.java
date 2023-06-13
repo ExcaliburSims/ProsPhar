@@ -1846,7 +1846,7 @@ public class AdminPanel extends javax.swing.JFrame {
                     default:
                         categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
                 }
-                if (!(Integer.parseInt(quant) == 0)) {
+                if (!(Integer.parseInt(quant) <= 0)) {
                     nameProd.setBackground(Color.decode("#FFFFFF"));
                     nameProd.setForeground(Color.decode("#121212"));
                     prixProd.setText(prix);
