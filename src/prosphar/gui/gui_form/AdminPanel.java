@@ -1196,8 +1196,8 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-        int prixTot;
-        prixTot = Integer.parseInt(prixProd.getText()) * Integer.parseInt(qteProd.getText());
+        double prixTot;
+        prixTot = Double.parseDouble(prixProd.getText()) * Double.parseDouble(qteProd.getText());
         DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
         if (tabFacture.getSelectedRow() == -1) {
             if (tabFacture.getRowCount() == 0) {
@@ -1210,8 +1210,13 @@ public class AdminPanel extends javax.swing.JFrame {
             model.setValueAt(nameProd.getText(), tabFacture.getSelectedRow(), 1);
             model.setValueAt(qteProd.getText(), tabFacture.getSelectedRow(), 2);
             model.setValueAt(cbCateg.getSelectedItem().toString(), tabFacture.getSelectedRow(), 3);
-            model.setValueAt(prixProd.getText(), tabFacture.getSelectedRow(), 4);
+            model.setValueAt(Double.valueOf(prixProd.getText()), tabFacture.getSelectedRow(), 4);
             model.setValueAt(prixTot, tabFacture.getSelectedRow(), 5);
+            codeProd.setText("");
+            nameProd.setText("");
+            qteProd.setText("");
+            cbCateg.setSelectedItem("");
+            prixProd.setText("");
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -1238,6 +1243,11 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         } else {
             model.removeRow(tabFacture.getSelectedRow());
+            codeProd.setText("");
+            nameProd.setText("");
+            qteProd.setText("");
+            cbCateg.setSelectedItem("");
+            prixProd.setText("");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
