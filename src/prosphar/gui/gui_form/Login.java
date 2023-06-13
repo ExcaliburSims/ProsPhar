@@ -39,6 +39,8 @@ public class Login extends javax.swing.JFrame {
                     //AdminPanel homeAdminPanel = new AdminPanel();
                     //homeAdminPanel.show();
                     //new mdi().setVisible(true);
+                    AdminPanel homeAdminPanel = new AdminPanel();
+                    homeAdminPanel.show();
                 }
                 try {
                     Thread.sleep(100);
@@ -294,10 +296,10 @@ public class Login extends javax.swing.JFrame {
                 int role = req.getInt("role_id");
                 if (role == 1) {
                     thread.start();
-                    JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QUE ADMINISTRATEUR");
-                    dispose();
-                    AdminPanel homeAdminPanel = new AdminPanel();
-                    homeAdminPanel.show();
+//                    JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QUE ADMINISTRATEUR");
+//                    dispose();
+//                    AdminPanel homeAdminPanel = new AdminPanel();
+//                    homeAdminPanel.show();
                 } else {
                     thread.start();
                     JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QU'AGENT");
@@ -307,7 +309,7 @@ public class Login extends javax.swing.JFrame {
                 }
 
                 //JOptionPane.showMessageDialog(homeAdminPanel, "You have successfully logged in");
-            } else if (username.equals("root") && password.equals("root")) {
+            } else if (username.equalsIgnoreCase("root") && password.equalsIgnoreCase("root")) {
                 JOptionPane.showMessageDialog(null, "VOUS ETES CONNECTE EN TANT QUE ADM DE SECOURS");
                 thread.start();
                 dispose();
