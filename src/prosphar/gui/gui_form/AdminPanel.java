@@ -1862,6 +1862,12 @@ public class AdminPanel extends javax.swing.JFrame {
                     cbCateg.addItem(categorieName);
                     qteProd.setText("");
                 }
+                if (nameProd.getText().isEmpty()) {
+                    prixProd.setText("");
+                    codeProd.setText("");
+                    cbCateg.addItem(categorieName);
+                    qteProd.setText("");
+                }
 
             }
             req.close();
