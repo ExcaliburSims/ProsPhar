@@ -1828,10 +1828,15 @@ public class AdminPanel extends javax.swing.JFrame {
                     prixProd.setText(prix);
                     codeProd.setText(code);
                     cbCateg.addItem(categorieName);
+                    qteProd.setText("");
                 } else {
                     JOptionPane.showMessageDialog(this, complete + " EST VIDE EN STOCK");
                     nameProd.setForeground(Color.decode("#FFFFFF"));
                     nameProd.setBackground(Color.decode("#121212"));
+                    prixProd.setText("");
+                    codeProd.setText("");
+                    cbCateg.addItem(categorieName);
+                    qteProd.setText("");
                 }
 
             }
