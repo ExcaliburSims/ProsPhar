@@ -1460,6 +1460,13 @@ public class AdminPanel extends javax.swing.JFrame {
             model.setValueAt(prixAchat.getText(), tabAjout.getSelectedRow(), 4);
             model.setValueAt(prixVente.getText(), tabAjout.getSelectedRow(), 5);
             model.setValueAt(theDate, tabAjout.getSelectedRow(), 2);
+            nameProd1.setText("");
+            dateExpi.setCalendar(null);
+            qteProd1.setText("");
+            cbCateg1.setSelectedItem("");
+            prixAchat.setText("");
+            prixVente.setText("");
+            codeProd1.setText("");
         }
     }//GEN-LAST:event_btnUpdateInsertActionPerformed
 
@@ -1474,6 +1481,13 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         } else {
             model.removeRow(tabAjout.getSelectedRow());
+            nameProd1.setText("");
+            dateExpi.setCalendar(null);
+            qteProd1.setText("");
+            cbCateg1.setSelectedItem("");
+            prixAchat.setText("");
+            prixVente.setText("");
+            codeProd1.setText("");
         }
     }//GEN-LAST:event_btnDeleteInsertActionPerformed
 
