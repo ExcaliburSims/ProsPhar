@@ -1989,6 +1989,7 @@ public class AdminPanel extends javax.swing.JFrame {
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
+            String categorieName;
 
             for (int i = model.getRowCount(); i > 0; --i) {
                 model.removeRow(i - 1);
@@ -2002,13 +2003,63 @@ public class AdminPanel extends javax.swing.JFrame {
             pstmt.setString(1, datee);
             ResultSet req = pstmt.executeQuery();
             while (req.next()) {
-                int produitId = req.getInt("id"); // Récupérez l'ID du produit
+                int produitId = req.getInt("id");
+                String categ = req.getString("categorie_id");
+                switch (categ) {
+                    case "1":
+                        categorieName = "COMPRIME";
+                        break;
+                    case "2":
+                        categorieName = "SIROP";
+                        break;
+                    case "3":
+                        categorieName = "INJECTABLE";
+                        break;
+                    case "4":
+                        categorieName = "SUPPO";
+                        break;
+                    case "5":
+                        categorieName = "GOUTTE";
+                        break;
+                    case "6":
+                        categorieName = "CREME";
+                        break;
+                    case "7":
+                        categorieName = "POUDRE";
+                        break;
+                    case "8":
+                        categorieName = "SAVON";
+                        break;
+                    case "9":
+                        categorieName = "POMMADE";
+                        break;
+                    case "10":
+                        categorieName = "SPRITE";
+                        break;
+                    case "11":
+                        categorieName = "SOLUTION";
+                        break;
+                    case "12":
+                        categorieName = "GEL";
+                        break;
+                    case "13":
+                        categorieName = "MATERIEL";
+                        break;
+                    case "14":
+                        categorieName = "SERUM";
+                        break;
+                    case "15":
+                        categorieName = "AUTRES";
+                        break;
+                    default:
+                        categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
+                }
 
                 // Vérifiez si l'ID du produit a déjà été ajouté
                 if (!produitsAjoutes.contains(produitId)) {
                     model.addRow(new Object[]{
                         req.getString("nom_produit"),
-                        req.getString("categorie_id"),
+                        categorieName,
                         req.getString("prix"),
                         req.getString("quantite"),
                         req.getString("prix_total")
