@@ -1176,14 +1176,14 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        Double prixTot;
+        Double prixTot;Double prixachat;
         prixTot = Double.parseDouble(prixProd.getText()) * Double.parseDouble(qteProd.getText());
-        Double prixAchat = Double.parseDouble(prixProd.getText());
+        prixachat = Double.valueOf(prixProd.getText());
         // System.out.println("PRIX TOTAL"+ PrixT);
         DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
         if ((!qteProd.getText().trim().equals(""))) {
             model.addRow(new Object[]{
-                codeProd.getText(), nameProd.getText().toUpperCase(), qteProd.getText(), cbCateg.getSelectedItem().toString(), prixAchat, prixTot});
+                codeProd.getText(), nameProd.getText().toUpperCase(), qteProd.getText(), cbCateg.getSelectedItem().toString(), prixachat, prixTot});
         } else {
             JOptionPane.showMessageDialog(this, "VENTE EFFECTUEE AVEC SUCCES");
             System.out.print("NOT VOID");
