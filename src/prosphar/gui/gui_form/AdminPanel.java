@@ -801,7 +801,7 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
+            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 832, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -822,15 +822,15 @@ public class AdminPanel extends javax.swing.JFrame {
             .addGroup(stockPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(listProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         stockPanelLayout.setVerticalGroup(
             stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(stockPanelLayout.createSequentialGroup()
-                .addGap(54, 54, 54)
+                .addGap(55, 55, 55)
                 .addComponent(listProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1355,24 +1355,49 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        Double prixTot;
-        Double prixachat;
-        prixTot = Double.parseDouble(prixProd.getText()) * Double.parseDouble(qteProd.getText());
-        prixachat = Double.valueOf(prixProd.getText());
-        // System.out.println("PRIX TOTAL"+ PrixT);
-        DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
-        if ((!qteProd.getText().trim().equals(""))) {
-            model.addRow(new Object[]{
-                codeProd.getText(), nameProd.getText().toUpperCase(), qteProd.getText(), cbCateg.getSelectedItem().toString(), prixachat, prixTot});
-        } else {
-            JOptionPane.showMessageDialog(this, "VENTE EFFECTUEE AVEC SUCCES");
-            System.out.print("NOT VOID");
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            int quantiteDemandee = Integer.parseInt(qteProd.getText());
+            int quantiteDisponible = 0;
+            String sql = "SELECT qte_produit FROM produits WHERE nom = ?";
+
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, nameProd.getText());
+            ResultSet req = pstmt.executeQuery();
+            if (req.next()) {
+                quantiteDisponible = req.getInt("qte_produit");
+            }
+            if (quantiteDisponible >= quantiteDemandee) {
+                // Ajouter la ligne au tableau
+                Double prixTot;
+                Double prixachat;
+                prixTot = Double.parseDouble(prixProd.getText()) * Double.parseDouble(qteProd.getText());
+                prixachat = Double.valueOf(prixProd.getText());
+
+                DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
+                model.addRow(new Object[]{
+                    codeProd.getText(), nameProd.getText().toUpperCase(), quantiteDemandee, cbCateg.getSelectedItem().toString(), prixachat, prixTot
+                });
+            } else {
+                JOptionPane.showMessageDialog(this, "QUANTITE INSUFFISANTE IL NE RESTE QUE "+ quantiteDisponible+" "+ nameProd.getText());
+            }
+            codeProd.setText("");
+            nameProd.setText("");
+            qteProd.setText("");
+            cbCateg.setSelectedItem("");
+            prixProd.setText("");
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        codeProd.setText("");
-        nameProd.setText("");
-        qteProd.setText("");
-        cbCateg.setSelectedItem("");
-        prixProd.setText("");
+
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
@@ -1568,7 +1593,6 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String theDate = dateFormat.format(dateExpi.getDate());
-        // model.addRow(new Object[]{theDate});
         String nomProduit = nameProd1.getText().toUpperCase();
         if (isNomProduitExist(nomProduit)) {
             int choice = JOptionPane.showConfirmDialog(null, nomProduit.toUpperCase() + " EXISTE DEJA DANS LA BASE DE DONNEE VOULEZ-VOUS MODIFIER ?", "Confirmation", JOptionPane.OK_CANCEL_OPTION);
@@ -2102,7 +2126,6 @@ public class AdminPanel extends javax.swing.JFrame {
             String user = "root";
             String passwd = "root";
             Connection conn = DriverManager.getConnection(url, user, passwd);
-            System.out.println("Connexion effective !");
             DefaultTableModel model = (DefaultTableModel) tabListMedic.getModel();
             String categorieName;
             int counter = 1;
@@ -2115,18 +2138,11 @@ public class AdminPanel extends javax.swing.JFrame {
             ResultSet req = pstmt.executeQuery();
             while (req.next()) {
                 String categ = req.getString("categorie_id");
-                String dater = req.getString("date_exp");
-
-//                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
-//                //String theDate = dateFormat.format(dateExpi.getDate());
-//                String theDate = dateFormat.format(dater);
                 String dateStr = req.getString("date_exp");
                 LocalDate date = LocalDate.parse(dateStr); // Convertir la chaîne en objet LocalDate
 
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("fr")); // Définir le modèle de formatage avec le mois en français
-                String formattedDate = date.format(formatter); // Formater la date selon le modèle spécifié
-
-                System.out.println("FORMAT : "+formattedDate); // Afficher la date formatée (30 juin 2023)
+                String formattedDate = date.format(formatter);
 
                 switch (categ) {
                     case "1":
@@ -2187,8 +2203,7 @@ public class AdminPanel extends javax.swing.JFrame {
                     req.getString("prix_achat"),
                     req.getString("prix_vente"),
                     req.getString("code_produit"),
-                    req.getString("qte_produit"),
-                });
+                    req.getString("qte_produit"),});
                 counter++;
             }
         } catch (SQLException sqlException) {
