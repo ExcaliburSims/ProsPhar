@@ -388,11 +388,11 @@ public class AdminPanel extends javax.swing.JFrame {
 
             },
             new String [] {
-                "PRODUIT", "CATEGORIE", "PRIX", "NOMBRE", "TOTAL"
+                "N°", "PRODUIT", "CATEGORIE", "PRIX", "NOMBRE", "TOTAL"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -416,7 +416,7 @@ public class AdminPanel extends javax.swing.JFrame {
             .addGroup(venteJourLayout.createSequentialGroup()
                 .addGap(238, 238, 238)
                 .addComponent(freshVenteDay, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
         venteJourLayout.setVerticalGroup(
             venteJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -486,9 +486,9 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(chiffreJour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(bestVente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(venteJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1986,7 +1986,7 @@ public class AdminPanel extends javax.swing.JFrame {
             System.out.println("Connexion effective !");
             DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
             String categorieName;
-
+            int counter = 1;
             for (int i = model.getRowCount(); i > 0; --i) {
                 model.removeRow(i - 1);
             }
@@ -2054,13 +2054,14 @@ public class AdminPanel extends javax.swing.JFrame {
                 // Vérifiez si l'ID du produit a déjà été ajouté
                 if (!produitsAjoutes.contains(produitId)) {
                     model.addRow(new Object[]{
+                        counter,
                         req.getString("nom_produit"),
                         categorieName,
                         req.getString("prix"),
                         req.getString("quantite"),
                         req.getString("prix_total")
                     });
-
+                    counter++;
                     produitsAjoutes.add(produitId); // Ajoutez l'ID du produit à l'ensemble des produits ajoutés
                 }
             }
@@ -2107,7 +2108,6 @@ public class AdminPanel extends javax.swing.JFrame {
             Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     private void bestVente() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -2144,110 +2144,6 @@ public class AdminPanel extends javax.swing.JFrame {
                 model.addRow(new Object[]{
                     name, totalVendu
                 });
-            }
-
-        } catch (SQLException sqlException) {
-            sqlException.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    private void venteDuDay() {
-        Set<Integer> produitsAjoutes = new HashSet<>();
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
-            String user = "root";
-            String passwd = "root";
-            Connection conn = DriverManager.getConnection(url, user, passwd);
-            System.out.println("Connexion effective !");
-            DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
-            String categorieName;
-
-            for (int i = model.getRowCount(); i > 0; --i) {
-                model.removeRow(i - 1);
-            }
-            String sql = "SELECT * FROM commandes WHERE date_vente = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-
-            LocalDate currentDate = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String datee = currentDate.format(formatter);
-            pstmt.setString(1, datee);
-            ResultSet req = pstmt.executeQuery();
-            while (req.next()) {
-                int produitId = req.getInt("id");
-                String categ = req.getString("categorie_id");
-                switch (categ) {
-                    case "1":
-                        categorieName = "COMPRIME";
-                        break;
-                    case "2":
-                        categorieName = "SIROP";
-                        break;
-                    case "3":
-                        categorieName = "INJECTABLE";
-                        break;
-                    case "4":
-                        categorieName = "SUPPO";
-                        break;
-                    case "5":
-                        categorieName = "GOUTTE";
-                        break;
-                    case "6":
-                        categorieName = "CREME";
-                        break;
-                    case "7":
-                        categorieName = "POUDRE";
-                        break;
-                    case "8":
-                        categorieName = "SAVON";
-                        break;
-                    case "9":
-                        categorieName = "POMMADE";
-                        break;
-                    case "10":
-                        categorieName = "SPRITE";
-                        break;
-                    case "11":
-                        categorieName = "SOLUTION";
-                        break;
-                    case "12":
-                        categorieName = "GEL";
-                        break;
-                    case "13":
-                        categorieName = "MATERIEL";
-                        break;
-                    case "14":
-                        categorieName = "SERUM";
-                        break;
-                    case "15":
-                        categorieName = "AUTRES";
-                        break;
-                    default:
-                        categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
-                }
-
-                // Vérifiez si l'ID du produit a déjà été ajouté
-                if (!produitsAjoutes.contains(produitId)) {
-                    model.addRow(new Object[]{
-                        req.getString("nom_produit"),
-                        categorieName,
-                        req.getString("prix"),
-                        req.getString("quantite"),
-                        req.getString("prix_total")
-                    });
-
-                    produitsAjoutes.add(produitId); // Ajoutez l'ID du produit à l'ensemble des produits ajoutés
-                }
-            }
-
-// Vérifiez si des éléments ont été ajoutés
-            if (produitsAjoutes.isEmpty()) {
-                System.out.println("Aucun élément ajouté à la base de données.");
-            } else {
-                // Actualisez la table ou effectuez d'autres opérations nécessaires
             }
 
         } catch (SQLException sqlException) {
