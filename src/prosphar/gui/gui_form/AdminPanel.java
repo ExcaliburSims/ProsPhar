@@ -27,6 +27,8 @@ import java.text.NumberFormat;
 import java.util.Locale;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -76,10 +78,12 @@ public class AdminPanel extends javax.swing.JFrame {
         chiffreAff = new javax.swing.JButton();
         venteJour = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        VenteDay = new javax.swing.JTable();
+        freshVenteDay = new javax.swing.JButton();
         bestVente = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabBestSell = new javax.swing.JTable();
+        bestSell = new javax.swing.JButton();
         ventePanel = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -361,13 +365,13 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(chiffreAff, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(caff, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(caff, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         chiffreJourLayout.setVerticalGroup(
             chiffreJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chiffreJourLayout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(chiffreJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(caff, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chiffreAff, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -376,9 +380,9 @@ public class AdminPanel extends javax.swing.JFrame {
 
         venteJour.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VENTE JOURNALIERE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 14))); // NOI18N
 
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        VenteDay.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        VenteDay.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        VenteDay.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -394,26 +398,40 @@ public class AdminPanel extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane5.setViewportView(jTable1);
+        jScrollPane5.setViewportView(VenteDay);
+
+        freshVenteDay.setText("ACTUALISATION VENTE");
+        freshVenteDay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                freshVenteDayActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout venteJourLayout = new javax.swing.GroupLayout(venteJour);
         venteJour.setLayout(venteJourLayout);
         venteJourLayout.setHorizontalGroup(
             venteJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 696, Short.MAX_VALUE)
+            .addComponent(jScrollPane5)
+            .addGroup(venteJourLayout.createSequentialGroup()
+                .addGap(238, 238, 238)
+                .addComponent(freshVenteDay, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(242, Short.MAX_VALUE))
         );
         venteJourLayout.setVerticalGroup(
             venteJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, venteJourLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(venteJourLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(freshVenteDay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         bestVente.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "MEILLEURE VENTE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 14))); // NOI18N
 
-        jTable2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabBestSell.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabBestSell.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        tabBestSell.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -429,19 +447,33 @@ public class AdminPanel extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
-        jScrollPane6.setViewportView(jTable2);
+        jScrollPane6.setViewportView(tabBestSell);
+
+        bestSell.setText("ACTUALISATION BEST VENTE");
+        bestSell.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bestSellActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout bestVenteLayout = new javax.swing.GroupLayout(bestVente);
         bestVente.setLayout(bestVenteLayout);
         bestVenteLayout.setHorizontalGroup(
             bestVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bestVenteLayout.createSequentialGroup()
+                .addContainerGap(88, Short.MAX_VALUE)
+                .addComponent(bestSell, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(81, 81, 81))
         );
         bestVenteLayout.setVerticalGroup(
             bestVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bestVenteLayout.createSequentialGroup()
-                .addGap(0, 7, Short.MAX_VALUE)
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(bestVenteLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bestSell, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -461,12 +493,12 @@ public class AdminPanel extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(venteJour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(chiffreJour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(bestVente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(bestVente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -1894,6 +1926,111 @@ public class AdminPanel extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_chiffreAffActionPerformed
+
+    private void bestSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bestSellActionPerformed
+        // TODO add your handling code here:
+        Set<Integer> produitsAjoutes = new HashSet<>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
+
+            for (int i = model.getRowCount(); i > 0; --i) {
+                model.removeRow(i - 1);
+            }
+            String sql = "SELECT * FROM commandes WHERE date_vente = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String datee = currentDate.format(formatter);
+            pstmt.setString(1, datee);
+            ResultSet req = pstmt.executeQuery();
+            while (req.next()) {
+                int produitId = req.getInt("id"); // Récupérez l'ID du produit
+
+                // Vérifiez si l'ID du produit a déjà été ajouté
+                if (!produitsAjoutes.contains(produitId)) {
+                    // DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
+                    model.addRow(new Object[]{
+                        req.getString("nom_produit"),
+                        req.getString("categorie_id"),
+                    });
+
+                    produitsAjoutes.add(produitId); // Ajoutez l'ID du produit à l'ensemble des produits ajoutés
+                }
+            }
+
+            if (produitsAjoutes.isEmpty()) {
+                System.out.println("Aucun élément ajouté à la base de données.");
+            } else {
+                // Actualisez la table ou effectuez d'autres opérations nécessaires
+            }
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_bestSellActionPerformed
+
+    private void freshVenteDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_freshVenteDayActionPerformed
+        // TODO add your handling code here:
+        Set<Integer> produitsAjoutes = new HashSet<>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
+
+            for (int i = model.getRowCount(); i > 0; --i) {
+                model.removeRow(i - 1);
+            }
+            String sql = "SELECT * FROM commandes WHERE date_vente = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String datee = currentDate.format(formatter);
+            pstmt.setString(1, datee);
+            ResultSet req = pstmt.executeQuery();
+            while (req.next()) {
+                int produitId = req.getInt("id"); // Récupérez l'ID du produit
+
+                // Vérifiez si l'ID du produit a déjà été ajouté
+                if (!produitsAjoutes.contains(produitId)) {
+                    model.addRow(new Object[]{
+                        req.getString("nom_produit"),
+                        req.getString("categorie_id"),
+                        req.getString("prix"),
+                        req.getString("quantite"),
+                        req.getString("prix_total")
+                    });
+
+                    produitsAjoutes.add(produitId); // Ajoutez l'ID du produit à l'ensemble des produits ajoutés
+                }
+            }
+
+// Vérifiez si des éléments ont été ajoutés
+            if (produitsAjoutes.isEmpty()) {
+                System.out.println("Aucun élément ajouté à la base de données.");
+            } else {
+                // Actualisez la table ou effectuez d'autres opérations nécessaires
+            }
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_freshVenteDayActionPerformed
     private void chiffreAff() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -2132,6 +2269,8 @@ public class AdminPanel extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AjoutMed;
     private javax.swing.JPanel AjoutPanel;
+    private javax.swing.JTable VenteDay;
+    private javax.swing.JButton bestSell;
     private javax.swing.JPanel bestVente;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnDelete;
@@ -2150,6 +2289,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JTextField codeProd1;
     private com.toedter.calendar.JDateChooser dateExpi;
     private javax.swing.JTextField email;
+    private javax.swing.JButton freshVenteDay;
     private javax.swing.JButton gestRap;
     private javax.swing.JButton gestSecu;
     private javax.swing.JButton gestStock;
@@ -2194,8 +2334,6 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
     private javax.swing.JButton logOut1;
     private javax.swing.JTextField nameProd;
     private javax.swing.JTextField nameProd1;
@@ -2221,6 +2359,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JTable tabAjout;
     private javax.swing.JTable tabAjout1;
     private javax.swing.JTable tabAjout2;
+    private javax.swing.JTable tabBestSell;
     private javax.swing.JButton tabBord;
     private javax.swing.JPanel tabBordPanel;
     private javax.swing.JTable tabFacture;
