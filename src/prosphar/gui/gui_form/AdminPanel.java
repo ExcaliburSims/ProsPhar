@@ -46,6 +46,7 @@ public class AdminPanel extends javax.swing.JFrame {
         setExtendedState(MAXIMIZED_BOTH);
         databaseProduit();
         chiffreAff();
+        bestVente();
     }
 
     /**
@@ -1929,7 +1930,6 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void bestSellActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bestSellActionPerformed
         // TODO add your handling code here:
-        Set<Integer> produitsAjoutes = new HashSet<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
@@ -1937,38 +1937,34 @@ public class AdminPanel extends javax.swing.JFrame {
             String passwd = "root";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
-            DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
-
+            DefaultTableModel model = (DefaultTableModel) tabBestSell.getModel();
             for (int i = model.getRowCount(); i > 0; --i) {
                 model.removeRow(i - 1);
             }
-            String sql = "SELECT * FROM commandes WHERE date_vente = ?";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-
             LocalDate currentDate = LocalDate.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String datee = currentDate.format(formatter);
-            pstmt.setString(1, datee);
+            LocalDate startDate = currentDate.withDayOfMonth(1); // Début du mois
+            LocalDate endDate = currentDate.withDayOfMonth(currentDate.lengthOfMonth()); // Fin du mois
+            System.out.println("Connexion start !" + startDate);
+            System.out.println("Connexion enddate !" + endDate);
+
+            String sql = "SELECT produit_id, nom_produit, SUM(quantite) AS total_vendu "
+                    + "FROM commandes "
+                    + "WHERE date_vente >= ? AND date_vente <= ? "
+                    + "GROUP BY produit_id, nom_produit  "
+                    + "ORDER BY total_vendu DESC";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setDate(1, java.sql.Date.valueOf(startDate));
+            pstmt.setDate(2, java.sql.Date.valueOf(endDate));
             ResultSet req = pstmt.executeQuery();
+
             while (req.next()) {
-                int produitId = req.getInt("id"); // Récupérez l'ID du produit
+                int totalVendu = req.getInt("total_vendu");
+                String name = req.getString("nom_produit");
 
-                // Vérifiez si l'ID du produit a déjà été ajouté
-                if (!produitsAjoutes.contains(produitId)) {
-                    // DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
-                    model.addRow(new Object[]{
-                        req.getString("nom_produit"),
-                        req.getString("categorie_id"),
-                    });
-
-                    produitsAjoutes.add(produitId); // Ajoutez l'ID du produit à l'ensemble des produits ajoutés
-                }
-            }
-
-            if (produitsAjoutes.isEmpty()) {
-                System.out.println("Aucun élément ajouté à la base de données.");
-            } else {
-                // Actualisez la table ou effectuez d'autres opérations nécessaires
+                // Traitez les données selon vos besoins
+                model.addRow(new Object[]{
+                    name, totalVendu
+                });
             }
 
         } catch (SQLException sqlException) {
@@ -2103,6 +2099,155 @@ public class AdminPanel extends javax.swing.JFrame {
                 NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
                 String formattedNumber = numberFormat.format(totalVentes);
                 caff.setText(formattedNumber + " FC");
+            }
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void bestVente() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            DefaultTableModel model = (DefaultTableModel) tabBestSell.getModel();
+            for (int i = model.getRowCount(); i > 0; --i) {
+                model.removeRow(i - 1);
+            }
+            LocalDate currentDate = LocalDate.now();
+            LocalDate startDate = currentDate.withDayOfMonth(1); // Début du mois
+            LocalDate endDate = currentDate.withDayOfMonth(currentDate.lengthOfMonth()); // Fin du mois
+            System.out.println("Connexion start !" + startDate);
+            System.out.println("Connexion enddate !" + endDate);
+
+            String sql = "SELECT produit_id, nom_produit, SUM(quantite) AS total_vendu "
+                    + "FROM commandes "
+                    + "WHERE date_vente >= ? AND date_vente <= ? "
+                    + "GROUP BY produit_id, nom_produit  "
+                    + "ORDER BY total_vendu DESC";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            pstmt.setDate(1, java.sql.Date.valueOf(startDate));
+            pstmt.setDate(2, java.sql.Date.valueOf(endDate));
+            ResultSet req = pstmt.executeQuery();
+
+            while (req.next()) {
+                int totalVendu = req.getInt("total_vendu");
+                String name = req.getString("nom_produit");
+
+                // Traitez les données selon vos besoins
+                model.addRow(new Object[]{
+                    name, totalVendu
+                });
+            }
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void venteDuDay() {
+        Set<Integer> produitsAjoutes = new HashSet<>();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
+            String categorieName;
+
+            for (int i = model.getRowCount(); i > 0; --i) {
+                model.removeRow(i - 1);
+            }
+            String sql = "SELECT * FROM commandes WHERE date_vente = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String datee = currentDate.format(formatter);
+            pstmt.setString(1, datee);
+            ResultSet req = pstmt.executeQuery();
+            while (req.next()) {
+                int produitId = req.getInt("id");
+                String categ = req.getString("categorie_id");
+                switch (categ) {
+                    case "1":
+                        categorieName = "COMPRIME";
+                        break;
+                    case "2":
+                        categorieName = "SIROP";
+                        break;
+                    case "3":
+                        categorieName = "INJECTABLE";
+                        break;
+                    case "4":
+                        categorieName = "SUPPO";
+                        break;
+                    case "5":
+                        categorieName = "GOUTTE";
+                        break;
+                    case "6":
+                        categorieName = "CREME";
+                        break;
+                    case "7":
+                        categorieName = "POUDRE";
+                        break;
+                    case "8":
+                        categorieName = "SAVON";
+                        break;
+                    case "9":
+                        categorieName = "POMMADE";
+                        break;
+                    case "10":
+                        categorieName = "SPRITE";
+                        break;
+                    case "11":
+                        categorieName = "SOLUTION";
+                        break;
+                    case "12":
+                        categorieName = "GEL";
+                        break;
+                    case "13":
+                        categorieName = "MATERIEL";
+                        break;
+                    case "14":
+                        categorieName = "SERUM";
+                        break;
+                    case "15":
+                        categorieName = "AUTRES";
+                        break;
+                    default:
+                        categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
+                }
+
+                // Vérifiez si l'ID du produit a déjà été ajouté
+                if (!produitsAjoutes.contains(produitId)) {
+                    model.addRow(new Object[]{
+                        req.getString("nom_produit"),
+                        categorieName,
+                        req.getString("prix"),
+                        req.getString("quantite"),
+                        req.getString("prix_total")
+                    });
+
+                    produitsAjoutes.add(produitId); // Ajoutez l'ID du produit à l'ensemble des produits ajoutés
+                }
+            }
+
+// Vérifiez si des éléments ont été ajoutés
+            if (produitsAjoutes.isEmpty()) {
+                System.out.println("Aucun élément ajouté à la base de données.");
+            } else {
+                // Actualisez la table ou effectuez d'autres opérations nécessaires
             }
 
         } catch (SQLException sqlException) {
