@@ -43,6 +43,7 @@ public class AdminPanel extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         databaseProduit();
+        chiffreAff();
     }
 
     /**
@@ -71,8 +72,8 @@ public class AdminPanel extends javax.swing.JFrame {
         tabBordPanel = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         chiffreJour = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        caff = new javax.swing.JLabel();
+        chiffreAff = new javax.swing.JButton();
         venteJour = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -339,12 +340,18 @@ public class AdminPanel extends javax.swing.JFrame {
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel13.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel13.setText("CHIFFRE DU JOUR");
+        caff.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        caff.setForeground(new java.awt.Color(255, 0, 51));
+        caff.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        caff.setText("O FC");
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel14.setText("O FC");
+        chiffreAff.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        chiffreAff.setText("CHIFFRE DU JOUR");
+        chiffreAff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chiffreAffActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout chiffreJourLayout = new javax.swing.GroupLayout(chiffreJour);
         chiffreJour.setLayout(chiffreJourLayout);
@@ -352,19 +359,19 @@ public class AdminPanel extends javax.swing.JFrame {
             chiffreJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(chiffreJourLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addComponent(chiffreAff, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(caff, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addContainerGap())
         );
         chiffreJourLayout.setVerticalGroup(
             chiffreJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, chiffreJourLayout.createSequentialGroup()
                 .addContainerGap(44, Short.MAX_VALUE)
                 .addGroup(chiffreJourLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39))
+                    .addComponent(caff, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chiffreAff, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28))
         );
 
         venteJour.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "VENTE JOURNALIERE", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 14))); // NOI18N
@@ -433,7 +440,7 @@ public class AdminPanel extends javax.swing.JFrame {
         bestVenteLayout.setVerticalGroup(
             bestVenteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bestVenteLayout.createSequentialGroup()
-                .addGap(0, 15, Short.MAX_VALUE)
+                .addGap(0, 7, Short.MAX_VALUE)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1301,7 +1308,8 @@ public class AdminPanel extends javax.swing.JFrame {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
-        Double prixTot;Double prixachat;
+        Double prixTot;
+        Double prixachat;
         prixTot = Double.parseDouble(prixProd.getText()) * Double.parseDouble(qteProd.getText());
         prixachat = Double.valueOf(prixProd.getText());
         // System.out.println("PRIX TOTAL"+ PrixT);
@@ -1855,6 +1863,67 @@ public class AdminPanel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_nameProdKeyPressed
 
+    private void chiffreAffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chiffreAffActionPerformed
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            String sql = "SELECT SUM(prix_total) AS total FROM commandes WHERE date_vente = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String datee = currentDate.format(formatter);
+            pstmt.setString(1, datee);
+            ResultSet req = pstmt.executeQuery();
+            if (req.next()) {
+                double totalVentes = req.getDouble("total");
+                NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+                String formattedNumber = numberFormat.format(totalVentes);
+                caff.setText(formattedNumber + " FC");
+            }
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_chiffreAffActionPerformed
+    private void chiffreAff() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            String sql = "SELECT SUM(prix_total) AS total FROM commandes WHERE date_vente = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            LocalDate currentDate = LocalDate.now();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String datee = currentDate.format(formatter);
+            pstmt.setString(1, datee);
+            ResultSet req = pstmt.executeQuery();
+            if (req.next()) {
+                double totalVentes = req.getDouble("total");
+                NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+                String formattedNumber = numberFormat.format(totalVentes);
+                caff.setText(formattedNumber + " FC");
+            }
+
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     private void onClick(JButton btn) {
         btn.setBackground(new Color(75, 175, 152));
     }
@@ -2071,8 +2140,10 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnUpdateInsert;
     private javax.swing.JButton btnprint;
+    private javax.swing.JLabel caff;
     private javax.swing.JComboBox<String> cbCateg;
     private javax.swing.JComboBox<String> cbCateg1;
+    private javax.swing.JButton chiffreAff;
     private javax.swing.JPanel chiffreJour;
     private javax.swing.JButton codeGen;
     private javax.swing.JTextField codeProd;
@@ -2086,8 +2157,6 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
