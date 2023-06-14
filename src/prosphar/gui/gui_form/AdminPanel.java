@@ -110,7 +110,8 @@ public class AdminPanel extends javax.swing.JFrame {
         stockPanel = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tabAjout2 = new javax.swing.JTable();
+        tabListMedic = new javax.swing.JTable();
+        listProduit = new javax.swing.JButton();
         AjoutPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -770,31 +771,31 @@ public class AdminPanel extends javax.swing.JFrame {
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "LISTE MEDICAMENT", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18))); // NOI18N
 
-        tabAjout2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tabAjout2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        tabAjout2.setModel(new javax.swing.table.DefaultTableModel(
+        tabListMedic.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        tabListMedic.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        tabListMedic.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "PRODUIT", "CATEGORIE", "DATE EXPIRATION", "QUANTITE", "PRIX ACHAT", "PRIX VENTE", "CODE PRODUIT"
+                "N°", "PRODUIT", "CATEGORIE", "DATE EXPIRATION", "PRIX ACHAT", "PRIX VENTE", "CODE PRODUIT", "QUANTITE"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        tabAjout2.setRowHeight(30);
-        tabAjout2.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabListMedic.setRowHeight(30);
+        tabListMedic.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabAjout2MouseClicked(evt);
+                tabListMedicMouseClicked(evt);
             }
         });
-        jScrollPane4.setViewportView(tabAjout2);
+        jScrollPane4.setViewportView(tabListMedic);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -807,6 +808,13 @@ public class AdminPanel extends javax.swing.JFrame {
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
         );
 
+        listProduit.setText("LISTE DES MEDICAMENT");
+        listProduit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listProduitActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout stockPanelLayout = new javax.swing.GroupLayout(stockPanel);
         stockPanel.setLayout(stockPanelLayout);
         stockPanelLayout.setHorizontalGroup(
@@ -814,11 +822,17 @@ public class AdminPanel extends javax.swing.JFrame {
             .addGroup(stockPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(472, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(listProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(228, Short.MAX_VALUE))
         );
         stockPanelLayout.setVerticalGroup(
             stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(stockPanelLayout.createSequentialGroup()
+                .addGap(54, 54, 54)
+                .addComponent(listProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("tab 3", stockPanel);
@@ -1873,9 +1887,9 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tabAjout1MouseClicked
 
-    private void tabAjout2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAjout2MouseClicked
+    private void tabListMedicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabListMedicMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tabAjout2MouseClicked
+    }//GEN-LAST:event_tabListMedicMouseClicked
 
     private void nameProdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameProdKeyPressed
         // TODO add your handling code here:
@@ -2079,6 +2093,110 @@ public class AdminPanel extends javax.swing.JFrame {
             Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_freshVenteDayActionPerformed
+
+    private void listProduitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listProduitActionPerformed
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            System.out.println("Connexion effective !");
+            DefaultTableModel model = (DefaultTableModel) tabListMedic.getModel();
+            String categorieName;
+            int counter = 1;
+            for (int i = model.getRowCount(); i > 0; --i) {
+                model.removeRow(i - 1);
+            }
+            String sql = "SELECT * FROM produits";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            ResultSet req = pstmt.executeQuery();
+            while (req.next()) {
+                String categ = req.getString("categorie_id");
+                String dater = req.getString("date_exp");
+
+//                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+//                //String theDate = dateFormat.format(dateExpi.getDate());
+//                String theDate = dateFormat.format(dater);
+                String dateStr = req.getString("date_exp");
+                LocalDate date = LocalDate.parse(dateStr); // Convertir la chaîne en objet LocalDate
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("fr")); // Définir le modèle de formatage avec le mois en français
+                String formattedDate = date.format(formatter); // Formater la date selon le modèle spécifié
+
+                System.out.println("FORMAT : "+formattedDate); // Afficher la date formatée (30 juin 2023)
+
+                switch (categ) {
+                    case "1":
+                        categorieName = "COMPRIME";
+                        break;
+                    case "2":
+                        categorieName = "SIROP";
+                        break;
+                    case "3":
+                        categorieName = "INJECTABLE";
+                        break;
+                    case "4":
+                        categorieName = "SUPPO";
+                        break;
+                    case "5":
+                        categorieName = "GOUTTE";
+                        break;
+                    case "6":
+                        categorieName = "CREME";
+                        break;
+                    case "7":
+                        categorieName = "POUDRE";
+                        break;
+                    case "8":
+                        categorieName = "SAVON";
+                        break;
+                    case "9":
+                        categorieName = "POMMADE";
+                        break;
+                    case "10":
+                        categorieName = "SPRITE";
+                        break;
+                    case "11":
+                        categorieName = "SOLUTION";
+                        break;
+                    case "12":
+                        categorieName = "GEL";
+                        break;
+                    case "13":
+                        categorieName = "MATERIEL";
+                        break;
+                    case "14":
+                        categorieName = "SERUM";
+                        break;
+                    case "15":
+                        categorieName = "AUTRES";
+                        break;
+                    default:
+                        categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
+                }
+
+                // Vérifiez si l'ID du produit a déjà été ajouté
+                model.addRow(new Object[]{
+                    counter,
+                    req.getString("nom"),
+                    categorieName,
+                    formattedDate,
+                    req.getString("prix_achat"),
+                    req.getString("prix_vente"),
+                    req.getString("code_produit"),
+                    req.getString("qte_produit"),
+                });
+                counter++;
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_listProduitActionPerformed
     private void chiffreAff() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -2108,6 +2226,7 @@ public class AdminPanel extends javax.swing.JFrame {
             Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     private void bestVente() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -2426,6 +2545,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JButton listProduit;
     private javax.swing.JButton logOut1;
     private javax.swing.JTextField nameProd;
     private javax.swing.JTextField nameProd1;
@@ -2450,11 +2570,11 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JPanel stockPanel;
     private javax.swing.JTable tabAjout;
     private javax.swing.JTable tabAjout1;
-    private javax.swing.JTable tabAjout2;
     private javax.swing.JTable tabBestSell;
     private javax.swing.JButton tabBord;
     private javax.swing.JPanel tabBordPanel;
     private javax.swing.JTable tabFacture;
+    private javax.swing.JTable tabListMedic;
     private javax.swing.JTextField telep;
     private javax.swing.JPanel venteJour;
     private javax.swing.JPanel ventePanel;
