@@ -1181,10 +1181,11 @@ public class AdminPanel extends javax.swing.JFrame {
         Double prixAchat = Double.parseDouble(prixProd.getText());
         // System.out.println("PRIX TOTAL"+ PrixT);
         DefaultTableModel model = (DefaultTableModel) tabFacture.getModel();
-        if ((!codeProd.getText().trim().equals(""))) {
+        if ((!qteProd.getText().trim().equals(""))) {
             model.addRow(new Object[]{
                 codeProd.getText(), nameProd.getText().toUpperCase(), qteProd.getText(), cbCateg.getSelectedItem().toString(), prixAchat, prixTot});
         } else {
+            JOptionPane.showMessageDialog(this, "VENTE EFFECTUEE AVEC SUCCES");
             System.out.print("NOT VOID");
         }
         codeProd.setText("");
