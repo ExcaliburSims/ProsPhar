@@ -112,6 +112,8 @@ public class AdminPanel extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tabListMedic = new javax.swing.JTable();
         listProduit = new javax.swing.JButton();
+        listProduitDate = new javax.swing.JButton();
+        listProduitQte = new javax.swing.JButton();
         AjoutPanel = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -814,16 +816,38 @@ public class AdminPanel extends javax.swing.JFrame {
             }
         });
 
+        listProduitDate.setText("LISTE PAR DATE D'EXPIRATION");
+        listProduitDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listProduitDateActionPerformed(evt);
+            }
+        });
+
+        listProduitQte.setText("LISTE PAR QUANTITE");
+        listProduitQte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listProduitQteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout stockPanelLayout = new javax.swing.GroupLayout(stockPanel);
         stockPanel.setLayout(stockPanelLayout);
         stockPanelLayout.setHorizontalGroup(
             stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(stockPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(listProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(138, Short.MAX_VALUE))
+                .addGroup(stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(listProduitQte, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(stockPanelLayout.createSequentialGroup()
+                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(stockPanelLayout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(listProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(stockPanelLayout.createSequentialGroup()
+                                .addGap(27, 27, 27)
+                                .addComponent(listProduitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         stockPanelLayout.setVerticalGroup(
             stockPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -831,6 +855,10 @@ public class AdminPanel extends javax.swing.JFrame {
             .addGroup(stockPanelLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(listProduit, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addComponent(listProduitDate, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(listProduitQte, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -2187,6 +2215,196 @@ public class AdminPanel extends javax.swing.JFrame {
             Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_listProduitActionPerformed
+
+    private void listProduitDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listProduitDateActionPerformed
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            DefaultTableModel model = (DefaultTableModel) tabListMedic.getModel();
+            String categorieName;
+            int counter = 1;
+            for (int i = model.getRowCount(); i > 0; --i) {
+                model.removeRow(i - 1);
+            }
+            String sql = "SELECT * FROM produits ORDER BY date_exp";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            ResultSet req = pstmt.executeQuery();
+            while (req.next()) {
+                String categ = req.getString("categorie_id");
+                String dateStr = req.getString("date_exp");
+                LocalDate date = LocalDate.parse(dateStr); // Convertir la chaîne en objet LocalDate
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("fr")); // Définir le modèle de formatage avec le mois en français
+                String formattedDate = date.format(formatter);
+
+                switch (categ) {
+                    case "1":
+                        categorieName = "COMPRIME";
+                        break;
+                    case "2":
+                        categorieName = "SIROP";
+                        break;
+                    case "3":
+                        categorieName = "INJECTABLE";
+                        break;
+                    case "4":
+                        categorieName = "SUPPO";
+                        break;
+                    case "5":
+                        categorieName = "GOUTTE";
+                        break;
+                    case "6":
+                        categorieName = "CREME";
+                        break;
+                    case "7":
+                        categorieName = "POUDRE";
+                        break;
+                    case "8":
+                        categorieName = "SAVON";
+                        break;
+                    case "9":
+                        categorieName = "POMMADE";
+                        break;
+                    case "10":
+                        categorieName = "SPRITE";
+                        break;
+                    case "11":
+                        categorieName = "SOLUTION";
+                        break;
+                    case "12":
+                        categorieName = "GEL";
+                        break;
+                    case "13":
+                        categorieName = "MATERIEL";
+                        break;
+                    case "14":
+                        categorieName = "SERUM";
+                        break;
+                    case "15":
+                        categorieName = "AUTRES";
+                        break;
+                    default:
+                        categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
+                }
+
+                // Vérifiez si l'ID du produit a déjà été ajouté
+                model.addRow(new Object[]{
+                    counter,
+                    req.getString("nom"),
+                    categorieName,
+                    formattedDate,
+                    req.getString("prix_achat"),
+                    req.getString("prix_vente"),
+                    req.getString("code_produit"),
+                    req.getString("qte_produit"),});
+                counter++;
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_listProduitDateActionPerformed
+
+    private void listProduitQteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listProduitQteActionPerformed
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String user = "root";
+            String passwd = "root";
+            Connection conn = DriverManager.getConnection(url, user, passwd);
+            DefaultTableModel model = (DefaultTableModel) tabListMedic.getModel();
+            String categorieName;
+            int counter = 1;
+            for (int i = model.getRowCount(); i > 0; --i) {
+                model.removeRow(i - 1);
+            }
+            String sql = "SELECT * FROM produits ORDER BY qte_produit";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+
+            ResultSet req = pstmt.executeQuery();
+            while (req.next()) {
+                String categ = req.getString("categorie_id");
+                String dateStr = req.getString("date_exp");
+                LocalDate date = LocalDate.parse(dateStr); // Convertir la chaîne en objet LocalDate
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("fr")); // Définir le modèle de formatage avec le mois en français
+                String formattedDate = date.format(formatter);
+
+                switch (categ) {
+                    case "1":
+                        categorieName = "COMPRIME";
+                        break;
+                    case "2":
+                        categorieName = "SIROP";
+                        break;
+                    case "3":
+                        categorieName = "INJECTABLE";
+                        break;
+                    case "4":
+                        categorieName = "SUPPO";
+                        break;
+                    case "5":
+                        categorieName = "GOUTTE";
+                        break;
+                    case "6":
+                        categorieName = "CREME";
+                        break;
+                    case "7":
+                        categorieName = "POUDRE";
+                        break;
+                    case "8":
+                        categorieName = "SAVON";
+                        break;
+                    case "9":
+                        categorieName = "POMMADE";
+                        break;
+                    case "10":
+                        categorieName = "SPRITE";
+                        break;
+                    case "11":
+                        categorieName = "SOLUTION";
+                        break;
+                    case "12":
+                        categorieName = "GEL";
+                        break;
+                    case "13":
+                        categorieName = "MATERIEL";
+                        break;
+                    case "14":
+                        categorieName = "SERUM";
+                        break;
+                    case "15":
+                        categorieName = "AUTRES";
+                        break;
+                    default:
+                        categorieName = "DEFAULT"; // Valeur par défaut si la catégorie ne correspond à aucun des cas
+                }
+
+                // Vérifiez si l'ID du produit a déjà été ajouté
+                model.addRow(new Object[]{
+                    counter,
+                    req.getString("nom"),
+                    categorieName,
+                    formattedDate,
+                    req.getString("prix_achat"),
+                    req.getString("prix_vente"),
+                    req.getString("code_produit"),
+                    req.getString("qte_produit"),});
+                counter++;
+            }
+        } catch (SQLException sqlException) {
+            sqlException.printStackTrace();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_listProduitQteActionPerformed
     private void chiffreAff() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -2536,6 +2754,8 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JButton listProduit;
+    private javax.swing.JButton listProduitDate;
+    private javax.swing.JButton listProduitQte;
     private javax.swing.JButton logOut1;
     private javax.swing.JTextField nameProd;
     private javax.swing.JTextField nameProd1;
