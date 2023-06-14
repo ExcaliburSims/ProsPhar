@@ -156,8 +156,7 @@ public class AdminPanel extends javax.swing.JFrame {
         signup = new javax.swing.JButton();
         rapPanel = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tabAjout1 = new javax.swing.JTable();
+        jLabel11 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -1238,45 +1237,25 @@ public class AdminPanel extends javax.swing.JFrame {
         rapPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Liste Medicament", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 1, 18))); // NOI18N
 
-        tabAjout1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        tabAjout1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        tabAjout1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Nom produit", "Categorie", "Date d'exp", "Quantite", "Prix d'achat", "Prix de vente", "Code produit"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        tabAjout1.setRowHeight(30);
-        tabAjout1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tabAjout1MouseClicked(evt);
-            }
-        });
-        jScrollPane3.setViewportView(tabAjout1);
+        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel11.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel11.setText("NON DISPONIBLE");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap(298, Short.MAX_VALUE)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(245, 245, 245))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 388, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout rapPanelLayout = new javax.swing.GroupLayout(rapPanel);
@@ -1286,13 +1265,13 @@ public class AdminPanel extends javax.swing.JFrame {
             .addGroup(rapPanelLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(501, Short.MAX_VALUE))
+                .addContainerGap(469, Short.MAX_VALUE))
         );
         rapPanelLayout.setVerticalGroup(
             rapPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(rapPanelLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(126, 126, 126))
         );
 
@@ -1907,10 +1886,6 @@ public class AdminPanel extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_signupActionPerformed
 
-    private void tabAjout1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabAjout1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tabAjout1MouseClicked
-
     private void tabListMedicMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabListMedicMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_tabListMedicMouseClicked
@@ -2522,6 +2497,7 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton gestVente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel17;
@@ -2554,7 +2530,6 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
@@ -2584,7 +2559,6 @@ public class AdminPanel extends javax.swing.JFrame {
     private javax.swing.JButton signup;
     private javax.swing.JPanel stockPanel;
     private javax.swing.JTable tabAjout;
-    private javax.swing.JTable tabAjout1;
     private javax.swing.JTable tabBestSell;
     private javax.swing.JButton tabBord;
     private javax.swing.JPanel tabBordPanel;
