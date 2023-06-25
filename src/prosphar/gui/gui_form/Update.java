@@ -52,9 +52,9 @@ public final class Update extends javax.swing.JFrame {
     public void afficherProduit() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             Statement stm = conn.createStatement();
@@ -258,9 +258,9 @@ public final class Update extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             String name = prodUp.getText();
@@ -350,9 +350,9 @@ public final class Update extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             String sql = "DELETE FROM produits WHERE nom=?";

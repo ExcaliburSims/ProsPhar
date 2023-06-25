@@ -178,7 +178,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Tableau de bord"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
+                  <Color id="Curseur par d&#xe9;faut"/>
                 </Property>
               </Properties>
               <Events>
@@ -196,7 +196,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Gestion de ventes"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
+                  <Color id="Curseur par d&#xe9;faut"/>
                 </Property>
               </Properties>
               <Events>
@@ -214,7 +214,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Gestion de stocks"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
+                  <Color id="Curseur par d&#xe9;faut"/>
                 </Property>
               </Properties>
               <Events>
@@ -232,7 +232,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Ajout medicament"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
+                  <Color id="Curseur par d&#xe9;faut"/>
                 </Property>
               </Properties>
               <Events>
@@ -250,7 +250,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Securite"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
+                  <Color id="Curseur par d&#xe9;faut"/>
                 </Property>
               </Properties>
               <Events>
@@ -268,7 +268,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Rapports"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
+                  <Color id="Curseur par d&#xe9;faut"/>
                 </Property>
               </Properties>
               <Events>
@@ -286,7 +286,7 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Deconnexion"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
+                  <Color id="Curseur par d&#xe9;faut"/>
                 </Property>
               </Properties>
               <Events>
@@ -1294,7 +1294,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jPanel6" max="32767" attributes="0"/>
-                              <Component id="jPanel7" pref="478" max="32767" attributes="0"/>
+                              <Component id="jPanel7" pref="480" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">

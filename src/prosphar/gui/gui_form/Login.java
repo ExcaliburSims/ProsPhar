@@ -282,11 +282,10 @@ public class Login extends javax.swing.JFrame {
             dispose();
         }*/
         try {
-
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             Statement stm = conn.createStatement();
@@ -338,11 +337,10 @@ public class Login extends javax.swing.JFrame {
             dispose();
         }*/
             try {
-
                 Class.forName("com.mysql.cj.jdbc.Driver");
-                String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+                String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
                 String user = "root";
-                String passwd = "root";
+                String passwd = "";
                 Connection conn = DriverManager.getConnection(url, user, passwd);
                 System.out.println("Connexion effective !");
                 Statement stm = conn.createStatement();

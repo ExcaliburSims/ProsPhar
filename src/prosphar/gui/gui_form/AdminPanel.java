@@ -29,6 +29,29 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
+import java.awt.print.PrinterException;
+import java.awt.print.PrinterJob;
+import java.awt.print.PageFormat;
+import java.awt.print.Paper;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import javax.swing.JTable;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.data.JRTableModelDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -43,7 +66,7 @@ public class AdminPanel extends javax.swing.JFrame {
      */
     public AdminPanel() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
+        // setExtendedState(MAXIMIZED_BOTH);
         databaseProduit();
         chiffreAff();
         bestVente();
@@ -196,7 +219,7 @@ public class AdminPanel extends javax.swing.JFrame {
         tabBord.setBackground(new java.awt.Color(128, 237, 180));
         tabBord.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         tabBord.setText("Tableau de bord");
-        tabBord.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tabBord.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tabBord.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tabBordMouseClicked(evt);
@@ -211,7 +234,7 @@ public class AdminPanel extends javax.swing.JFrame {
         gestVente.setBackground(new java.awt.Color(128, 237, 180));
         gestVente.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestVente.setText("Gestion de ventes");
-        gestVente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gestVente.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         gestVente.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 gestVenteMouseClicked(evt);
@@ -226,7 +249,7 @@ public class AdminPanel extends javax.swing.JFrame {
         gestStock.setBackground(new java.awt.Color(128, 237, 180));
         gestStock.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestStock.setText("Gestion de stocks");
-        gestStock.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gestStock.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         gestStock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 gestStockMouseClicked(evt);
@@ -241,7 +264,7 @@ public class AdminPanel extends javax.swing.JFrame {
         AjoutMed.setBackground(new java.awt.Color(128, 237, 180));
         AjoutMed.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         AjoutMed.setText("Ajout medicament");
-        AjoutMed.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        AjoutMed.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         AjoutMed.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 AjoutMedMouseClicked(evt);
@@ -256,7 +279,7 @@ public class AdminPanel extends javax.swing.JFrame {
         gestSecu.setBackground(new java.awt.Color(128, 237, 180));
         gestSecu.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestSecu.setText("Securite");
-        gestSecu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gestSecu.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         gestSecu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 gestSecuMouseClicked(evt);
@@ -271,7 +294,7 @@ public class AdminPanel extends javax.swing.JFrame {
         gestRap.setBackground(new java.awt.Color(128, 237, 180));
         gestRap.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         gestRap.setText("Rapports");
-        gestRap.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        gestRap.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         gestRap.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 gestRapMouseClicked(evt);
@@ -286,7 +309,7 @@ public class AdminPanel extends javax.swing.JFrame {
         logOut1.setBackground(new java.awt.Color(128, 237, 180));
         logOut1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         logOut1.setText("Deconnexion");
-        logOut1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        logOut1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         logOut1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logOut1ActionPerformed(evt);
@@ -1092,7 +1115,7 @@ public class AdminPanel extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 478, Short.MAX_VALUE))
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 480, Short.MAX_VALUE))
                 .addGap(16, 16, 16)
                 .addGroup(AjoutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1364,9 +1387,9 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             int quantiteDemandee = Integer.parseInt(qteProd.getText());
@@ -1391,7 +1414,7 @@ public class AdminPanel extends javax.swing.JFrame {
                     codeProd.getText(), nameProd.getText().toUpperCase(), quantiteDemandee, cbCateg.getSelectedItem().toString(), prixachat, prixTot
                 });
             } else {
-                JOptionPane.showMessageDialog(this, "QUANTITE INSUFFISANTE IL NE RESTE QUE "+ quantiteDisponible+" "+ nameProd.getText());
+                JOptionPane.showMessageDialog(this, "QUANTITE INSUFFISANTE IL NE RESTE QUE " + quantiteDisponible + " " + nameProd.getText());
             }
             codeProd.setText("");
             nameProd.setText("");
@@ -1486,13 +1509,13 @@ public class AdminPanel extends javax.swing.JFrame {
         if (model.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "LISTE VIDE");
         } else {
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String password = "root";
+            String passwd = "";
 
-            try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            try (
+                    Connection conn = DriverManager.getConnection(url, user, passwd)) {
                 System.out.println("Connexion effective !");
-
                 for (int row = 0; row < model.getRowCount(); row++) {
                     String name = model.getValueAt(row, 1).toString();
                     String categorie = model.getValueAt(row, 3).toString();
@@ -1572,14 +1595,33 @@ public class AdminPanel extends javax.swing.JFrame {
                         // Autres actions à effectuer en cas d'échec de l'insertion
                     }
                 }
+                double somme = 0;
+                int nLigne = tabFacture.getRowCount();
+                for (int i = 0; i < nLigne; i++) {
+                    double montant = Double.parseDouble(tabFacture.getValueAt(i, 5).toString());
+                    somme = somme + montant;
+                }
+                NumberFormat numberFormat = NumberFormat.getInstance(Locale.getDefault());
+                String formattedNumber = numberFormat.format(somme);
+               
+                Map<String, Object> param = new HashMap<String, Object>();
+                param.put("TotalFac", formattedNumber);
+                JRTableModelDataSource dataSource = new JRTableModelDataSource(model);
+                JasperDesign jdesign = JRXmlLoader.load("src\\prosphar\\gui\\gui_form\\facture01.jrxml");
+                JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+
+                JasperPrint jprint = JasperFillManager.fillReport(jreport, param, dataSource);
+
+                JasperViewer.viewReport(jprint, false);
+                JOptionPane.showMessageDialog(this, "VENTE EFFECTUEE AVEC SUCCES");
                 for (int i = model.getRowCount(); i > 0; --i) {
                     model.removeRow(i - 1);
                 }
-
-                JOptionPane.showMessageDialog(this, "VENTE EFFECTUEE AVEC SUCCES");
             } catch (SQLException e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(this, "ERREUR DE CONNEXION");
+            } catch (JRException ex) {
+                Logger.getLogger(AdminPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnprintActionPerformed
@@ -1639,9 +1681,9 @@ public class AdminPanel extends javax.swing.JFrame {
     private boolean isNomProduitExist(String nomProduit) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             Statement stm = conn.createStatement();
@@ -1719,11 +1761,11 @@ public class AdminPanel extends javax.swing.JFrame {
         if (model.getRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "LISTE VIDE");
         } else {
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String password = "root";
+            String passwd = "";
 
-            try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            try (Connection conn = DriverManager.getConnection(url, user, passwd)) {
                 System.out.println("Connexion effective !");
                 Statement statement = conn.createStatement();
 
@@ -1882,9 +1924,9 @@ public class AdminPanel extends javax.swing.JFrame {
     private void signupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signupActionPerformed
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             // String insertUser = "INSERT INTO produits (role_id, nom, prenom, pseudo, email, telephone, sexe, password) VALUES ('" + 1 + "','" + nom.getText() + "', '" + prenom.getText() + "', '" + pseudo.getText() + "', '" + email.getText() + "', '" + telep.getText() + "', '" + sexe.getSelectedItem().toString() + "', '" + passWord.getText() + "')";
@@ -1941,9 +1983,9 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             String sql = "SELECT SUM(prix_total) AS total FROM commandes WHERE date_vente = ?";
@@ -1973,9 +2015,9 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             DefaultTableModel model = (DefaultTableModel) tabBestSell.getModel();
@@ -2020,9 +2062,9 @@ public class AdminPanel extends javax.swing.JFrame {
         Set<Integer> produitsAjoutes = new HashSet<>();
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             DefaultTableModel model = (DefaultTableModel) VenteDay.getModel();
@@ -2125,9 +2167,9 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             DefaultTableModel model = (DefaultTableModel) tabListMedic.getModel();
             String categorieName;
@@ -2220,9 +2262,9 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             DefaultTableModel model = (DefaultTableModel) tabListMedic.getModel();
             String categorieName;
@@ -2315,9 +2357,9 @@ public class AdminPanel extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             DefaultTableModel model = (DefaultTableModel) tabListMedic.getModel();
             String categorieName;
@@ -2408,9 +2450,9 @@ public class AdminPanel extends javax.swing.JFrame {
     private void chiffreAff() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             String sql = "SELECT SUM(prix_total) AS total FROM commandes WHERE date_vente = ?";
@@ -2435,12 +2477,27 @@ public class AdminPanel extends javax.swing.JFrame {
         }
     }
 
+    public Paper getPaper() {
+        Paper paper = new Paper();
+        double width = mmToPoints(80); // Conversion de mm en points
+        double height = this.getHeight(); // Utilisation de la hauteur par défaut
+
+        paper.setSize(width, height);
+        paper.setImageableArea(0, 0, width, height);
+
+        return paper;
+    }
+
+    private double mmToPoints(double mm) {
+        return mm * 2.83465; // Conversion de mm en points (1 point = 0.35277 mm)
+    }
+
     private void bestVente() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             DefaultTableModel model = (DefaultTableModel) tabBestSell.getModel();
@@ -2491,9 +2548,9 @@ public class AdminPanel extends javax.swing.JFrame {
     private void databaseProduit() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             Statement stm = conn.createStatement();
@@ -2532,9 +2589,9 @@ public class AdminPanel extends javax.swing.JFrame {
         System.out.println("NOM :" + complete);
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://127.0.0.1:8889/prosphar";
+            String url = "jdbc:mysql://127.0.0.1:3306/prosphar";
             String user = "root";
-            String passwd = "root";
+            String passwd = "";
             Connection conn = DriverManager.getConnection(url, user, passwd);
             System.out.println("Connexion effective !");
             cbCateg.removeAllItems();
@@ -2625,7 +2682,7 @@ public class AdminPanel extends javax.swing.JFrame {
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
