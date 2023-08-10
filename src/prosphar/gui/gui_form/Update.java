@@ -4,29 +4,11 @@
  */
 package prosphar.gui.gui_form;
 
-import java.awt.Color;
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import javax.swing.table.DefaultTableModel;
-import java.util.Random;
 import java.util.logging.Level;
-import java.util.ArrayList;
 import java.util.logging.Logger;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
-import com.jtattoo.plaf.smart.*;
-import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.Toolkit;
-import java.awt.event.KeyEvent;
-import java.text.NumberFormat;
-import java.util.Locale;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 /**
  *

@@ -14,15 +14,13 @@ import java.util.ArrayList;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
-import com.jtattoo.plaf.smart.*;
-import java.awt.Dimension;
 import java.awt.EventQueue;
+<<<<<<< Upstream, based on origin/master
 import java.awt.Image;
 import java.awt.Toolkit;
+=======
+>>>>>>> 643e8f1 fix
 import java.awt.event.KeyEvent;
 import java.text.NumberFormat;
 import java.util.Locale;

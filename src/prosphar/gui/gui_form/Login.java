@@ -11,11 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
-import javax.swing.WindowConstants;
-import com.jtattoo.plaf.smart.*;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 
 /**
  *
